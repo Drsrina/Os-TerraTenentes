@@ -105,23 +105,57 @@ Esqueça dezenas de subtotais. Seu personagem é definido por quatro pilares:
 
 ---
 
-## 2. Povos e Origens de Fronteira
+## 2. Povos & Raças do Pindorama Partido
 
-### 🌿 Filhos da Mata (Povos Ancestrais Indígenas)
-Criados em simbiose com as brenhas, conhecem cada ruído e espírito da floresta.
-* **Característica:** *Passo Sem Rastro.* Você ignora terreno difícil natural (lama, cipós, raízes) e tem Vantagem em testes de Astúcia para forragear alimentos e ervas medicinais.
+Após o Cataclismo, a magia arcana vazou e fundiu-se à terra, aos rios e à carne dos viventes. Escolha sua linhagem de nascimento:
 
-### ✊ Filhos da Liberdade (Quilombolas & Refugiados)
-Homens e mulheres que romperam as correntes da opressão e juraram morrer de pé a viver de joelhos.
-* **Característica:** *Alma Inquebrantável.* Você tem Vantagem para resistir a medo, coerção e tortura. Uma vez por descanso, quando for reduzido a 0 PV, pode cair para 1 PV em vez disso.
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                   AS SEIS GRANDES LINHAGENS DE PINDORAMA               │
+├───────────────────┬────────────────────────────┬───────────────────────┤
+│ 1. OS IARIÊNSES   │ 2. OS CAPELOBOS            │ 3. OS CAIPORIANOS     │
+│ • Água & Mergulho │ • Fúria Feral & Faro       │ • Rastro Invertido    │
+├───────────────────┼────────────────────────────┼───────────────────────┤
+│ 4. OS VIRRÉGIOS   │ 5. OS BOITÁS               │ 6. OS HUMANOS         │
+│ • Flora & Seiva   │ • Fogo Puro do Cerrado     │ • Vontade Indomável   │
+└───────────────────┴────────────────────────────┴───────────────────────┘
+```
 
-### 🐎 Filhos do Sertão (Vaqueiros, Mateiros & Colonos)
-Gente calejada pela terra árida, pelo sol inclemente e pelos caminhos de poeira e espinhos.
-* **Característica:** *Olho de Horizonte.* Você detecta emboscadas e nuvens de poeira de bandos armados a quilômetros de distância. Você precisa de apenas metade da água diária comum para não sofrer exaustão.
+### 1. 🌊 Os Iariênses (Povo das Águas & Descendentes da Iara)
+*Humanoides ribeirinhos de pele morena ou azulada com brilho perolado, cabelos que flutuam como algas e olhos escuros como o fundo do Rio Serpente.*
+* **Vantagem Natural (*Filhos da Correnteza*):** Respiram normalmente debaixo d'água, nadam o dobro da velocidade normal e possuem **Vantagem em testes de Presença (Fascínio/Diplomacia)** perto da água.
+* **Línguas:** *Nheengatu dos Rios* e *Língua Geral*.
+* **Equipamento:** Arpão de osso trabalhado (1d6 perfurante / arremesso), manto de escamas impermeável e cabaça de óleo bioluminescente.
 
-### 🛡️ Desertores & Artesãos (Ex-soldados da Coroa)
-Aqueles que abandonaram os quartéis e fardas coloniais para construir uma vida justa e autônoma na fronteira.
-* **Característica:** *Disciplina de Ofício.* Você começa treinado no manuseio de armas de pólvora e ferramentas pesadas. Reduz em 25% o tempo de qualquer obra que supervisionar no assentamento.
+### 2. 🐺 Os Capelobos (Povo Feral & Licantropos das Brenhas)
+*Guerreiros de feições lupinas e garras duras como ferro, com pelagem curta e sentidos sobrenaturais. Combatentes leais de vanguarda contra os Infundidos.*
+* **Vantagem Natural (*Couro de Fera & Faro Ancestral*):** Ganham **+1 natural na Defesa (CA)** sem necessidade de armadura pesada e têm **Vantagem em testes de Astúcia para rastrear** e notar emboscadas pelo cheiro a até 100m.
+* **Línguas:** *Uivo das Matas* e *Língua Geral*.
+* **Equipamento:** Faca de descarne de aço bruto (1d6 cortante), gibão de couro reforçado com tendões de anta e cantil de aguardente.
+
+### 3. 🌿 Os Caiporianos (Povo Espiritual das Florestas)
+*Povo esguio de cabelos vermelhos como brasa ou verdes de samambaia, com pés voltados para trás. Guardiões jurados da Caipora e do Curupira.*
+* **Vantagem Natural (*Rastro Invertido & Voz da Mata*):** Impossível de ser rastreado no solo por métodos comuns. Uma vez por dia, podem **acalmar ou comandar uma besta silvestre** não-infundida sem necessidade de rolagem de dados.
+* **Línguas:** *Tupi dos Espíritos* e *Língua Geral*.
+* **Equipamento:** Zarabatana de taquara com 15 dardos, cachimbo de barro com fumo de alecrim e patuá de sementes de tento.
+
+### 4. 🌺 Os Virrégios (Povo-Planta & Flora Viva)
+*Nascidos da simbiose viva entre a carne humana e a flora do Cataclismo. Seus corpos são feitos de fibras de vitória-régia, com flores que mudam de cor com o humor e seiva curativa.*
+* **Vantagem Natural (*Fotossíntese & Seiva Viva*):** Descansar 1 hora ao sol ou imerso em água pura recupera **1 Dado de Fôlego adicional gratuito**. São **completamente imunes a venenos vegetais e maleita/malária**.
+* **Línguas:** *Sussurro das Seivas* e *Língua Geral*.
+* **Equipamento:** Bordão de pau-d'alho (1d6 contundente), bolsa com musgo cicatrizante e túnica de fibra de carnaúba.
+
+### 5. 🔥 Os Boitás (Herdeiros da Serpente de Brasa)
+*Humanoides serpentinos do Cerrado das Chamas Eternas e das fendas de magma. Possuem escamas de obsidiana aquecidas e olhos amarelos brilhantes como fogo fátuo.*
+* **Vantagem Natural (*Sangue de Brasa*):** **Imunes a qualquer dano de fogo mundano** (fogueiras, archotes, brasas, queimadas). Seus ataques corporais causam **+1d4 de dano de fogo** extra uma vez por rodada.
+* **Línguas:** *Sopro das Brasas* e *Língua Geral*.
+* **Equipamento:** Facão forjado em pedra incandescente (1d6 cortante), pederneira de obsidiana pura e capote de couro anti-fogo.
+
+### 6. 👤 Os Humanos da Resistência (Filhos da Aliança)
+*A espinha dorsal de Pindorama: Quilombolas de ferro e tambor, Originários mestres do arco de tucum, Bastiões dissidentes da coroa e Mascates de rotas livres.*
+* **Vantagem Natural (*Determinação Indomável*):** Começam a campanha com **1 Proeza de Herói adicional** à sua escolha e ganham **+1 Dado de Fôlego extra (começam com 5d6 de Fôlego)**.
+* **Línguas:** *Língua Geral Brasílica* e *Comum dos Bastiões*.
+* **Equipamento:** 1 Arma marcial à escolha (lança, bacamarte ou facão de ponta), ferramenta de ofício, rolo de fumo de corda e pederneira com algodão.
 
 ---
 
