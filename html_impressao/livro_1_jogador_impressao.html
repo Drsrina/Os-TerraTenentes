@@ -10,7 +10,7 @@
   <style>
     @page {
       size: A4 portrait;
-      margin: 8mm 8mm 9mm 8mm;
+      margin: 10mm 10mm 11mm 10mm;
       @bottom-center {
         content: counter(page);
         font-family: 'Cinzel', 'Georgia', serif;
@@ -84,6 +84,7 @@
         padding: 0 !important;
         box-shadow: none !important;
         width: 100% !important;
+        background: transparent !important;
       }
     }
 
@@ -98,7 +99,7 @@
 
     .content-columns {
       column-count: 2;
-      column-gap: 6mm;
+      column-gap: 6.5mm;
       column-fill: auto;
       text-align: justify;
     }
@@ -110,58 +111,83 @@
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Cinzel', 'Georgia', serif;
       font-weight: 700;
-      line-height: 1.15;
-      margin-top: 1.2em;
-      margin-bottom: 0.4em;
+      line-height: 1.18;
+      margin-top: 1.1em;
+      margin-bottom: 0.35em;
       break-after: avoid;
+      page-break-after: avoid;
     }
 
     .main-doc-header {
       column-span: all;
+      break-before: page;
+      page-break-before: always;
       text-align: center;
-      padding: 12mm 0 8mm 0;
+      padding: 10mm 0 6mm 0;
       margin-bottom: 6mm;
       border-bottom: 2px solid var(--secondary-color);
     }
+    .main-doc-header:first-child,
+    .content-columns > .main-doc-header:first-child {
+      break-before: avoid !important;
+      page-break-before: avoid !important;
+      padding-top: 2mm !important;
+    }
     .main-title {
-      font-size: 20pt;
+      font-size: 18pt;
       color: var(--primary-color);
       margin: 0;
       letter-spacing: 0.5px;
     }
 
+    /* Chapter / Part headers: stay INSIDE the column to avoid multi-column blank block bugs! */
     .part-header {
-      column-span: all;
       background: var(--dark-bg);
       color: #f4eee1;
-      padding: 5mm 8mm;
-      margin: 8mm 0 4mm 0;
-      border-left: 5px solid var(--accent-color);
+      padding: 3mm 5mm;
+      margin: 5mm 0 3mm 0;
+      border-left: 4px solid var(--accent-color);
       border-radius: 2px;
-      page-break-before: auto;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      break-after: avoid;
+      page-break-after: avoid;
     }
     .part-title {
       margin: 0;
-      font-size: 13pt;
+      font-size: 10pt;
       color: #f4eee1;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
+      line-height: 1.22;
     }
 
     .section-title {
-      font-size: 11pt;
+      font-size: 10.5pt;
       color: var(--primary-color);
       border-bottom: 1px solid var(--border-color);
       padding-bottom: 1.5px;
-      margin-top: 1.1em;
+      margin-top: 1em;
       break-after: avoid;
+      page-break-after: avoid;
     }
 
     h2 { font-size: 10pt; color: var(--primary-color); }
     h3 { font-size: 9pt; color: #443e33; }
     h4 { font-size: 8.5pt; color: #555; }
 
-    p { margin-top: 0; margin-bottom: 0.6em; text-indent: 1.2em; }
-    p:first-of-type, .part-header + p, h1 + p, h2 + p, h3 + p { text-indent: 0; }
+    p {
+      margin-top: 0;
+      margin-bottom: 0.55em;
+      text-indent: 1.1em;
+      orphans: 3;
+      widows: 3;
+      text-align: justify;
+      hyphens: auto;
+      word-break: normal;
+    }
+    p:first-of-type, .part-header + p, h1 + p, h2 + p, h3 + p, .sheet-card-wrapper + p {
+      text-indent: 0;
+    }
 
     blockquote {
       margin: 0.6em 0;
@@ -170,6 +196,8 @@
       border-left: 3px solid var(--secondary-color);
       font-style: italic;
       font-size: 0.95em;
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
     blockquote p { text-indent: 0; margin-bottom: 0; }
 
@@ -179,33 +207,43 @@
     }
     li { margin-bottom: 0.2em; }
 
-    .table-wrapper, .table-wide-wrapper {
+    .table-wrapper {
       margin: 0.6em 0;
       break-inside: avoid;
+      page-break-inside: avoid;
+      max-width: 100%;
+      overflow: hidden;
     }
     .table-wide-wrapper {
       column-span: all;
+      margin: 0.8em 0;
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 7.8pt;
-      line-height: 1.18;
+      font-size: 7.2pt;
+      line-height: 1.15;
       background: #fff;
       border: 1px solid var(--border-color);
+      table-layout: fixed;
+      word-break: break-word;
+      hyphens: auto;
     }
     th, td {
-      padding: 3.5px 5px;
+      padding: 3px 4px;
       border: 1px solid #ddd6c9;
       text-align: left;
+      vertical-align: top;
     }
     th {
       background: #2b4728;
       color: #fff;
       font-family: 'Cinzel', serif;
       font-weight: 600;
-      font-size: 7.8pt;
+      font-size: 7.2pt;
     }
     tr:nth-child(even) td { background: #f7f5f0; }
 
@@ -213,7 +251,7 @@
       border: 0;
       height: 1px;
       background: var(--border-color);
-      margin: 1em 0;
+      margin: 0.8em 0;
     }
 
     .page-break-before {
@@ -222,11 +260,116 @@
     }
 
     code {
-      font-family: 'Consolas', monospace;
-      font-size: 0.9em;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.88em;
       background: #eee9df;
       padding: 1px 3px;
       border-radius: 2px;
+    }
+
+    /* Standard In-Column Preformatted Blocks */
+    pre {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 5.7pt;
+      line-height: 1.16;
+      letter-spacing: -0.28px;
+      background: #f7f5f0;
+      border: 1px solid var(--border-color);
+      border-radius: 3px;
+      padding: 2.5mm 3.5mm;
+      margin: 0.6em 0;
+      overflow: hidden;
+      white-space: pre;
+      max-width: 100%;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      font-size: 1em;
+      color: inherit;
+    }
+
+    .pre-wrapper {
+      max-width: 100%;
+      overflow: hidden;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      margin: 0.6em 0;
+    }
+    .column-pre {
+      margin: 0 !important;
+      max-width: 100% !important;
+    }
+
+    /* Diagrams that span across both columns */
+    .diagram-wide-wrapper {
+      column-span: all;
+      margin: 0.7em 0;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      text-align: center;
+      width: 100%;
+    }
+    .diagram-wide-pre {
+      display: inline-block;
+      font-family: 'Consolas', 'Courier New', monospace !important;
+      font-size: 7.0pt !important;
+      line-height: 1.18 !important;
+      letter-spacing: -0.15px !important;
+      background: #fdfcf9 !important;
+      border: 1px solid var(--secondary-color) !important;
+      padding: 3mm 5mm !important;
+      margin: 0 auto !important;
+      overflow: hidden !important;
+      white-space: pre !important;
+      max-width: 100% !important;
+      text-align: left !important;
+    }
+
+    /* Full-Page Character Sheets & Village Sheets */
+    .sheet-card-wrapper {
+      column-span: all;
+      break-before: page;
+      page-break-before: always;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      width: 100%;
+      margin: 0 0 4mm 0;
+      display: flex;
+      justify-content: center;
+    }
+    .sheet-card-wrapper:first-child,
+    .content-columns > .sheet-card-wrapper:first-child {
+      break-before: avoid !important;
+      page-break-before: avoid !important;
+    }
+    .sheet-pre {
+      display: inline-block !important;
+      font-family: 'Consolas', 'Courier New', monospace !important;
+      font-size: 6.7pt !important;
+      line-height: 1.13 !important;
+      letter-spacing: -0.18px !important;
+      background: #fdfcf9 !important;
+      border: 1.5px solid var(--primary-color) !important;
+      border-radius: 4px;
+      padding: 4mm 6mm !important;
+      margin: 0 auto !important;
+      overflow: hidden !important;
+      white-space: pre !important;
+      max-width: 100% !important;
+      text-align: left !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .one-column-mode .sheet-card-wrapper {
+      margin: 2mm auto 6mm auto;
+    }
+    .one-column-mode .sheet-pre {
+      font-size: 7.0pt !important;
+      line-height: 1.15 !important;
+      letter-spacing: -0.15px !important;
     }
 </style>
 </head>
@@ -241,13 +384,13 @@
     </select>
     <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
   </div>
-  <div class="sheet" id="bookContainer">
+  <div class="sheet " id="bookContainer">
     <div class="content-columns">
       <header class="main-doc-header"><h1 class="main-title">🏹 OS TERRATENENTES — LIVRO I: O GUIA DO JOGADOR</h1></header>
 <h2>Manual dos Pioneiros, Guerreiros e Guardiões da Terra</h2>
 <h3>Aldeias, Quilombos e Fortes</h3>
 <hr>
-<header class="part-header"><h1 class="part-title">📖 CAPÍTULO 1: O CHAMADO DA FRONTEIRA</h1></header>
+<header class="part-header"><h2 class="part-title">📖 CAPÍTULO 1: O CHAMADO DA FRONTEIRA</h2></header>
 <blockquote>
 <p><em>&quot;Quem não finca a raiz na terra que pisa é levado pelo primeiro vento forte. Nós escolhemos ficar. Nós escolhemos lutar.&quot;</em><br>— Provérbio dos Quilombos do Sertão</p>
 </blockquote>
@@ -262,7 +405,7 @@
 <hr>
 <h3>A ORDEM DO JOGO (O CICLO TRIPARTITE)</h3>
 <p>Uma campanha de <strong>Os TerraTenentes</strong> nunca engessa o grupo dentro dos muros do feudo. O ritmo da mesa flui naturalmente através de <strong>três engrenagens integradas</strong>:</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+<div class="pre-wrapper"><pre class="column-pre"><code>┌────────────────────────────────────────────────────────────────────────┐
 │                   O CICLO TRIPARTITE DA FRONTEIRA                      │
 ├───────────────────────┬───────────────────────┬────────────────────────┤
 │ 1. AVENTURAS NARRADAS │ 2. ENTRE-AVENTURAS    │ 3. TURNO DO BASTIÃO    │
@@ -271,7 +414,7 @@
 │ • Fortalecer a região │ • Forja e garrafadas  │ • 3, 6 ou 30 dias      │
 │ • Missões políticas   │ • Treino e orações    │ • Ações da comunidade  │
 └───────────────────────┴───────────────────────┴────────────────────────┘
-</code></pre>
+</code></pre></div>
 <ol>
 <li><strong>⚔️ As Aventuras Narradas (80% da Mesa):</strong> São as sessões presenciais de RPG clássico. O Mestre apresenta ameaças e os heróis partem em expedições para caçar feras míticas, resgatar colonos encurralados, socorrer fazendeiros aliados e desarmar capitães-do-mato. Toda vitória traz <strong>saques, novos moradores, alianças e segurança</strong>.</li>
 <li><strong>⛺ O Entre-Aventuras (Downtime Traduzido — Foco no Indivíduo):</strong> O respiro de descanso entre uma aventura e outra. Os heróis curam ferimentos graves, recuperam o Fôlego, forjam e calibram armas, destilam garrafadas no caldeirão, rezam com a comunidade e pesquisam fraquezas de monstros em velhos acervos.</li>
@@ -283,7 +426,7 @@
 </li>
 </ol>
 <hr>
-<header class="part-header"><h1 class="part-title">🎲 CAPÍTULO 2: AS REGRAS FUNDAMENTAIS (MOTOR D20)</h1></header>
+<header class="part-header"><h2 class="part-title">🎲 CAPÍTULO 2: AS REGRAS FUNDAMENTAIS (MOTOR D20)</h2></header>
 <p>O sistema de regras foi desenhado para ser rápido, intuitivo e sem travas burocráticas. Tudo gira em torno de uma única rolagem:</p>
 <p>$$\mathbf{1d20} + \mathbf{Atributo} \ge \mathbf{Classe\ de\ Dificuldade\ (CD)}$$</p>
 <h3>1. Quando Rolar os Dados?</h3>
@@ -331,9 +474,9 @@
 <li><strong>Ativar Façanha:</strong> Alimentar poderes lendários do seu arquétipo.</li>
 </ol>
 <hr>
-<header class="part-header"><h1 class="part-title">👤 CAPÍTULO 3: CRIAÇÃO DE PERSONAGEM PASSO A PASSO</h1></header>
+<header class="part-header"><h2 class="part-title">👤 CAPÍTULO 3: CRIAÇÃO DE PERSONAGEM PASSO A PASSO</h2></header>
 <p>Criar um TerraTenente leva apenas 5 minutos. Siga os passos:</p>
-<pre><code>    [1. ESCOLHA SEU POVO / ORIGEM]  ──&gt; Concede uma Característica Cultural.
+<div class="diagram-wide-wrapper"><pre class="diagram-wide-pre"><code>    [1. ESCOLHA SEU POVO / ORIGEM]  ──&gt; Concede uma Característica Cultural.
                  │
     [2. DISTRIBUA SEUS 4 ATRIBUTOS] ──&gt; +3, +2, +1, +0 nos atributos vitais.
                  │
@@ -342,7 +485,7 @@
     [4. DEFINA SEU PAPEL NA BASE]   ──&gt; Dá +2 a um Atributo do Assentamento.
                  │
     [5. EQUIPE-SE E LUTE]           ──&gt; Armas de época, mochila e ferramentas.
-</code></pre>
+</code></pre></div>
 <hr>
 <h2>1. Os Quatro Atributos Essenciais</h2>
 <p>Esqueça dezenas de subtotais. Seu personagem é definido por quatro pilares:</p>
@@ -358,7 +501,7 @@
 <hr>
 <h2>2. Povos &amp; Raças do Pindorama Partido</h2>
 <p>Após o Cataclismo, a magia arcana vazou e fundiu-se à terra, aos rios e à carne dos viventes. Escolha sua linhagem de nascimento:</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+<div class="diagram-wide-wrapper"><pre class="diagram-wide-pre"><code>┌────────────────────────────────────────────────────────────────────────┐
 │                   AS SEIS GRANDES LINHAGENS DE PINDORAMA               │
 ├───────────────────┬────────────────────────────┬───────────────────────┤
 │ 1. OS IARIÊNSES   │ 2. OS CAPELOBOS            │ 3. OS CAIPORIANOS     │
@@ -367,7 +510,7 @@
 │ 4. OS VIRRÉGIOS   │ 5. OS BOITÁS               │ 6. OS HUMANOS         │
 │ • Flora &amp; Seiva   │ • Fogo Puro do Cerrado     │ • Vontade Indomável   │
 └───────────────────┴────────────────────────────┴───────────────────────┘
-</code></pre>
+</code></pre></div>
 <h3>1. 🌊 Os Iariênses (Povo das Águas &amp; Descendentes da Iara)</h3>
 <p><em>Humanoides ribeirinhos de pele morena ou azulada com brilho perolado, cabelos que flutuam como algas e olhos escuros como o fundo do Rio Serpente.</em></p>
 <ul>
@@ -411,7 +554,7 @@
 <li><strong>Equipamento:</strong> 1 Arma marcial à escolha (lança, bacamarte ou facão de ponta), ferramenta de ofício, rolo de fumo de corda e pederneira com algodão.</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">⚔️ CAPÍTULO 4: OS 5 ARQUÉTIPOS DE FRONTEIRA</h1></header>
+<header class="part-header"><h2 class="part-title">⚔️ CAPÍTULO 4: OS 5 ARQUÉTIPOS DE FRONTEIRA</h2></header>
 <p>Escolha o papel marcial e comunitário do seu personagem. Cada arquétipo fornece Pontos de Vida, dados de ataque e acesso a <strong>Façanhas Exclusivas</strong>.</p>
 <hr>
 <h2>1. O CAPITÃO DE ARMAS (O Guerreiro Protetor)</h2>
@@ -489,10 +632,10 @@
 <li><strong>Provocação Ácida:</strong> Gaste 1 dado de Fôlego e xingue um inimigo a até 9 metros. Ele deve fazer teste de Presença contra sua CD ou será obrigado a focar todos os seus ataques exclusivamente em você na próxima rodada, ignorando aliados feridos.</li>
 </ol>
 <hr>
-<header class="part-header"><h1 class="part-title">🎒 CAPÍTULO 5: ARSENAL &amp; EQUIPAMENTO DE FRONTEIRA</h1></header>
+<header class="part-header"><h2 class="part-title">🎒 CAPÍTULO 5: ARSENAL &amp; EQUIPAMENTO DE FRONTEIRA</h2></header>
 <p>Na fronteira do sertão e das matas, o ferro é caro e a pólvora é preciosa. O equipamento combina materiais nativos com espólios coloniais.</p>
 <h3>Tabela de Armas Brancas</h3>
-<div class="table-wrapper"><table>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="4">
 <thead>
 <tr>
 <th align="left">Arma</th>
@@ -594,7 +737,7 @@
 <li><strong>Escudo de Madeira de Lei (Trançado ou Tábua):</strong> $+2$ na Defesa passiva (exige uma mão livre). Custo: 5 Pratas.</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">⏳ CAPÍTULO 6: O DOWNTIME — A VIDA NA SUA TERRA</h1></header>
+<header class="part-header"><h2 class="part-title">⏳ CAPÍTULO 6: O DOWNTIME — A VIDA NA SUA TERRA</h2></header>
 <p>Entre uma missão e outra nos ermos, passam-se semanas ou meses no calendário da campanha. É o tempo de <strong>Downtime</strong>.<br>Cada TerraTenente tem direito a <strong>2 Ações Pessoais</strong> por estação do ano. Veja o que você pode declarar ao Mestre:</p>
 <ol>
 <li><strong>Supervisionar Obras:</strong> Trabalhe lado a lado com os carpinteiros para erguer a paliçada, moinho ou forja. Reduz o tempo de entrega em 1 mês ou reduz 1 custo de material.</li>
@@ -606,7 +749,7 @@
 <li><strong>Explorar os Limites:</strong> Cavalgue ou caminhe pelas redondezas com batedores. O Mestre revela 1 ponto de interesse no mapa (um veio mineral, uma ruína misteriosa ou pegadas de monstros).</li>
 </ol>
 <hr>
-<header class="part-header"><h1 class="part-title">🩸 CAPÍTULO 7: COMBATE, FERIMENTOS &amp; DESCANSO</h1></header>
+<header class="part-header"><h2 class="part-title">🩸 CAPÍTULO 7: COMBATE, FERIMENTOS &amp; DESCANSO</h2></header>
 <h3>1. Como Funciona a Rodada de Combate</h3>
 <p>O combate é dividido em rodadas de cerca de 6 segundos:</p>
 <ol>
@@ -628,7 +771,7 @@
 <li><strong>Descanso Longo (1 noite segura no Assentamento):</strong> Dormir sob teto acolhedor com comida quente recupera <strong>todos os PV</strong>, todos os <strong>dados de Fôlego</strong> e cura doenças leves. Além disso, as instalações da vila fornecem seus bônus especiais para a próxima jornada!</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">⚒️ CAPÍTULO 8: ARTESANATO &amp; FORJA DE FRONTEIRA (GUIA DE CRAFTING)</h1></header>
+<header class="part-header"><h2 class="part-title">⚒️ CAPÍTULO 8: ARTESANATO &amp; FORJA DE FRONTEIRA (GUIA DE CRAFTING)</h2></header>
 <p>Em <strong>Os TerraTenentes</strong>, você não depende de mascates distantes para ter itens poderosos. Tudo o que o seu herói precisa pode ser criado na forja, na oca de ervas ou no terreiro do seu assentamento!</p>
 <h3>1. O Ciclo de Criação em 3 Passos</h3>
 <ol>
@@ -680,11 +823,11 @@
 <p><strong>Bônus de Instalação:</strong> Usar uma oficina de nível alto (Escala II ou III) reduz a CD em <strong>-2</strong>. Cada ajudante qualificado reduz o tempo de trabalho em <strong>25%</strong>!</p>
 </blockquote>
 <hr>
-<header class="part-header"><h1 class="part-title">🧪 CAPÍTULO 9: O ARSENAL DE FRONTEIRA</h1></header>
+<header class="part-header"><h2 class="part-title">🧪 CAPÍTULO 9: O ARSENAL DE FRONTEIRA</h2></header>
 <hr>
 <h2>1. As 20 Garrafadas &amp; Elixires dos Curandeiros</h2>
 <p><em>Preparadas em garrafas escuras com cachaça de alambique, raízes maceradas e banhas animais. Duram até o próximo descanso longo.</em></p>
-<div class="table-wrapper"><table>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="4">
 <thead>
 <tr>
 <th align="center">1d20</th>
@@ -856,7 +999,7 @@
 <hr>
 <h3>4. As 12 Preces de Reação Rápida &amp; Fórmulas de Impulso</h3>
 <p><em>Orações rápidas, rezas de terço e fumaças alquímicas que manipulam o d20 no calor do combate:</em></p>
-<div class="table-wrapper"><table>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="4">
 <thead>
 <tr>
 <th align="center">1d12</th>
@@ -939,9 +1082,9 @@
 </tr>
 </tbody></table></div>
 <hr>
-<header class="part-header"><h1 class="part-title">🏛️ CAPÍTULO 10: CLASSES &amp; SUBCLASSES DE ASSENTAMENTO</h1></header>
+<header class="part-header"><h2 class="part-title">🏛️ CAPÍTULO 10: CLASSES &amp; SUBCLASSES DE ASSENTAMENTO</h2></header>
 <p>Assim como cada herói escolhe um arquétipo marcial, a comunidade escolhe em conjunto a sua <strong>Classe de Domínio</strong> ao ser fundada. Cada classe possui duas <strong>Subclasses Especializadas</strong> que definem os poderes de soberania da vila:</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+<div class="diagram-wide-wrapper"><pre class="diagram-wide-pre"><code>┌────────────────────────────────────────────────────────────────────────┐
 │                   AS TRÊS GRANDES CLASSES DE DOMÍNIO                   │
 ├───────────────────┬────────────────────────────┬───────────────────────┤
 │ O QUILOMBO        │ A ALDEIA ANCESTRAL         │ O FORTE DE FRONTEIRA  │
@@ -949,7 +1092,7 @@
 │ • Mocambo Guerrilha│ • Guardiões da Mata        │ • Bastião de Artilharia│
 │ • Refúgio Aliança │ • Nação das Águas          │ • Feitoria Mercantil  │
 └───────────────────┴────────────────────────────┴───────────────────────┘
-</code></pre>
+</code></pre></div>
 <hr>
 <h2>1. CLASSE: O QUILOMBO SOBERANO (Liberdade &amp; Resistência)</h2>
 <p><em>Comunidade forjada no fogo da resistência. Seus habitantes valorizam a autonomia acima da própria vida e conhecem os segredos da mata melhor do que qualquer perseguidor.</em></p>
@@ -1011,9 +1154,9 @@
 <li><strong>Oficina de Mestres:</strong> Armas e armaduras de ferro produzidas no forte recebem bônus de $+1$ permanente no dano ou na Defesa sem custo adicional.</li>
 </ol>
 <hr>
-<header class="part-header"><h1 class="part-title">🏰 CAPÍTULO 11: CATÁLOGO DE INSTALAÇÕES — COMUNS &amp; ESPECIAIS</h1></header>
+<header class="part-header"><h2 class="part-title">🏰 CAPÍTULO 11: CATÁLOGO DE INSTALAÇÕES — COMUNS &amp; ESPECIAIS</h2></header>
 <p>Para planejar a evolução da sua comunidade, as obras são divididas em duas categorias:</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+<div class="pre-wrapper"><pre class="column-pre"><code>┌────────────────────────────────────────────────────────────────────────┐
 │                   DUAS CATEGORIAS DE EDIFICAÇÃO                        │
 ├────────────────────────────────────────┬───────────────────────────────┤
 │ QUARTOS COMUNS (BÁSICOS)               │ INSTALAÇÕES ESPECIAIS         │
@@ -1021,7 +1164,7 @@
 │ • Conforto, moradia e armazenamento    │ • Concedem poderes mecânicos  │
 │ • Custo baixo de madeira e barro       │ • Forjas, torres e oficinas   │
 └────────────────────────────────────────┴───────────────────────────────┘
-</code></pre>
+</code></pre></div>
 <hr>
 <h2>1. Quartos Comuns (Instalações Básicas — Sem Limite Rígido)</h2>
 <p><em>Estruturas essenciais que qualquer povoado ergue conforme cresce:</em></p>
@@ -1037,7 +1180,7 @@
 <hr>
 <h2>2. Instalações Especiais (Salas de Poder — Limite por Escala)</h2>
 <p><em>Edificações complexas que exigem especialistas e concedem bônus de jogo diretos aos heróis e à vila:</em></p>
-<div class="table-wrapper"><table>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="4">
 <thead>
 <tr>
 <th align="left">Instalação Especial</th>
@@ -1108,15 +1251,15 @@
 </tr>
 </tbody></table></div>
 <hr>
-<header class="part-header"><h1 class="part-title">🚩 CAPÍTULO 12: A CASA DAS BANDEIRAS &amp; A GUILDA DE EXPLORADORES</h1></header>
+<header class="part-header"><h2 class="part-title">🚩 CAPÍTULO 12: A CASA DAS BANDEIRAS &amp; A GUILDA DE EXPLORADORES</h2></header>
 <p>Conforme o assentamento cresce para a Escala II ou superior, os TerraTenentes não conseguem estar em todos os lugares ao mesmo tempo. Ao fundar uma <strong>Casa das Bandeiras</strong> (ou Guilda de Exploradores), os heróis podem contratar grupos de aventureiros, batedores e mateiros NPCs para desbravar os confins da fronteira.</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+<div class="pre-wrapper"><pre class="column-pre"><code>┌────────────────────────────────────────────────────────────────────────┐
 │             CICLO DE EXPEDIÇÃO TERCEIRIZADA (GUILDA NPC)              │
 │ 1. ESCOLHER MISSÃO ➔ 2. FINANCIAR EQUIPE ➔ 3. ROLAR 1d20 ➔ 4. COLETAR │
 └────────────────────────────────────────────────────────────────────────┘
-</code></pre>
+</code></pre></div>
 <h3>1. Quadro de Missões Disponíveis (Role 1d12 no início da Estação)</h3>
-<div class="table-wrapper"><table>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="4">
 <thead>
 <tr>
 <th align="center">1d12</th>
@@ -1208,7 +1351,7 @@
 <li><strong>18–20+: Sucesso Crítico &amp; Descoberta Extraordinária!</strong> Sucesso perfeito sem nenhuma baixa! Além da recompensa integral, os exploradores trazem um mapa secreto de tesouro ou um item de qualidade excepcional para o arsenal do assentamento!</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">📚 CAPÍTULO 13: PESQUISA, ACERVOS &amp; CONHECIMENTO ANCESTRAL</h1></header>
+<header class="part-header"><h2 class="part-title">📚 CAPÍTULO 13: PESQUISA, ACERVOS &amp; CONHECIMENTO ANCESTRAL</h2></header>
 <p>Quando o assentamento constrói um <strong>Arquivo de Mapas</strong>, uma <strong>Biblioteca de Manuscritos</strong> ou uma <strong>Casa de Reza Ancestral</strong>, os heróis podem gastar uma Ação de Entre-Aventuras para realizar <strong>Pesquisa Histórica e Arcanológica</strong>.</p>
 <h3>1. Áreas de Pesquisa Disponíveis:</h3>
 <ol>
@@ -1224,7 +1367,7 @@
 <li><strong>Resultado 20+:</strong> Revelação magistral! O herói descobre não apenas a fraqueza do inimigo, mas a localização exata de um artefato capaz de subjugá-lo imediatamente!</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">🍲 CAPÍTULO 14: SERVIÇOS DE RANCHO, VENDA &amp; GASTRONOMIA DE FRONTEIRA</h1></header>
+<header class="part-header"><h2 class="part-title">🍲 CAPÍTULO 14: SERVIÇOS DE RANCHO, VENDA &amp; GASTRONOMIA DE FRONTEIRA</h2></header>
 <p>Na vastidão do sertão e das florestas, uma boa refeição quente e um rancho seco valem mais do que ouro em pó. Ao passar por vilas, feitorias e ranchos tropeiros, os heróis podem gastar moedas de prata para saborear pratos típicos que concedem <strong>Bônus de Vigor</strong>:</p>
 <h3>1. Cardápio da Fronteira &amp; Benefícios de Sustento:</h3>
 <div class="table-wrapper"><table>
@@ -1308,7 +1451,7 @@
 </tr>
 </tbody></table></div>
 <hr>
-<header class="part-header"><h1 class="part-title">👷 CAPÍTULO 15: CATÁLOGO DE ESPECIALISTAS &amp; ARTÍFICES CONTRATÁVEIS</h1></header>
+<header class="part-header"><h2 class="part-title">👷 CAPÍTULO 15: CATÁLOGO DE ESPECIALISTAS &amp; ARTÍFICES CONTRATÁVEIS</h2></header>
 <p>Um assentamento não progride apenas com braços fortes de lavoura: ele necessita de <strong>Mestres de Ofício</strong> com conhecimentos raros. Os heróis podem contratar especialistas em cidades coloniais ou resgatá-los de cativeiros para fixar moradia em sua comunidade:</p>
 <div class="table-wrapper"><table>
 <thead>

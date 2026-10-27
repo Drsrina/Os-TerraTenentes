@@ -13,7 +13,7 @@ os.makedirs(HTML_DIR, exist_ok=True)
 SHARED_CSS = """
     @page {
       size: A4 portrait;
-      margin: 8mm 8mm 9mm 8mm;
+      margin: 10mm 10mm 11mm 10mm;
       @bottom-center {
         content: counter(page);
         font-family: 'Cinzel', 'Georgia', serif;
@@ -87,6 +87,7 @@ SHARED_CSS = """
         padding: 0 !important;
         box-shadow: none !important;
         width: 100% !important;
+        background: transparent !important;
       }
     }
 
@@ -101,7 +102,7 @@ SHARED_CSS = """
 
     .content-columns {
       column-count: 2;
-      column-gap: 6mm;
+      column-gap: 6.5mm;
       column-fill: auto;
       text-align: justify;
     }
@@ -113,58 +114,83 @@ SHARED_CSS = """
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Cinzel', 'Georgia', serif;
       font-weight: 700;
-      line-height: 1.15;
-      margin-top: 1.2em;
-      margin-bottom: 0.4em;
+      line-height: 1.18;
+      margin-top: 1.1em;
+      margin-bottom: 0.35em;
       break-after: avoid;
+      page-break-after: avoid;
     }
 
     .main-doc-header {
       column-span: all;
+      break-before: page;
+      page-break-before: always;
       text-align: center;
-      padding: 12mm 0 8mm 0;
+      padding: 10mm 0 6mm 0;
       margin-bottom: 6mm;
       border-bottom: 2px solid var(--secondary-color);
     }
+    .main-doc-header:first-child,
+    .content-columns > .main-doc-header:first-child {
+      break-before: avoid !important;
+      page-break-before: avoid !important;
+      padding-top: 2mm !important;
+    }
     .main-title {
-      font-size: 20pt;
+      font-size: 18pt;
       color: var(--primary-color);
       margin: 0;
       letter-spacing: 0.5px;
     }
 
+    /* Chapter / Part headers: stay INSIDE the column to avoid multi-column blank block bugs! */
     .part-header {
-      column-span: all;
       background: var(--dark-bg);
       color: #f4eee1;
-      padding: 5mm 8mm;
-      margin: 8mm 0 4mm 0;
-      border-left: 5px solid var(--accent-color);
+      padding: 3mm 5mm;
+      margin: 5mm 0 3mm 0;
+      border-left: 4px solid var(--accent-color);
       border-radius: 2px;
-      page-break-before: auto;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      break-after: avoid;
+      page-break-after: avoid;
     }
     .part-title {
       margin: 0;
-      font-size: 13pt;
+      font-size: 10pt;
       color: #f4eee1;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
+      line-height: 1.22;
     }
 
     .section-title {
-      font-size: 11pt;
+      font-size: 10.5pt;
       color: var(--primary-color);
       border-bottom: 1px solid var(--border-color);
       padding-bottom: 1.5px;
-      margin-top: 1.1em;
+      margin-top: 1em;
       break-after: avoid;
+      page-break-after: avoid;
     }
 
     h2 { font-size: 10pt; color: var(--primary-color); }
     h3 { font-size: 9pt; color: #443e33; }
     h4 { font-size: 8.5pt; color: #555; }
 
-    p { margin-top: 0; margin-bottom: 0.6em; text-indent: 1.2em; }
-    p:first-of-type, .part-header + p, h1 + p, h2 + p, h3 + p { text-indent: 0; }
+    p {
+      margin-top: 0;
+      margin-bottom: 0.55em;
+      text-indent: 1.1em;
+      orphans: 3;
+      widows: 3;
+      text-align: justify;
+      hyphens: auto;
+      word-break: normal;
+    }
+    p:first-of-type, .part-header + p, h1 + p, h2 + p, h3 + p, .sheet-card-wrapper + p {
+      text-indent: 0;
+    }
 
     blockquote {
       margin: 0.6em 0;
@@ -173,6 +199,8 @@ SHARED_CSS = """
       border-left: 3px solid var(--secondary-color);
       font-style: italic;
       font-size: 0.95em;
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
     blockquote p { text-indent: 0; margin-bottom: 0; }
 
@@ -182,33 +210,43 @@ SHARED_CSS = """
     }
     li { margin-bottom: 0.2em; }
 
-    .table-wrapper, .table-wide-wrapper {
+    .table-wrapper {
       margin: 0.6em 0;
       break-inside: avoid;
+      page-break-inside: avoid;
+      max-width: 100%;
+      overflow: hidden;
     }
     .table-wide-wrapper {
       column-span: all;
+      margin: 0.8em 0;
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 7.8pt;
-      line-height: 1.18;
+      font-size: 7.2pt;
+      line-height: 1.15;
       background: #fff;
       border: 1px solid var(--border-color);
+      table-layout: fixed;
+      word-break: break-word;
+      hyphens: auto;
     }
     th, td {
-      padding: 3.5px 5px;
+      padding: 3px 4px;
       border: 1px solid #ddd6c9;
       text-align: left;
+      vertical-align: top;
     }
     th {
       background: #2b4728;
       color: #fff;
       font-family: 'Cinzel', serif;
       font-weight: 600;
-      font-size: 7.8pt;
+      font-size: 7.2pt;
     }
     tr:nth-child(even) td { background: #f7f5f0; }
 
@@ -216,7 +254,7 @@ SHARED_CSS = """
       border: 0;
       height: 1px;
       background: var(--border-color);
-      margin: 1em 0;
+      margin: 0.8em 0;
     }
 
     .page-break-before {
@@ -225,11 +263,116 @@ SHARED_CSS = """
     }
 
     code {
-      font-family: 'Consolas', monospace;
-      font-size: 0.9em;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.88em;
       background: #eee9df;
       padding: 1px 3px;
       border-radius: 2px;
+    }
+
+    /* Standard In-Column Preformatted Blocks */
+    pre {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 5.7pt;
+      line-height: 1.16;
+      letter-spacing: -0.28px;
+      background: #f7f5f0;
+      border: 1px solid var(--border-color);
+      border-radius: 3px;
+      padding: 2.5mm 3.5mm;
+      margin: 0.6em 0;
+      overflow: hidden;
+      white-space: pre;
+      max-width: 100%;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      font-size: 1em;
+      color: inherit;
+    }
+
+    .pre-wrapper {
+      max-width: 100%;
+      overflow: hidden;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      margin: 0.6em 0;
+    }
+    .column-pre {
+      margin: 0 !important;
+      max-width: 100% !important;
+    }
+
+    /* Diagrams that span across both columns */
+    .diagram-wide-wrapper {
+      column-span: all;
+      margin: 0.7em 0;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      text-align: center;
+      width: 100%;
+    }
+    .diagram-wide-pre {
+      display: inline-block;
+      font-family: 'Consolas', 'Courier New', monospace !important;
+      font-size: 7.0pt !important;
+      line-height: 1.18 !important;
+      letter-spacing: -0.15px !important;
+      background: #fdfcf9 !important;
+      border: 1px solid var(--secondary-color) !important;
+      padding: 3mm 5mm !important;
+      margin: 0 auto !important;
+      overflow: hidden !important;
+      white-space: pre !important;
+      max-width: 100% !important;
+      text-align: left !important;
+    }
+
+    /* Full-Page Character Sheets & Village Sheets */
+    .sheet-card-wrapper {
+      column-span: all;
+      break-before: page;
+      page-break-before: always;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      width: 100%;
+      margin: 0 0 4mm 0;
+      display: flex;
+      justify-content: center;
+    }
+    .sheet-card-wrapper:first-child,
+    .content-columns > .sheet-card-wrapper:first-child {
+      break-before: avoid !important;
+      page-break-before: avoid !important;
+    }
+    .sheet-pre {
+      display: inline-block !important;
+      font-family: 'Consolas', 'Courier New', monospace !important;
+      font-size: 6.7pt !important;
+      line-height: 1.13 !important;
+      letter-spacing: -0.18px !important;
+      background: #fdfcf9 !important;
+      border: 1.5px solid var(--primary-color) !important;
+      border-radius: 4px;
+      padding: 4mm 6mm !important;
+      margin: 0 auto !important;
+      overflow: hidden !important;
+      white-space: pre !important;
+      max-width: 100% !important;
+      text-align: left !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .one-column-mode .sheet-card-wrapper {
+      margin: 2mm auto 6mm auto;
+    }
+    .one-column-mode .sheet-pre {
+      font-size: 7.0pt !important;
+      line-height: 1.15 !important;
+      letter-spacing: -0.15px !important;
     }
 """
 
@@ -255,22 +398,46 @@ def process_body(body):
         first_row = re.search(r'<tr>(.*?)</tr>', t, re.DOTALL)
         if first_row:
             cols = len(re.findall(r'<t[hd]', first_row.group(1)))
-            if cols >= 5:
+            if cols >= 4:
                 return f'<div class="table-wide-wrapper"><table class="table-wide" data-cols="{cols}">' + t[7:] + '</div>'
         return f'<div class="table-wrapper">{t}</div>'
     
     body = re.sub(r'<table>.*?</table>', mark_tables, body, flags=re.DOTALL)
 
+    def format_pre(match):
+        code_content = match.group(1)
+        lines = code_content.strip().split('\n')
+        max_line_len = max(len(line) for line in lines) if lines else 0
+
+        is_sheet = (
+            ('╔' in code_content or 'FICHA' in code_content.upper() or 'OS TERRATENENTES — GUIA DO JOGADOR' in code_content)
+            and len(lines) >= 25
+        )
+
+        if is_sheet:
+            return f'<div class="sheet-card-wrapper"><pre class="sheet-pre"><code>{code_content}</code></pre></div>'
+        elif max_line_len > 80:
+            return f'<div class="diagram-wide-wrapper"><pre class="diagram-wide-pre"><code>{code_content}</code></pre></div>'
+        else:
+            return f'<div class="pre-wrapper"><pre class="column-pre"><code>{code_content}</code></pre></div>'
+
+    body = re.sub(r'<pre><code.*?>([\s\S]*?)</code></pre>', format_pre, body, flags=re.DOTALL)
+
     def format_h1(match):
         t = match.group(1).strip()
-        if 'LIVRO' in t.upper() or 'OS TERRATENENTES' in t.upper():
+        if 'LIVRO' in t.upper() or 'OS TERRATENENTES: TRILOGIA' in t.upper():
             return f'<header class="main-doc-header"><h1 class="main-title">{t}</h1></header>'
-        elif any(k in t.upper() for k in ['CAPÍTULO', 'APÊNDICE', 'FICHA', 'ATO', 'HERÓIS', 'INTRODUÇÃO']):
-            return f'<header class="part-header"><h1 class="part-title">{t}</h1></header>'
+        elif any(k in t.upper() for k in ['CAPÍTULO', 'APÊNDICE', 'FICHA', 'ATO', 'HERÓIS', 'INTRODUÇÃO', 'PARTE']):
+            return f'<header class="part-header"><h2 class="part-title">{t}</h2></header>'
         else:
-            return f'<h1 class="section-title">{t}</h1>'
+            return f'<h2 class="section-title">{t}</h2>'
             
     body = re.sub(r'<h1>(.*?)</h1>', format_h1, body)
+
+    body = re.sub(r'<div class="page-break-before"></div>\s*<hr>\s*(<header class="main-doc-header">|<div class="sheet-card-wrapper">)', r'\1', body)
+    body = re.sub(r'<div class="page-break-before"></div>\s*(<header class="main-doc-header">|<div class="sheet-card-wrapper">)', r'\1', body)
+    body = re.sub(r'<hr>\s*(<header class="main-doc-header">|<div class="sheet-card-wrapper">)', r'\1', body)
+
     return body
 
 def build_trilogia():
@@ -287,7 +454,7 @@ def build_trilogia():
     with open(fh, 'r', encoding='utf-8') as f: th = f.read()
     with open(fb, 'r', encoding='utf-8') as f: tb = f.read()
 
-    pb = "\n\n<div class=\"page-break-before\"></div>\n\n---\n\n"
+    pb = "\n\n<div class=\"page-break-before\"></div>\n\n"
     combined = (
         t1 + pb +
         t2 + pb +
@@ -364,7 +531,7 @@ def build_starter_kit():
     with open(f_bento, 'r', encoding='utf-8') as f: t_bto = f.read()
     with open(f_jaciara, 'r', encoding='utf-8') as f: t_jac = f.read()
 
-    pb = "\n\n<div class=\"page-break-before\"></div>\n\n---\n\n"
+    pb = "\n\n<div class=\"page-break-before\"></div>\n\n"
     combined = (
         t_adv + pb +
         "# 📋 APÊNDICE: FICHA DE DOMÍNIO DE MATA DO REMANSO\n\n" +

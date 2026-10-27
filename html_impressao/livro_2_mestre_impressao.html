@@ -10,7 +10,7 @@
   <style>
     @page {
       size: A4 portrait;
-      margin: 8mm 8mm 9mm 8mm;
+      margin: 10mm 10mm 11mm 10mm;
       @bottom-center {
         content: counter(page);
         font-family: 'Cinzel', 'Georgia', serif;
@@ -84,6 +84,7 @@
         padding: 0 !important;
         box-shadow: none !important;
         width: 100% !important;
+        background: transparent !important;
       }
     }
 
@@ -98,7 +99,7 @@
 
     .content-columns {
       column-count: 2;
-      column-gap: 6mm;
+      column-gap: 6.5mm;
       column-fill: auto;
       text-align: justify;
     }
@@ -110,58 +111,83 @@
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Cinzel', 'Georgia', serif;
       font-weight: 700;
-      line-height: 1.15;
-      margin-top: 1.2em;
-      margin-bottom: 0.4em;
+      line-height: 1.18;
+      margin-top: 1.1em;
+      margin-bottom: 0.35em;
       break-after: avoid;
+      page-break-after: avoid;
     }
 
     .main-doc-header {
       column-span: all;
+      break-before: page;
+      page-break-before: always;
       text-align: center;
-      padding: 12mm 0 8mm 0;
+      padding: 10mm 0 6mm 0;
       margin-bottom: 6mm;
       border-bottom: 2px solid var(--secondary-color);
     }
+    .main-doc-header:first-child,
+    .content-columns > .main-doc-header:first-child {
+      break-before: avoid !important;
+      page-break-before: avoid !important;
+      padding-top: 2mm !important;
+    }
     .main-title {
-      font-size: 20pt;
+      font-size: 18pt;
       color: var(--primary-color);
       margin: 0;
       letter-spacing: 0.5px;
     }
 
+    /* Chapter / Part headers: stay INSIDE the column to avoid multi-column blank block bugs! */
     .part-header {
-      column-span: all;
       background: var(--dark-bg);
       color: #f4eee1;
-      padding: 5mm 8mm;
-      margin: 8mm 0 4mm 0;
-      border-left: 5px solid var(--accent-color);
+      padding: 3mm 5mm;
+      margin: 5mm 0 3mm 0;
+      border-left: 4px solid var(--accent-color);
       border-radius: 2px;
-      page-break-before: auto;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      break-after: avoid;
+      page-break-after: avoid;
     }
     .part-title {
       margin: 0;
-      font-size: 13pt;
+      font-size: 10pt;
       color: #f4eee1;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
+      line-height: 1.22;
     }
 
     .section-title {
-      font-size: 11pt;
+      font-size: 10.5pt;
       color: var(--primary-color);
       border-bottom: 1px solid var(--border-color);
       padding-bottom: 1.5px;
-      margin-top: 1.1em;
+      margin-top: 1em;
       break-after: avoid;
+      page-break-after: avoid;
     }
 
     h2 { font-size: 10pt; color: var(--primary-color); }
     h3 { font-size: 9pt; color: #443e33; }
     h4 { font-size: 8.5pt; color: #555; }
 
-    p { margin-top: 0; margin-bottom: 0.6em; text-indent: 1.2em; }
-    p:first-of-type, .part-header + p, h1 + p, h2 + p, h3 + p { text-indent: 0; }
+    p {
+      margin-top: 0;
+      margin-bottom: 0.55em;
+      text-indent: 1.1em;
+      orphans: 3;
+      widows: 3;
+      text-align: justify;
+      hyphens: auto;
+      word-break: normal;
+    }
+    p:first-of-type, .part-header + p, h1 + p, h2 + p, h3 + p, .sheet-card-wrapper + p {
+      text-indent: 0;
+    }
 
     blockquote {
       margin: 0.6em 0;
@@ -170,6 +196,8 @@
       border-left: 3px solid var(--secondary-color);
       font-style: italic;
       font-size: 0.95em;
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
     blockquote p { text-indent: 0; margin-bottom: 0; }
 
@@ -179,33 +207,43 @@
     }
     li { margin-bottom: 0.2em; }
 
-    .table-wrapper, .table-wide-wrapper {
+    .table-wrapper {
       margin: 0.6em 0;
       break-inside: avoid;
+      page-break-inside: avoid;
+      max-width: 100%;
+      overflow: hidden;
     }
     .table-wide-wrapper {
       column-span: all;
+      margin: 0.8em 0;
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 7.8pt;
-      line-height: 1.18;
+      font-size: 7.2pt;
+      line-height: 1.15;
       background: #fff;
       border: 1px solid var(--border-color);
+      table-layout: fixed;
+      word-break: break-word;
+      hyphens: auto;
     }
     th, td {
-      padding: 3.5px 5px;
+      padding: 3px 4px;
       border: 1px solid #ddd6c9;
       text-align: left;
+      vertical-align: top;
     }
     th {
       background: #2b4728;
       color: #fff;
       font-family: 'Cinzel', serif;
       font-weight: 600;
-      font-size: 7.8pt;
+      font-size: 7.2pt;
     }
     tr:nth-child(even) td { background: #f7f5f0; }
 
@@ -213,7 +251,7 @@
       border: 0;
       height: 1px;
       background: var(--border-color);
-      margin: 1em 0;
+      margin: 0.8em 0;
     }
 
     .page-break-before {
@@ -222,11 +260,116 @@
     }
 
     code {
-      font-family: 'Consolas', monospace;
-      font-size: 0.9em;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.88em;
       background: #eee9df;
       padding: 1px 3px;
       border-radius: 2px;
+    }
+
+    /* Standard In-Column Preformatted Blocks */
+    pre {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 5.7pt;
+      line-height: 1.16;
+      letter-spacing: -0.28px;
+      background: #f7f5f0;
+      border: 1px solid var(--border-color);
+      border-radius: 3px;
+      padding: 2.5mm 3.5mm;
+      margin: 0.6em 0;
+      overflow: hidden;
+      white-space: pre;
+      max-width: 100%;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      font-size: 1em;
+      color: inherit;
+    }
+
+    .pre-wrapper {
+      max-width: 100%;
+      overflow: hidden;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      margin: 0.6em 0;
+    }
+    .column-pre {
+      margin: 0 !important;
+      max-width: 100% !important;
+    }
+
+    /* Diagrams that span across both columns */
+    .diagram-wide-wrapper {
+      column-span: all;
+      margin: 0.7em 0;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      text-align: center;
+      width: 100%;
+    }
+    .diagram-wide-pre {
+      display: inline-block;
+      font-family: 'Consolas', 'Courier New', monospace !important;
+      font-size: 7.0pt !important;
+      line-height: 1.18 !important;
+      letter-spacing: -0.15px !important;
+      background: #fdfcf9 !important;
+      border: 1px solid var(--secondary-color) !important;
+      padding: 3mm 5mm !important;
+      margin: 0 auto !important;
+      overflow: hidden !important;
+      white-space: pre !important;
+      max-width: 100% !important;
+      text-align: left !important;
+    }
+
+    /* Full-Page Character Sheets & Village Sheets */
+    .sheet-card-wrapper {
+      column-span: all;
+      break-before: page;
+      page-break-before: always;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      width: 100%;
+      margin: 0 0 4mm 0;
+      display: flex;
+      justify-content: center;
+    }
+    .sheet-card-wrapper:first-child,
+    .content-columns > .sheet-card-wrapper:first-child {
+      break-before: avoid !important;
+      page-break-before: avoid !important;
+    }
+    .sheet-pre {
+      display: inline-block !important;
+      font-family: 'Consolas', 'Courier New', monospace !important;
+      font-size: 6.7pt !important;
+      line-height: 1.13 !important;
+      letter-spacing: -0.18px !important;
+      background: #fdfcf9 !important;
+      border: 1.5px solid var(--primary-color) !important;
+      border-radius: 4px;
+      padding: 4mm 6mm !important;
+      margin: 0 auto !important;
+      overflow: hidden !important;
+      white-space: pre !important;
+      max-width: 100% !important;
+      text-align: left !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .one-column-mode .sheet-card-wrapper {
+      margin: 2mm auto 6mm auto;
+    }
+    .one-column-mode .sheet-pre {
+      font-size: 7.0pt !important;
+      line-height: 1.15 !important;
+      letter-spacing: -0.15px !important;
     }
 </style>
 </head>
@@ -241,13 +384,13 @@
     </select>
     <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
   </div>
-  <div class="sheet" id="bookContainer">
+  <div class="sheet " id="bookContainer">
     <div class="content-columns">
       <header class="main-doc-header"><h1 class="main-title">👑 OS TERRATENENTES — LIVRO II: O GUIA DO MESTRE</h1></header>
 <h2>Manual do Soberano, Fronteiras Vivas &amp; Guerras de Domínio</h2>
 <h3>Aldeias, Quilombos e Fortes</h3>
 <hr>
-<header class="part-header"><h1 class="part-title">📜 CAPÍTULO 1: A FILOSOFIA DO MESTRE DE FRONTEIRA</h1></header>
+<header class="part-header"><h2 class="part-title">📜 CAPÍTULO 1: A FILOSOFIA DO MESTRE DE FRONTEIRA</h2></header>
 <p>Conduzir uma campanha de <strong>Os TerraTenentes</strong> é uma experiência diferente de mestrar masmorras convencionais. Nos jogos tradicionais, os jogadores são turistas em um mundo estático. Aqui, <strong>os jogadores são os alicerces do mundo</strong>.</p>
 <h3>1. O Mundo Reage às Obras do Grupo</h3>
 <p>Se os jogadores erguem uma paliçada alta e uma forja de ferro, as redondezas sentem o impacto:</p>
@@ -281,9 +424,9 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 </li>
 </ol>
 <hr>
-<header class="part-header"><h1 class="part-title">🏕️ CAPÍTULO 2: OS TRÊS MODELOS DE ASSENTAMENTO</h1></header>
+<header class="part-header"><h2 class="part-title">🏕️ CAPÍTULO 2: OS TRÊS MODELOS DE ASSENTAMENTO</h2></header>
 <p>Cada tipo de domínio possui uma alma, benefícios mecânicos e desafios próprios.</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+<div class="pre-wrapper"><pre class="column-pre"><code>┌────────────────────────────────────────────────────────────────────────┐
 │                        MODELOS DE DOMÍNIO                              │
 ├───────────────────┬────────────────────────────┬───────────────────────┤
 │ ALDEIA ANCESTRAL  │ QUILOMBO SOBERANO          │ FORTE DE FRONTEIRA    │
@@ -291,7 +434,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 │ • Cura tradicional│ • Táticas de guerrilha     │ • Pólvora e forjas    │
 │ • Rituais da terra│ • Moral comunitária férrea │ • Guarnição regular   │
 └───────────────────┴────────────────────────────┴───────────────────────┘
-</code></pre>
+</code></pre></div>
 <hr>
 <h2>1. A ALDEIA ANCESTRAL</h2>
 <p><em>Assentamentos construídos nas clareiras das matas, às margens de grandes rios ou no sopé de serras sagradas. Não desafiam a natureza: integram-se a ela.</em></p>
@@ -335,13 +478,13 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <li><strong>Vulnerabilidades:</strong> Alto custo de manutenção em ouro e farinha; dependência de rotas comerciais externas para insumos finos.</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">📈 CAPÍTULO 3: AS 4 ESCALAS DO DOMÍNIO (TIERS)</h1></header>
+<header class="part-header"><h2 class="part-title">📈 CAPÍTULO 3: AS 4 ESCALAS DO DOMÍNIO (TIERS)</h2></header>
 <p>À medida que a comunidade cresce em população, fama e força militar, ela sobe de <strong>Escala</strong>:</p>
-<pre><code class="language-mermaid">graph LR
+<div class="diagram-wide-wrapper"><pre class="diagram-wide-pre"><code>graph LR
     T1[Escala I: O Pouso / Mocambo] --&gt;|100+ hab &amp; Paliçada| T2[Escala II: A Aldeia / Forte]
     T2 --&gt;|1.000+ hab &amp; Muralha de Pedra| T3[Escala III: A Cidadela Livre]
     T3 --&gt;|10.000+ hab &amp; Aliança Regional| T4[Escala IV: O Território Soberano]
-</code></pre>
+</code></pre></div>
 <h3>Detalhamento das Escalas:</h3>
 <div class="table-wide-wrapper"><table class="table-wide" data-cols="6">
 <thead>
@@ -388,10 +531,10 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 </tr>
 </tbody></table></div>
 <hr>
-<header class="part-header"><h1 class="part-title">⚔️ CAPÍTULO 4: O MAPA POLÍTICO &amp; FACÇÕES DE FRONTEIRA</h1></header>
+<header class="part-header"><h2 class="part-title">⚔️ CAPÍTULO 4: O MAPA POLÍTICO &amp; FACÇÕES DE FRONTEIRA</h2></header>
 <p>O assentamento não existe no vácuo. Ao redor dele operam <strong>Cinco Grandes Forças</strong>. O Mestre acompanha a relação da comunidade com cada facção em uma escala de reputação:</p>
-<pre><code>[-2: Guerra de Morte] ──&gt; [-1: Rivalidade Tensa] ──&gt; [0: Neutro] ──&gt; [+1: Trégua/Comércio] ──&gt; [+2: Aliança de Sangue]
-</code></pre>
+<div class="diagram-wide-wrapper"><pre class="diagram-wide-pre"><code>[-2: Guerra de Morte] ──&gt; [-1: Rivalidade Tensa] ──&gt; [0: Neutro] ──&gt; [+1: Trégua/Comércio] ──&gt; [+2: Aliança de Sangue]
+</code></pre></div>
 <h3>1. A Coroa Colonial &amp; O Governador-Geral</h3>
 <ul>
 <li><strong>Objetivo:</strong> Impor a soberania do império, cobrar 20% de impostos sobre todo ouro e ferro e desmantelar comunidades autônomas.</li>
@@ -423,9 +566,9 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <li><strong>Ganchos:</strong> Venda de armas raras por preços inflacionados; pedidos para esconder cargas ilegais dentro das muralhas do assentamento.</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">🛡️ CAPÍTULO 5: O SISTEMA DE CERCO E GUERRA EM MASSA</h1></header>
+<header class="part-header"><h2 class="part-title">🛡️ CAPÍTULO 5: O SISTEMA DE CERCO E GUERRA EM MASSA</h2></header>
 <p>Quando uma expedição inimiga marchar para arrasar o assentamento, você <strong>não precisa de dezenas de miniaturas</strong>. Conduza a batalha no sistema ágil em <strong>3 Fases</strong>:</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+<div class="pre-wrapper"><pre class="column-pre"><code>┌────────────────────────────────────────────────────────────────────────┐
 │ FASE 1: EMBOSCADAS NAS BRENHAS &amp; ARTILHARIA DE APROXIMAÇÃO             │
 │ Os invasores precisam atravessar a mata e os atoleiros.               │
 │ • Batedores e arqueiros do grupo atacam das copas das árvores.         │
@@ -443,7 +586,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 │ tirano ou o Feiticeiro mercenário) em combate direto na praça central! │
 │ • A derrota do líder faz o restante da tropa invasora debandar!       │
 └────────────────────────────────────────────────────────────────────────┘
-</code></pre>
+</code></pre></div>
 <h3>Resultados da Batalha:</h3>
 <ul>
 <li><strong>Vitória Brilhante:</strong> O inimigo foge em pânico abandonando carroças de armas e munição. O domínio ganha $+20$ Moral e $+3$ Metal recuperado dos invasores.</li>
@@ -451,9 +594,9 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <li><strong>Derrota / Retirada Estratégica:</strong> Os heróis devem cobrir a fuga dos civis pelos caminhos secretos da mata. A vila é incendiada, mas o povo sobreviveu com suas armas e sementes para fundar um novo bastião e buscar vingança!</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">🎲 CAPÍTULO 6: TABELAS DE EVENTOS REGIONAIS &amp; DESASTRES (D100)</h1></header>
+<header class="part-header"><h2 class="part-title">🎲 CAPÍTULO 6: TABELAS DE EVENTOS REGIONAIS &amp; DESASTRES (D100)</h2></header>
 <p>Sempre que rodar o <strong>Passo 4 do Turno de Downtime</strong>, role <strong>1d100</strong> (ou 1d20 para eventos rápidos):</p>
-<div class="table-wrapper"><table>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="4">
 <thead>
 <tr>
 <th align="center">d100</th>
@@ -561,10 +704,10 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 </tbody></table></div>
 <hr>
 <hr>
-<header class="part-header"><h1 class="part-title">🎭 CAPÍTULO 8: GERADOR DE NPCs DE FRONTEIRA EM 5 SEGUNDOS</h1></header>
+<header class="part-header"><h2 class="part-title">🎭 CAPÍTULO 8: GERADOR DE NPCs DE FRONTEIRA EM 5 SEGUNDOS</h2></header>
 <p>Gere qualquer habitante, tropeiro ou viajante em instantes combinando quatro rolagens rápidas:</p>
-<pre><code>[Ocupação da Terra] + [Maneirismo / Traço] + [Atitude Inicial] + [Segredo ou Necessidade]
-</code></pre>
+<div class="diagram-wide-wrapper"><pre class="diagram-wide-pre"><code>[Ocupação da Terra] + [Maneirismo / Traço] + [Atitude Inicial] + [Segredo ou Necessidade]
+</code></pre></div>
 <h3>1. Ocupação da Terra (1d20)</h3>
 <div class="table-wrapper"><table>
 <thead>
@@ -866,7 +1009,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 </tr>
 </tbody></table></div>
 <hr>
-<header class="part-header"><h1 class="part-title">🐎 CAPÍTULO 9: LOGÍSTICA, MONTARIAS &amp; TRANSPORTE DE FRONTEIRA</h1></header>
+<header class="part-header"><h2 class="part-title">🐎 CAPÍTULO 9: LOGÍSTICA, MONTARIAS &amp; TRANSPORTE DE FRONTEIRA</h2></header>
 <p>Sem estradas calçadas, o transporte de matérias-primas e comida depende de animais resistentes e vias fluviais.</p>
 <h3>1. Transportes Fluviais &amp; Lacustres</h3>
 <p>Os rios são as verdadeiras rodovias da América colonial e da floresta virgem:</p>
@@ -980,7 +1123,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <p><strong>Regra de Estrada Rústica:</strong> Construir uma <em>Estrada de Terra Batida</em> entre duas vilas (obra de Escala II) dobra a velocidade de carretas de boi e previne atoleiros na estação das chuvas!</p>
 </blockquote>
 <hr>
-<header class="part-header"><h1 class="part-title">📜 CAPÍTULO 10: O QUADRO DE DEMANDAS &amp; CONTRATOS (1D20)</h1></header>
+<header class="part-header"><h2 class="part-title">📜 CAPÍTULO 10: O QUADRO DE DEMANDAS &amp; CONTRATOS (1D20)</h2></header>
 <p>Em vez de &quot;guildas mercenárias&quot;, o assentamento mantém um <strong>Quadro de Tarefas Comunitárias</strong> na porta da intendência ou no tronco central:</p>
 <div class="table-wrapper"><table>
 <thead>
@@ -1092,7 +1235,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 </tr>
 </tbody></table></div>
 <hr>
-<header class="part-header"><h1 class="part-title">🗣️ CAPÍTULO 11: HISTÓRIAS DE FOGUEIRA &amp; BOATOS DE RANCHO (1D20)</h1></header>
+<header class="part-header"><h2 class="part-title">🗣️ CAPÍTULO 11: HISTÓRIAS DE FOGUEIRA &amp; BOATOS DE RANCHO (1D20)</h2></header>
 <p>Role <strong>1d20</strong> sempre que os heróis conversarem com viajantes no terreiro da vila ou ao redor das brasas:</p>
 <div class="table-wrapper"><table>
 <thead>
@@ -1204,7 +1347,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 </tr>
 </tbody></table></div>
 <hr>
-<header class="part-header"><h1 class="part-title">🗺️ CAPÍTULO 12: ROTAS DE COMÉRCIO, TROPEIROS &amp; ENTREPOSTOS</h1></header>
+<header class="part-header"><h2 class="part-title">🗺️ CAPÍTULO 12: ROTAS DE COMÉRCIO, TROPEIROS &amp; ENTREPOSTOS</h2></header>
 <p>Nenhuma aldeia ou quilombo prospera isolado. Estabelecer rotas comerciais com vilarejos vizinhos, feiras coloniais ou aldeias ribeirinhas transforma sua comunidade em um pólo de poder regional.</p>
 <h3>1. Estabelecendo uma Rota Comercial</h3>
 <p>Para criar uma rota comercial, o assentamento precisa:</p>
@@ -1214,7 +1357,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <li>Declarar uma ação de <em>Downtime</em> de Diplomacia (Teste de Carisma do Domínio CD 12).</li>
 </ol>
 <h3>2. Tipos de Rota &amp; Rendimentos por Estação</h3>
-<div class="table-wrapper"><table>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="4">
 <thead>
 <tr>
 <th align="left">Tipo de Rota</th>
@@ -1267,9 +1410,9 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <li><strong>Benefício:</strong> Reduz a chance de emboscadas na rota pela metade e serve como refúgio avançado com estoque de mantimentos e cavalos de reserva para os heróis em missões longas.</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">💰 CAPÍTULO 13: O SISTEMA DE INVESTIMENTOS PÚBLICOS</h1></header>
+<header class="part-header"><h2 class="part-title">💰 CAPÍTULO 13: O SISTEMA DE INVESTIMENTOS PÚBLICOS</h2></header>
 <p>Os heróis acumulam riquezas nas masmorras e covis de monstros. Em <strong>Os TerraTenentes</strong>, esse tesouro serve para alavancar o bem comum e a força da comunidade:</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+<div class="diagram-wide-wrapper"><pre class="diagram-wide-pre"><code>┌────────────────────────────────────────────────────────────────────────┐
 │                   TRÊS PILARES DE INVESTIMENTO                         │
 ├───────────────────┬────────────────────────────┬───────────────────────┤
 │ INFRAESTRUTURA    │ MERCANTIL &amp; OFÍCIOS        │ BÉLICO &amp; MURALHAS     │
@@ -1277,7 +1420,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 │ • Silos de grãos  │ • Olaria e teares          │ • Valas de estrepes   │
 │ • Resistência     │ • Renda e comércio         │ • Defesa de cerco     │
 └───────────────────┴────────────────────────────┴───────────────────────┘
-</code></pre>
+</code></pre></div>
 <h3>1. Investimento em Infraestrutura</h3>
 <ul>
 <li><strong>Açude / Poço Profundo (Custo: 3 Pedra, 2 Ouro):</strong> Garante água pura permanente. O domínio fica imune à seca severa e colhe $+2$ Víveres extras no verão.</li>
@@ -1297,7 +1440,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <li><strong>Fundição de Peças de Artilharia (Custo: 6 Metal, 6 Ouro):</strong> Permite fundir canhões e morteiros de bronze para as muralhas da fortaleza.</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">📊 CAPÍTULO 14: PROGRESSÃO NÍVEL A NÍVEL DO DOMÍNIO (1 AO 20)</h1></header>
+<header class="part-header"><h2 class="part-title">📊 CAPÍTULO 14: PROGRESSÃO NÍVEL A NÍVEL DO DOMÍNIO (1 AO 20)</h2></header>
 <p>Assim como um herói evolui de soldado novato a lenda viva, o <strong>Assentamento tem 20 Níveis de Poder</strong>. Cada nível traz novas defesas, capacidade de obras e características comunitárias:</p>
 <div class="table-wide-wrapper"><table class="table-wide" data-cols="5">
 <thead>
@@ -1451,9 +1594,9 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 </tr>
 </tbody></table></div>
 <hr>
-<header class="part-header"><h1 class="part-title">🌪️ CAPÍTULO 15: PERIGOS DE TERRENO, CLIMA &amp; COMPLICAÇÕES DA MATA</h1></header>
+<header class="part-header"><h2 class="part-title">🌪️ CAPÍTULO 15: PERIGOS DE TERRENO, CLIMA &amp; COMPLICAÇÕES DA MATA</h2></header>
 <p>A natureza da fronteira não é um cenário de fundo estático: é um adversário implacável. Role <strong>1d10</strong> durante viagens ou para complicar cercos e combates nos ermos:</p>
-<div class="table-wrapper"><table>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="4">
 <thead>
 <tr>
 <th align="center">1d10</th>
@@ -1524,15 +1667,15 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 </tr>
 </tbody></table></div>
 <hr>
-<header class="part-header"><h1 class="part-title">🛡️ CAPÍTULO 16: COMPANHIAS DE BATEDORES &amp; ESQUADRÕES DE PATRULHA</h1></header>
+<header class="part-header"><h2 class="part-title">🛡️ CAPÍTULO 16: COMPANHIAS DE BATEDORES &amp; ESQUADRÕES DE PATRULHA</h2></header>
 <p>À medida que o assentamento cresce para a Escala II e além, os heróis não conseguem estar em todos os lugares ao mesmo tempo. É hora de <strong>formar esquadrões de defesa comunitária</strong>:</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+<div class="pre-wrapper"><pre class="column-pre"><code>┌────────────────────────────────────────────────────────────────────────┐
 │                   ESTRUTURA DE UM ESQUADRÃO                           │
 │ • Tamanho: 5 a 10 combatentes locais treinados por um dos heróis.      │
 │ • Custo de Manutenção: 1 Unidade de Víveres por mês de serviço.        │
 │ • Armamento: Lanças de peroba, facões de arrasto e arcos ou bacamartes.│
 └────────────────────────────────────────────────────────────────────────┘
-</code></pre>
+</code></pre></div>
 <h3>1. As Quatro Missões de Patrulha</h3>
 <p>Durante o Passo 3 do Turno de Downtime, o grupo pode destacar um esquadrão para:</p>
 <ol>
@@ -1549,9 +1692,9 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <li><strong>Guardiões Lendários da Terra (Nível 4):</strong> A tropa de elite da Confederação. Defesa 16, Ataque +7, imunes a medo e pânico marcial!</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">💰 CAPÍTULO 17: EMPREENDIMENTOS &amp; RENDA PASSIVA PERIÓDICA</h1></header>
+<header class="part-header"><h2 class="part-title">💰 CAPÍTULO 17: EMPREENDIMENTOS &amp; RENDA PASSIVA PERIÓDICA</h2></header>
 <p>Além da produção básica de subsistência, os líderes do assentamento podem investir ouro e materiais para fundar <strong>Empreendimentos Comerciais Autônomos</strong>. Esses negócios operam sob a gestão de artesãos e geram <strong>dividendos líquidos automáticos</strong> no Passo 1 (Produção) de cada estação:</p>
-<div class="table-wrapper"><table>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="4">
 <thead>
 <tr>
 <th align="left">Empreendimento</th>
@@ -1610,12 +1753,12 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <li><strong>5–6:</strong> <strong>Época de Ouro:</strong> Demanda explosiva na capital! Todos os empreendimentos pagam o <strong>DOBRO de Ouro</strong> durante o ano!</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">⏱️ CAPÍTULO 18: INCURSÕES DE FACÇÃO &amp; OS RELÓGIOS DE PRESSÃO</h1></header>
+<header class="part-header"><h2 class="part-title">⏱️ CAPÍTULO 18: INCURSÕES DE FACÇÃO &amp; OS RELÓGIOS DE PRESSÃO</h2></header>
 <p>As ameaças contra o seu assentamento não surgem do nada: elas se acumulam conforme a comunidade cresce e desafia os poderes coloniais. O Mestre acompanha essa tensão usando <strong>Relógios de Pressão</strong> (círculos divididos em 4, 6 ou 8 fatias):</p>
-<pre><code>     [ RELÓGIO DE INCURSÃO DO CAPITÃO-DO-MATO ]      (4 Fatias)
+<div class="pre-wrapper"><pre class="column-pre"><code>     [ RELÓGIO DE INCURSÃO DO CAPITÃO-DO-MATO ]      (4 Fatias)
      [ RELÓGIO DA COLUNA ARMADA DO BARÃO ]           (6 Fatias)
      [ RELÓGIO DA EXPEDIÇÃO IMPERIAL DA COROA ]      (8 Fatias)
-</code></pre>
+</code></pre></div>
 <h3>1. Como os Relógios Avançam (+1 Fatia):</h3>
 <ul>
 <li>O grupo acolhe escravizados ou desertores procurados (+1 fatia);</li>
@@ -1637,9 +1780,9 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <li><strong>Se for o Regimento da Coroa (8 Fatias):</strong> Um exército colonial completo com 100 soldados regulares, cavalaria e canhões de cerco! A batalha é resolvida no <strong>Sistema de Cerco em 3 Fases</strong> do Capítulo 5!</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">🏯 CAPÍTULO 19: CIDADELAS, FORTALEZAS IMPERIAIS &amp; METRÓPOLES (ESCALA IV+)</h1></header>
+<header class="part-header"><h2 class="part-title">🏯 CAPÍTULO 19: CIDADELAS, FORTALEZAS IMPERIAIS &amp; METRÓPOLES (ESCALA IV+)</h2></header>
 <p>Quando um assentamento ultrapassa 2.000 habitantes e atinge a <strong>Escala IV (Metrópole / Cidadela)</strong>, a gestão passa a operar em nível de <strong>Distritos Urbanos Especializados</strong>. Cada distrito possui seu próprio líder setorial, sua moral individual e seus problemas cívicos:</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+<div class="pre-wrapper"><pre class="column-pre"><code>┌────────────────────────────────────────────────────────────────────────┐
 │                   A ANATOMIA DE UMA GRANDE CIDADELA                    │
 ├───────────────────────┬───────────────────────┬────────────────────────┤
 │ 1. DISTRITO DO PORTO  │ 2. BAIRRO DAS FORJAS  │ 3. PRAÇA CENTRAL       │
@@ -1648,7 +1791,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 │ 4. MURALHA MILITAR    │ 5. ALDEIA PERIFÉRICA  │ 6. SANTUÁRIO / TERREIRO│
 │ • Paiol, quartéis     │ • Roças, choupanas    │ • Rezas, curandeiros   │
 └───────────────────────┴───────────────────────┴────────────────────────┘
-</code></pre>
+</code></pre></div>
 <h3>1. Regras de Distritos Urbanos:</h3>
 <ul>
 <li><strong>Capacidade de Instalações:</strong> Cada distrito pode abrigar até 4 Instalações Especiais simultâneas sem sobrecarregar o espaço urbano.</li>
@@ -1656,7 +1799,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <li><strong>Decretos Soberanos de Metrópole:</strong> Os heróis podem promulgar leis como <em>Toque de Recolher</em> (+2 Defesa contra espiões, -5 Moral), <em>Anistia a Foragidos</em> (+50 População imediata, +1 risco de traição) ou <em>Livre Comércio</em> (+3 Ouro por estação).</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">👑 CAPÍTULO 20: COFRES DE DOMÍNIO, TRIBUTOS &amp; RELÍQUIAS TERRITORIAIS</h1></header>
+<header class="part-header"><h2 class="part-title">👑 CAPÍTULO 20: COFRES DE DOMÍNIO, TRIBUTOS &amp; RELÍQUIAS TERRITORIAIS</h2></header>
 <p>Um feudo consolidado não acumula apenas moedas de cobre, mas <strong>Reserva de Poder Geopolítico</strong>:</p>
 <h3>1. Tributos de Vassalagem &amp; Pactos Regionais:</h3>
 <ul>
@@ -1672,13 +1815,13 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <li><strong>A Coroa de Raízes Imortais:</strong> Um diadema de cipó que nunca murcha. O governante que o usa ganha comunhão direta com o espírito da terra, sendo avisado em sonhos 3 dias antes de qualquer invasão.</li>
 </ul>
 <hr>
-<header class="part-header"><h1 class="part-title">⚔️ CAPÍTULO 21: SISTEMA AVANÇADO DE BATALHA CAMPAL (COMBATE EM MASSA)</h1></header>
+<header class="part-header"><h2 class="part-title">⚔️ CAPÍTULO 21: SISTEMA AVANÇADO DE BATALHA CAMPAL (COMBATE EM MASSA)</h2></header>
 <p>Quando duas forças armadas se enfrentam em campo aberto — sem muralhas de proteção —, o combate é resolvido em <strong>Turnos de Manobra Militar</strong>:</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+<div class="pre-wrapper"><pre class="column-pre"><code>┌────────────────────────────────────────────────────────────────────────┐
 │                   RODADA DE BATALHA CAMPAL (3 FASES)                   │
 │ 1. DUELO DE TIRO &amp; ARTILHARIA ➔ 2. CHOQUE DE LINHAS ➔ 3. TESTE DE MORAL│
 └────────────────────────────────────────────────────────────────────────┘
-</code></pre>
+</code></pre></div>
 <h3>1. Unidades Militares Básicas:</h3>
 <ul>
 <li><strong>Companhia de Linha (50 Lanceiros/Espingardeiros):</strong> Ataque +4, Dano 2d8 de Baixas, Moral 14.</li>
@@ -1696,7 +1839,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <h3>3. Debandada &amp; Vitória:</h3>
 <p>Quando um exército perde 50% de seus combatentes ou falha em dois testes seguidos de Moral, suas linhas quebram em debandada caótica! O lado vitorioso captura prisioneiros, canhões e toda a bagagem de campanha!</p>
 <hr>
-<header class="part-header"><h1 class="part-title">⚖️ CAPÍTULO 22: INTRIGAS, RIXAS DE FAMÍLIA &amp; DILEMAS INTERNOS (1d20)</h1></header>
+<header class="part-header"><h2 class="part-title">⚖️ CAPÍTULO 22: INTRIGAS, RIXAS DE FAMÍLIA &amp; DILEMAS INTERNOS (1d20)</h2></header>
 <p>Quando o assentamento atinge a paz contra monstros exteriores, as tensões humanas vêm à tona. No início de cada estação (ou após festas populares), o Mestre pode rolar <strong>1d20</strong> para introduzir um dilema social que exige a intervenção moral dos TerraTenentes:</p>
 <div class="table-wrapper"><table>
 <thead>
@@ -1808,9 +1951,9 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 </tr>
 </tbody></table></div>
 <hr>
-<header class="part-header"><h1 class="part-title">🌦️ CAPÍTULO 23: O CICLO DAS ESTAÇÕES TROPICAIS — SECA BRUTA VS. ÁGUAS</h1></header>
+<header class="part-header"><h2 class="part-title">🌦️ CAPÍTULO 23: O CICLO DAS ESTAÇÕES TROPICAIS — SECA BRUTA VS. ÁGUAS</h2></header>
 <p>Na fronteira tropical, o clima não segue as quatro estações amenas europeias. O destino do domínio é regido por dois gigantes: <strong>A Estação das Águas (Invernaço)</strong> e <strong>A Estação da Seca (Estiagem Vermelha)</strong>:</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+<div class="pre-wrapper"><pre class="column-pre"><code>┌────────────────────────────────────────────────────────────────────────┐
 │                   O CALENDÁRIO DA TERRA NA FRONTEIRA                   │
 ├───────────────────────────────────┬────────────────────────────────────┤
 │ 🌊 ESTAÇÃO DAS ÁGUAS (6 MESES)    │ ☀️ ESTAÇÃO DA SECA (6 MESES)      │
@@ -1818,7 +1961,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 │ • Malária e febres de charco      │ • Nascentes secas e sede ardente   │
 │ • Fartura de peixes e caça d&#39;água │ • Lavouras dependentes de rega     │
 └───────────────────────────────────┴────────────────────────────────────┘
-</code></pre>
+</code></pre></div>
 <h3>1. A Estação das Águas (Invernada):</h3>
 <ul>
 <li><strong>Atoleiros Incessantes:</strong> Trilhas terrestres viram lamaçal espesso. Viagens com carro de boi ou mulas levam o <strong>dobro do tempo</strong>. O transporte de carga é transferido obrigatoriamente para canoas e balsas fluviais.</li>
