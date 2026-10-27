@@ -102,7 +102,7 @@ cp .env.example .env
 Edite o arquivo `.env` e configure sua chave de deploy ou Personal Access Token (PAT):
 ```env
 GITHUB_DEPLOY_KEY=ghp_sua_chave_de_deploy_rapida_aqui
-GITHUB_REPOSITORY=seu-usuario/os-terratenentes-rpg
+GITHUB_REPOSITORY=Drsrina/Os-TerraTenentes
 APP_ENV=production
 ```
 
