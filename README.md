@@ -53,21 +53,25 @@ O repositório é composto por três livros essenciais e independentes:
 
 ```
 Os TerraTenentes/
-├── 📖 Livro_1_do_Jogador.md            # 15 Capítulos: Criação de Heróis, 5 Arquétipos, Arsenal & Downtime
-├── 👑 Livro_2_do_Mestre.md             # 23 Capítulos: Filosofia 80/20, Gestão de Feudos, Cercos & Intrigas
+├── 📖 Livro_1_do_Jogador.md            # 15 Capítulos: Criação de Heróis, 6 Povos, 5 Arquétipos, Arsenal & Downtime
+├── 👑 Livro_2_do_Mestre.md             # 23 Capítulos: Filosofia 80/20, Gestão Remota em Ciclos, Cercos & Intrigas
 ├── 🐆 Livro_3_de_Monstros_e_Encontros.md# 11 Capítulos: Bestiário Folclórico, Chefes em 3 Fases & Saques d100
+├── 🌄 Cenário Principal/
+│   └── Fragmentos do Pindorama.md      # Guia do Mundo, Geografia, Minas Infidáveis & Catálogo das 6 Raças
 │
-├── 🗺️ Aventura_O_Cerco_da_Garganta_do_Boitata.md # Módulo de Aventura Pronto para Jogar (Nível 1)
+├── 📁 aventuras/
+│   └── 📁 o_cerco_da_garganta_do_boitata/
+│       ├── Aventura_O_Cerco_da_Garganta_do_Boitata.md # Módulo de Aventura Pronto para Jogar (Nível 1)
+│       └── 📁 fichas_pre_geradas/        # 4 Heróis + 1 Assentamento da Aventura
+│           ├── Tiao_Batedor_Guayana.md          # Batedor Nativo furtivo
+│           ├── Dandara_Guerreira_do_Quilombo.md # Guerreira capitã com lança pesada
+│           ├── Nha_Benta_Rezadeira_Curandeira.md# Curandeira de rezas e ervas
+│           ├── Bento_Vaqueiro_do_Sertao.md      # Atirador de bacamarte e laçador
+│           └── Ficha_Povoado_Mata_do_Remanso.md # Assentamento inicial preenchido
 │
-├── 📁 fichas/                           # Fichas de Jogo Oficiais
+├── 📁 fichas/                           # Fichas de Jogo Oficiais (Modelos em Branco)
 │   ├── Ficha_do_TerraTenente.md         # Ficha de Personagem de 1 página (Fôlego 4d6)
-│   ├── Ficha_de_Assentamento.md         # Ficha Coletiva de Aldeias, Quilombos e Fortes
-│   └── 📁 pre_gerados/                  # Fichas Prontas para Início Imediato
-│       ├── Tiao_Batedor_Guayana.md      # Batedor Nativo furtivo
-│       ├── Dandara_Guerreira_do_Quilombo.md # Guerreira capitã com lança pesada
-│       ├── Nha_Benta_Rezadeira_Curandeira.md# Curandeira de rezas e ervas
-│       ├── Bento_Vaqueiro_do_Sertao.md  # Atirador de bacamarte e laçador
-│       └── Ficha_Povoado_Mata_do_Remanso.md # Assentamento inicial preenchido
+│   └── Ficha_de_Assentamento.md         # Ficha Coletiva de Aldeias, Quilombos e Fortes
 │
 └── 📁 html_impressao/                   # Documentos A4 Prontos para Impressão e PDF
     ├── terratenentes_trilogia_impressao.html # Trilogia Completa Unificada (240 KB)

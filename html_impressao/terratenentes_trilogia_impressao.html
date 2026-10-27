@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Os TerraTenentes: Trilogia Completa — Aldeias, Quilombos e Fortes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     @page {
       size: A4 portrait;
@@ -23,259 +26,223 @@
     }
 
     :root {
-      --primary-color: #2b4728;       /* Verde mata profundo / fronteira */
-      --secondary-color: #7a311b;     /* Terracota rústico / barro queimado */
-      --dark-gold: #9e7326;           /* Ouro velho */
-      --body-text: #1a1a1a;
-      --bg-light: #faf8f4;            /* Papiro suave */
-      --table-border: #d4ccbd;
-      --table-alt: #f3ede2;
-      --code-bg: #f5f0e6;
-      --font-base: 7.5pt;
-      --line-height: 1.25;
+      --primary-color: #2b4728;
+      --secondary-color: #8c6d3b;
+      --accent-color: #a73228;
+      --dark-bg: #1c261b;
+      --light-bg: #f9f8f5;
+      --border-color: #d1c7b7;
+      --text-color: #222220;
+      --font-base: 8.5pt;
+      --line-height-base: 1.28;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Crimson Pro', 'Georgia', serif;
       font-size: var(--font-base);
-      line-height: var(--line-height);
-      color: var(--body-text);
-      background-color: #dedede;
+      line-height: var(--line-height-base);
+      color: var(--text-color);
+      background-color: #d5d1c8;
       margin: 0;
       padding: 0;
     }
 
-    .screen-toolbar {
+    .toolbar {
       position: sticky;
       top: 0;
       z-index: 9999;
-      background: #1f2b1d;
+      background: #1e1e1e;
       color: #fff;
-      padding: 8px 16px;
+      padding: 10px 20px;
       display: flex;
-      flex-wrap: wrap;
+      gap: 15px;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-      font-size: 13px;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
     }
-
-    .screen-toolbar .btn-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .screen-toolbar button, .screen-toolbar select {
-      background: #7a311b;
+    .toolbar button, .toolbar select {
+      background: #2b4728;
       color: #fff;
-      border: 1px solid #9c4329;
+      border: 1px solid #4a7545;
+      padding: 6px 12px;
       border-radius: 4px;
-      padding: 6px 14px;
-      font-size: 13px;
-      font-weight: 600;
       cursor: pointer;
-      transition: background 0.15s ease;
+      font-weight: 600;
+      font-size: 11px;
+    }
+    .toolbar button:hover { background: #3a5f36; }
+    .toolbar .btn-print { background: #a73228; border-color: #c94035; }
+    .toolbar .btn-print:hover { background: #bd3a2f; }
+
+    @media print {
+      .toolbar { display: none !important; }
+      body { background-color: #fff; }
+      .sheet {
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        width: 100% !important;
+      }
     }
 
-    .screen-toolbar button:hover {
-      background: #943a20;
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 15mm auto;
+      background: var(--light-bg);
+      padding: 10mm 12mm;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
     }
 
-    .book-container {
-      max-width: 210mm;
-      margin: 16px auto;
-      background-color: var(--bg-light);
-      padding: 12mm 12mm 15mm 12mm;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.3);
-    }
-
-    .book-content {
+    .content-columns {
       column-count: 2;
-      column-gap: 5mm;
-      column-rule: 0.5pt solid #d6cebe;
+      column-gap: 6mm;
+      column-fill: auto;
       text-align: justify;
-      hyphens: auto;
     }
 
-    .one-column-mode .book-content {
+    .one-column-mode .content-columns {
       column-count: 1 !important;
     }
 
-    .page-break-before {
-      break-before: page;
-      column-span: all;
-      height: 1px;
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cinzel', 'Georgia', serif;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-top: 1.2em;
+      margin-bottom: 0.4em;
+      break-after: avoid;
     }
 
     .main-doc-header {
       column-span: all;
       text-align: center;
-      padding: 12px 0 16px 0;
-      margin: 10px 0 8px 0;
-      border-top: 3pt solid var(--primary-color);
-      border-bottom: 2pt solid var(--secondary-color);
-      background: linear-gradient(to bottom, #fff 0%, #f7f3ea 100%);
-      border-radius: 4px;
+      padding: 12mm 0 8mm 0;
+      margin-bottom: 6mm;
+      border-bottom: 2px solid var(--secondary-color);
     }
-
     .main-title {
-      font-family: 'Cinzel', 'Georgia', serif;
-      font-size: 13.5pt;
+      font-size: 20pt;
       color: var(--primary-color);
       margin: 0;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .part-header {
       column-span: all;
-      margin: 14px 0 8px 0;
-      padding: 4px 8px;
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-      border-left: 4pt solid var(--dark-gold);
+      background: var(--dark-bg);
+      color: #f4eee1;
+      padding: 5mm 8mm;
+      margin: 8mm 0 4mm 0;
+      border-left: 5px solid var(--accent-color);
       border-radius: 2px;
-      break-after: avoid;
+      page-break-before: auto;
     }
-
     .part-title {
-      font-family: 'Cinzel', 'Georgia', serif;
-      font-size: 9pt;
-      color: #fff;
       margin: 0;
+      font-size: 13pt;
+      color: #f4eee1;
       letter-spacing: 0.5px;
-      text-transform: uppercase;
     }
 
-    h2 {
-      font-family: 'Cinzel', 'Georgia', serif;
-      font-size: 8.5pt;
-      color: var(--secondary-color);
-      margin-top: 8px;
-      margin-bottom: 3px;
-      border-bottom: 0.75pt solid var(--dark-gold);
-      padding-bottom: 1.5px;
-      break-after: avoid;
-    }
-
-    h3 {
-      font-size: 8pt;
+    .section-title {
+      font-size: 11pt;
       color: var(--primary-color);
-      margin-top: 6px;
-      margin-bottom: 2px;
-      font-weight: 700;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.5px;
+      margin-top: 1.1em;
       break-after: avoid;
     }
 
-    p {
-      margin-top: 0;
-      margin-bottom: 4px;
+    h2 { font-size: 10pt; color: var(--primary-color); }
+    h3 { font-size: 9pt; color: #443e33; }
+    h4 { font-size: 8.5pt; color: #555; }
+
+    p { margin-top: 0; margin-bottom: 0.6em; text-indent: 1.2em; }
+    p:first-of-type, .part-header + p, h1 + p, h2 + p, h3 + p { text-indent: 0; }
+
+    blockquote {
+      margin: 0.6em 0;
+      padding: 4px 8px;
+      background: #f0ebe1;
+      border-left: 3px solid var(--secondary-color);
+      font-style: italic;
+      font-size: 0.95em;
+    }
+    blockquote p { text-indent: 0; margin-bottom: 0; }
+
+    ul, ol {
+      margin: 0.3em 0 0.6em 0;
+      padding-left: 14px;
+    }
+    li { margin-bottom: 0.2em; }
+
+    .table-wrapper, .table-wide-wrapper {
+      margin: 0.6em 0;
+      break-inside: avoid;
+    }
+    .table-wide-wrapper {
+      column-span: all;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 4px 0 7px 0;
-      font-size: 7pt;
+      font-size: 7.8pt;
+      line-height: 1.18;
       background: #fff;
-      border: 0.5pt solid var(--table-border);
-      break-inside: avoid;
+      border: 1px solid var(--border-color);
     }
-
     th, td {
-      padding: 2.5px 4px;
-      border: 0.5pt solid var(--table-border);
-      vertical-align: top;
-    }
-
-    th {
-      background: var(--primary-color);
-      color: #ffffff;
-      font-weight: 600;
+      padding: 3.5px 5px;
+      border: 1px solid #ddd6c9;
       text-align: left;
     }
+    th {
+      background: #2b4728;
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 7.8pt;
+    }
+    tr:nth-child(even) td { background: #f7f5f0; }
 
-    tr:nth-child(even) td {
-      background: var(--table-alt);
+    hr {
+      border: 0;
+      height: 1px;
+      background: var(--border-color);
+      margin: 1em 0;
     }
 
-    blockquote {
-      margin: 4px 0;
-      padding: 4px 6px;
-      background: #f0e8dc;
-      border-left: 2.5pt solid var(--secondary-color);
-      font-style: italic;
-      break-inside: avoid;
-      font-size: 7.2pt;
-    }
-
-    pre {
-      background: var(--code-bg);
-      border: 0.5pt solid var(--table-border);
-      padding: 4px;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 6.5pt;
-      line-height: 1.15;
-      overflow-x: auto;
-      white-space: pre;
-      break-inside: avoid;
+    .page-break-before {
+      break-before: page;
+      page-break-before: always;
     }
 
     code {
-      font-family: 'Courier New', Courier, monospace;
-      background: #ede6d8;
-      padding: 0.5px 2px;
+      font-family: 'Consolas', monospace;
+      font-size: 0.9em;
+      background: #eee9df;
+      padding: 1px 3px;
       border-radius: 2px;
-      font-size: 7pt;
     }
-
-    ul, ol {
-      margin-top: 0;
-      margin-bottom: 4px;
-      padding-left: 14px;
-    }
-
-    li {
-      margin-bottom: 1.5px;
-    }
-
-    @media print {
-      body {
-        background: transparent !important;
-      }
-      .screen-toolbar {
-        display: none !important;
-      }
-      .book-container {
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-        background: transparent !important;
-      }
-    }
-  </style>
+</style>
 </head>
 <body>
-
-  <div class="screen-toolbar">
-    <div class="btn-group">
-      <button onclick="window.print()">🖨️ Imprimir / Salvar em PDF A4</button>
-      <button onclick="toggleColumns()" id="colBtn">Alternar Colunas (2/1)</button>
-    </div>
-    <div class="btn-group">
-      <span>Tamanho da Fonte:</span>
-      <select onchange="setFontSize(this.value)">
-        <option value="7pt">Ultra Compacto (7pt)</option>
-        <option value="7.5pt" selected>Padrão Livro (7.5pt)</option>
-        <option value="8.5pt">Confortável (8.5pt)</option>
-      </select>
-    </div>
+  <div class="toolbar">
+    <span><strong>Os TerraTenentes</strong> (Trilogia Completa)</span>
+    <button onclick="toggleColumns()" id="colBtn">Modo: 2 Colunas (Clique p/ 1)</button>
+    <select onchange="setFontSize(this.value)">
+      <option value="8pt">Densidade: Compacta (8pt)</option>
+      <option value="8.5pt" selected>Densidade: Normal (8.5pt)</option>
+      <option value="9pt">Densidade: Confortável (9pt)</option>
+    </select>
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
   </div>
-
-  <div class="book-container" id="bookContainer">
-    <div class="book-content" id="bookContent">
+  <div class="sheet" id="bookContainer">
+    <div class="content-columns">
       <header class="main-doc-header"><h1 class="main-title">🏹 OS TERRATENENTES — LIVRO I: O GUIA DO JOGADOR</h1></header>
 <h2>Manual dos Pioneiros, Guerreiros e Guardiões da Terra</h2>
 <h3>Aldeias, Quilombos e Fortes</h3>
@@ -322,7 +289,7 @@
 <h3>1. Quando Rolar os Dados?</h3>
 <p>Você só rola os dados quando tenta realizar uma ação cujo resultado seja <strong>incerto e arriscado</strong> (escalar um barranco sob chuva, desferir um golpe de machado, saltar sobre estacas pontiagudas ou convencer uma aldeia vizinha a forjar uma aliança). Tarefas rotineiras (como acender uma fogueira calma ou preparar mandioca) nunca exigem rolagens.</p>
 <h3>2. A Tabela de CDs (Dificuldade do Desafio)</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="left">Dificuldade</th>
@@ -350,7 +317,7 @@
 <td align="center"><strong>20</strong></td>
 <td align="left">Enfrentar uma fera lendária mano a mano; convencer um lorde tirano com palavras; sobreviver a uma queda de abismo.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h3>3. Vantagem e Desvantagem</h3>
 <ul>
 <li><strong>Vantagem:</strong> Quando a situação é muito favorável (você está escondido na mata escura ou em posição mais alta), role <strong>dois d20</strong> e escolha o <strong>maior resultado</strong>.</li>
@@ -525,7 +492,7 @@
 <header class="part-header"><h1 class="part-title">🎒 CAPÍTULO 5: ARSENAL &amp; EQUIPAMENTO DE FRONTEIRA</h1></header>
 <p>Na fronteira do sertão e das matas, o ferro é caro e a pólvora é preciosa. O equipamento combina materiais nativos com espólios coloniais.</p>
 <h3>Tabela de Armas Brancas</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="left">Arma</th>
@@ -570,7 +537,7 @@
 <td align="left">Atordoa o alvo em caso de acerto crítico no d20.</td>
 <td align="center">2 Pratas</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h3>Tabela de Armas de Disparo &amp; Pólvora</h3>
 <div class="table-wide-wrapper"><table class="table-wide" data-cols="5">
 <thead>
@@ -717,7 +684,7 @@
 <hr>
 <h2>1. As 20 Garrafadas &amp; Elixires dos Curandeiros</h2>
 <p><em>Preparadas em garrafas escuras com cachaça de alambique, raízes maceradas e banhas animais. Duram até o próximo descanso longo.</em></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d20</th>
@@ -846,7 +813,7 @@
 <td align="left">Se um golpe for reduzi-lo a 0 PV, <strong>fique com 1 PV</strong> em vez de cair inconsciente!</td>
 <td align="left">Resina sagrada de jequitibá milenar consagrada.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2>2. Os 15 Patuás, Amuletos &amp; Sementes Sagradas</h2>
 <p><em>Pequenos talismãs que o herói amarra no cinto, no pescoço ou incrusta na coronha de suas armas durante o descanso curto.</em></p>
@@ -889,7 +856,7 @@
 <hr>
 <h3>4. As 12 Preces de Reação Rápida &amp; Fórmulas de Impulso</h3>
 <p><em>Orações rápidas, rezas de terço e fumaças alquímicas que manipulam o d20 no calor do combate:</em></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d12</th>
@@ -970,7 +937,7 @@
 <td align="left">Fora de Combate. O grupo encontra a trilha direta de volta ao assentamento, ignorando tempestades ou perdição.</td>
 <td align="center">4 Pratas</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <header class="part-header"><h1 class="part-title">🏛️ CAPÍTULO 10: CLASSES &amp; SUBCLASSES DE ASSENTAMENTO</h1></header>
 <p>Assim como cada herói escolhe um arquétipo marcial, a comunidade escolhe em conjunto a sua <strong>Classe de Domínio</strong> ao ser fundada. Cada classe possui duas <strong>Subclasses Especializadas</strong> que definem os poderes de soberania da vila:</p>
@@ -1070,7 +1037,7 @@
 <hr>
 <h2>2. Instalações Especiais (Salas de Poder — Limite por Escala)</h2>
 <p><em>Edificações complexas que exigem especialistas e concedem bônus de jogo diretos aos heróis e à vila:</em></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="left">Instalação Especial</th>
@@ -1139,7 +1106,7 @@
 <td align="center">Escala I</td>
 <td align="left">Permite prender até 10 jagunços ou espiões capturados com risco de fuga nulo.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <header class="part-header"><h1 class="part-title">🚩 CAPÍTULO 12: A CASA DAS BANDEIRAS &amp; A GUILDA DE EXPLORADORES</h1></header>
 <p>Conforme o assentamento cresce para a Escala II ou superior, os TerraTenentes não conseguem estar em todos os lugares ao mesmo tempo. Ao fundar uma <strong>Casa das Bandeiras</strong> (ou Guilda de Exploradores), os heróis podem contratar grupos de aventureiros, batedores e mateiros NPCs para desbravar os confins da fronteira.</p>
@@ -1149,7 +1116,7 @@
 └────────────────────────────────────────────────────────────────────────┘
 </code></pre>
 <h3>1. Quadro de Missões Disponíveis (Role 1d12 no início da Estação)</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d12</th>
@@ -1230,7 +1197,7 @@
 <td align="center">3 Ouro, 2 Metal</td>
 <td align="left">Elimina capitão rival e apreende 3 armas de fogo e 2 cães de caça!</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h3>2. Tabela de Resolução da Expedição de NPCs (Role 1d20)</h3>
 <p>O Mestre ou jogador rola <strong>1d20 + Nível da Guilda (Escala do Assentamento)</strong>:</p>
@@ -1260,7 +1227,7 @@
 <header class="part-header"><h1 class="part-title">🍲 CAPÍTULO 14: SERVIÇOS DE RANCHO, VENDA &amp; GASTRONOMIA DE FRONTEIRA</h1></header>
 <p>Na vastidão do sertão e das florestas, uma boa refeição quente e um rancho seco valem mais do que ouro em pó. Ao passar por vilas, feitorias e ranchos tropeiros, os heróis podem gastar moedas de prata para saborear pratos típicos que concedem <strong>Bônus de Vigor</strong>:</p>
 <h3>1. Cardápio da Fronteira &amp; Benefícios de Sustento:</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="left">Prato / Bebida Tradicional</th>
@@ -1303,10 +1270,10 @@
 <td align="center">5 Cobres</td>
 <td align="left">Aquece o peito e alivia tremedeiras de medo (+2 em testes de Moral contra assombrações).</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h3>2. Serviços da Venda &amp; Rancho de Estrada:</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="left">Serviço de Povoado</th>
@@ -1339,11 +1306,11 @@
 <td align="center">Doação</td>
 <td align="left">Afasta quebranto e mau-olhado; concede <strong>1 Dado de Sorte (1d4)</strong> para rolar em qualquer teste do dia.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <header class="part-header"><h1 class="part-title">👷 CAPÍTULO 15: CATÁLOGO DE ESPECIALISTAS &amp; ARTÍFICES CONTRATÁVEIS</h1></header>
 <p>Um assentamento não progride apenas com braços fortes de lavoura: ele necessita de <strong>Mestres de Ofício</strong> com conhecimentos raros. Os heróis podem contratar especialistas em cidades coloniais ou resgatá-los de cativeiros para fixar moradia em sua comunidade:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="left">Especialista</th>
@@ -1386,7 +1353,7 @@
 <td align="center">2 Ouro</td>
 <td align="left">Calibra canhões do forte, concedendo <strong>+2 de Ataque e +1d10 de Dano</strong> em tiros de muralha.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <p><em>Manual do TerraTenente — Pela Terra, Pelo Povo, Pela Liberdade.</em></p>
 <div class="page-break-before"></div><hr>
@@ -1600,7 +1567,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <hr>
 <header class="part-header"><h1 class="part-title">🎲 CAPÍTULO 6: TABELAS DE EVENTOS REGIONAIS &amp; DESASTRES (D100)</h1></header>
 <p>Sempre que rodar o <strong>Passo 4 do Turno de Downtime</strong>, role <strong>1d100</strong> (ou 1d20 para eventos rápidos):</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">d100</th>
@@ -1705,7 +1672,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left">As colheitas quebram recordes! Ganhe <strong>+1 Reserva de Emergência</strong>, <strong>+20 Moral</strong> e renome em toda a fronteira!</td>
 <td align="left">Nobres e governadores reconhecem a soberania do domínio!</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <hr>
 <header class="part-header"><h1 class="part-title">🎭 CAPÍTULO 8: GERADOR DE NPCs DE FRONTEIRA EM 5 SEGUNDOS</h1></header>
@@ -1713,7 +1680,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <pre><code>[Ocupação da Terra] + [Maneirismo / Traço] + [Atitude Inicial] + [Segredo ou Necessidade]
 </code></pre>
 <h3>1. Ocupação da Terra (1d20)</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d20</th>
@@ -1821,10 +1788,10 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left"><strong>Violeiro / Cantador Cego</strong></td>
 <td align="left">Viola caipira de dez cordas, memória viva de todas as lendas e fofocas da comarca.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h3>2. Maneirismo &amp; Traço Marcante (1d20)</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d20</th>
@@ -1911,7 +1878,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="center"><strong>20</strong></td>
 <td align="left">É extremamente seco e desconfiado: para ele, todo forasteiro é capitão-do-mato até prova em contrário.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h3>3. Atitude Inicial (1d10)</h3>
 <ul>
@@ -1924,7 +1891,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 </ul>
 <hr>
 <h3>4. Segredo ou Necessidade Urgente (1d20)</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d20</th>
@@ -2011,7 +1978,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="center"><strong>20</strong></td>
 <td align="left">Deseja desertar para o quilombo dos heróis e ensinar aos defensores como fundir canhões de bronze.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <header class="part-header"><h1 class="part-title">🐎 CAPÍTULO 9: LOGÍSTICA, MONTARIAS &amp; TRANSPORTE DE FRONTEIRA</h1></header>
 <p>Sem estradas calçadas, o transporte de matérias-primas e comida depende de animais resistentes e vias fluviais.</p>
@@ -2129,7 +2096,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <hr>
 <header class="part-header"><h1 class="part-title">📜 CAPÍTULO 10: O QUADRO DE DEMANDAS &amp; CONTRATOS (1D20)</h1></header>
 <p>Em vez de &quot;guildas mercenárias&quot;, o assentamento mantém um <strong>Quadro de Tarefas Comunitárias</strong> na porta da intendência ou no tronco central:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d20</th>
@@ -2237,11 +2204,11 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left"><strong>Enfrentar o Capitão-do-Mato Fanfarrão:</strong> O vilão mandou recado desafiando os heróis na encruzilhada.</td>
 <td align="left">A vitória destrói a moral dos caçadores de recompensa na região!</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <header class="part-header"><h1 class="part-title">🗣️ CAPÍTULO 11: HISTÓRIAS DE FOGUEIRA &amp; BOATOS DE RANCHO (1D20)</h1></header>
 <p>Role <strong>1d20</strong> sempre que os heróis conversarem com viajantes no terreiro da vila ou ao redor das brasas:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d20</th>
@@ -2349,7 +2316,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left"><em>&quot;Os grandes chefes de todas as aldeias da serra vão se reunir no solstício para declarar guerra à Coroa.&quot;</em></td>
 <td align="left"><strong>O Grande Chamado:</strong> O grupo é convidado para liderar a aliança e fundar uma Confederação Soberana!</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <header class="part-header"><h1 class="part-title">🗺️ CAPÍTULO 12: ROTAS DE COMÉRCIO, TROPEIROS &amp; ENTREPOSTOS</h1></header>
 <p>Nenhuma aldeia ou quilombo prospera isolado. Estabelecer rotas comerciais com vilarejos vizinhos, feiras coloniais ou aldeias ribeirinhas transforma sua comunidade em um pólo de poder regional.</p>
@@ -2361,7 +2328,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <li>Declarar uma ação de <em>Downtime</em> de Diplomacia (Teste de Carisma do Domínio CD 12).</li>
 </ol>
 <h3>2. Tipos de Rota &amp; Rendimentos por Estação</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="left">Tipo de Rota</th>
@@ -2394,7 +2361,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="center"><strong>+4 Ouro Líquido</strong></td>
 <td align="left">Alto lucro; atrai a atenção de cobradores de impostos da Coroa.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h3>3. Tabela de Riscos da Rota (1d10 por Estação)</h3>
 <p>No início do Turno de Domínio, role 1d10 para cada rota ativa:</p>
@@ -2600,7 +2567,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <hr>
 <header class="part-header"><h1 class="part-title">🌪️ CAPÍTULO 15: PERIGOS DE TERRENO, CLIMA &amp; COMPLICAÇÕES DA MATA</h1></header>
 <p>A natureza da fronteira não é um cenário de fundo estático: é um adversário implacável. Role <strong>1d10</strong> durante viagens ou para complicar cercos e combates nos ermos:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d10</th>
@@ -2669,7 +2636,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left">Espinhos afiados como agulhas furam botas e rasgam calças (1d4 dano a cada 10m).</td>
 <td align="left">Abrir picada paciente com facão de mato pesado (reduz velocidade da marcha).</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <header class="part-header"><h1 class="part-title">🛡️ CAPÍTULO 16: COMPANHIAS DE BATEDORES &amp; ESQUADRÕES DE PATRULHA</h1></header>
 <p>À medida que o assentamento cresce para a Escala II e além, os heróis não conseguem estar em todos os lugares ao mesmo tempo. É hora de <strong>formar esquadrões de defesa comunitária</strong>:</p>
@@ -2698,7 +2665,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <hr>
 <header class="part-header"><h1 class="part-title">💰 CAPÍTULO 17: EMPREENDIMENTOS &amp; RENDA PASSIVA PERIÓDICA</h1></header>
 <p>Além da produção básica de subsistência, os líderes do assentamento podem investir ouro e materiais para fundar <strong>Empreendimentos Comerciais Autônomos</strong>. Esses negócios operam sob a gestão de artesãos e geram <strong>dividendos líquidos automáticos</strong> no Passo 1 (Produção) de cada estação:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="left">Empreendimento</th>
@@ -2749,7 +2716,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="center"><strong>+2 Ouro Líquido</strong></td>
 <td align="left">Taxa cobrada de barcos e balsas forasteiras que cruzam o trecho do rio.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h3>Flutuação do Mercado (1d6 na Virada do Ano):</h3>
 <ul>
 <li><strong>1:</strong> <strong>Ano de Crise:</strong> Renda reduzida em 50% por chuvas ou pragas de lavoura.</li>
@@ -2845,7 +2812,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <hr>
 <header class="part-header"><h1 class="part-title">⚖️ CAPÍTULO 22: INTRIGAS, RIXAS DE FAMÍLIA &amp; DILEMAS INTERNOS (1d20)</h1></header>
 <p>Quando o assentamento atinge a paz contra monstros exteriores, as tensões humanas vêm à tona. No início de cada estação (ou após festas populares), o Mestre pode rolar <strong>1d20</strong> para introduzir um dilema social que exige a intervenção moral dos TerraTenentes:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d20</th>
@@ -2953,7 +2920,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left"><strong>Retorno do Antigo Proprietário</strong></td>
 <td align="left">Um herdeiro colonial com carta régia de sesmaria antiga reaparece reivindicando a posse de todas as terras do feudo!</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <header class="part-header"><h1 class="part-title">🌦️ CAPÍTULO 23: O CICLO DAS ESTAÇÕES TROPICAIS — SECA BRUTA VS. ÁGUAS</h1></header>
 <p>Na fronteira tropical, o clima não segue as quatro estações amenas europeias. O destino do domínio é regido por dois gigantes: <strong>A Estação das Águas (Invernaço)</strong> e <strong>A Estação da Seca (Estiagem Vermelha)</strong>:</p>
@@ -3232,7 +3199,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <header class="part-header"><h1 class="part-title">📦 CAPÍTULO 8: TABELAS DE SAQUE SELVAGEM &amp; FORRAGEIO (D100)</h1></header>
 <p>Sempre que os heróis realizarem a ação de <em>Forrageio</em>, <em>Caçada</em> ou vasculharem uma área selvagem após vencerem feras, role <strong>1d100</strong> no bioma correspondente.</p>
 <h3>8.1 Mata Fechada &amp; Florestas dos Rios (1d100)</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d100</th>
@@ -3340,10 +3307,10 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left"><strong>Árvore Sagrada Ancestral dos Povos Antigos</strong></td>
 <td align="left">Resina que brilha no escuro. Descansar sob sua copa restaura todo o Fôlego e cura todas as doenças!</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h3>8.2 Sertão, Caatinga &amp; Morros Pedregosos (1d100)</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d100</th>
@@ -3401,10 +3368,10 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left"><strong>Olho d&#39;Água Fervente / Nascente Termal</strong></td>
 <td align="left">Lagoa de águas termais sulfurosas. Banhar-se aqui remove todo cansaço físico e cura reumatismo!</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h3>8.3 Pântano, Varjão &amp; Remansos de Rio (1d100)</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d100</th>
@@ -3447,10 +3414,10 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left"><strong>Lótus Negra das Águas Mortas</strong></td>
 <td align="left">Flor que absorve energia necrótica. Rende <strong>2 Unidades de Materiais Místicos</strong> para o Pajé.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h3>8.4 Minas Abandonadas, Cavernas &amp; Galerias Subterrâneas (1d100)</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d100</th>
@@ -3508,11 +3475,11 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left"><strong>Salão dos Antigos com Inscrições Rupestres</strong></td>
 <td align="left">Pinturas a sangue de animais que revelam a localização de uma veia colossal de ferro ou prata!</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <header class="part-header"><h1 class="part-title">⚔️ CAPÍTULO 9: SAQUE PÓS-COMBATE POR TIPO DE INIMIGO</h1></header>
 <p>Após vencer uma batalha contra invasores ou monstros, role nesta tabela para abastecer imediatamente os estoques da sua comunidade:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="left">Tipo de Inimigo Derrotado</th>
@@ -3550,11 +3517,11 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left">Canhões de bronze, paióis de pólvora, celeiros cheios e prisioneiros soltos.</td>
 <td align="left"><strong>+5 Metal</strong>, <strong>+4 Víveres</strong>, <strong>+3 Ouro</strong> e <strong>+40 População grata</strong>!</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <header class="part-header"><h1 class="part-title">🏺 CAPÍTULO 10: TABELA d100 DE RELÍQUIAS PERDIDAS &amp; CURIOSIDADES DA FRONTEIRA</h1></header>
 <p>Ao explorar sepulturas esquecidas, velhas missões jesuíticas soterradas, carcaças de navios encalhados nos rios ou cavernas com inscrições rupestres, role <strong>1d100</strong> para descobrir que objeto misterioso os heróis desenterraram:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="center">1d100</th>
@@ -3662,7 +3629,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left"><strong>O Sagrado Manto dos Inconfidentes da Fronteira</strong></td>
 <td align="left">Um casaco de feltro gasto bordado com o lema <em>Libertas Quae Sera Tamen</em>. Usado em combate por um líder de vila, dobra a Moral de todos os defensores e impede debandada enquanto o herói estiver de pé!</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <header class="part-header"><h1 class="part-title">🔪 CAPÍTULO 11: ANATOMIA DE BESTAS &amp; EXTRAÇÃO DE INGREDIENTES MÍTICOS</h1></header>
 <p>Matar uma criatura mítica na fronteira é apenas metade do trabalho: um bom mateiro sabe que as entranhas, o couro e os ossos de uma fera guardam o verdadeiro poder para o arsenal do assentamento.</p>
@@ -3681,7 +3648,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 </ul>
 <hr>
 <h3>2. Catálogo de Ingredientes Monstruosos &amp; Aplicações na Forja:</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th align="left">Monstro Abatido</th>
@@ -3729,7 +3696,7 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 <td align="left"><strong>Bolsa de Peçonha Pura (4 Doses)</strong></td>
 <td align="left">Cada dose embebe uma lâmina com veneno paralisante (teste de Vigor CD 14 ou paralisia muscular por 3 rodadas).</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <p><em>Livro de Monstros dos TerraTenentes — A terra tem dentes, garras e memória. Domine-a ou seja devorado.</em></p>
 <div class="page-break-before"></div><hr>
@@ -3932,19 +3899,13 @@ Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que const
 
     </div>
   </div>
-
   <script>
     function toggleColumns() {
       const container = document.getElementById('bookContainer');
       const btn = document.getElementById('colBtn');
       container.classList.toggle('one-column-mode');
-      if (container.classList.contains('one-column-mode')) {
-        btn.textContent = 'Modo: 1 Coluna (Clique p/ 2)';
-      } else {
-        btn.textContent = 'Modo: 2 Colunas (Clique p/ 1)';
-      }
+      btn.textContent = container.classList.contains('one-column-mode') ? 'Modo: 1 Coluna (Clique p/ 2)' : 'Modo: 2 Colunas (Clique p/ 1)';
     }
-
     function setFontSize(val) {
       document.documentElement.style.setProperty('--font-base', val);
     }

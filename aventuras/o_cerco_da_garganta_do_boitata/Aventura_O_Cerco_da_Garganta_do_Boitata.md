@@ -31,13 +31,13 @@ Mas a terra de fronteira não perdoa quem relaxa a guarda. Dois perigos mortais 
 
 # 👤 OS HERÓIS DE MATA DO REMANSO (FICHAS PRÉ-GERADAS)
 
-Para jogar imediatamente, distribua as 4 fichas pré-geradas prontas entre os jogadores (todas inclusas na pasta `fichas/pre_gerados/`):
+Para jogar imediatamente, distribua as 4 fichas pré-geradas prontas entre os jogadores (todas inclusas na subpasta `fichas_pre_geradas/`):
 
-1. **[Tião Guayaná](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/fichas/pre_gerados/Tiao_Batedor_Guayana.md) (Batedor Nativo):** O arqueiro invisível que conhece cada trilha e cada tocaia da serra.
-2. **[Dandara do Quilombo](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/fichas/pre_gerados/Dandara_Guerreira_do_Quilombo.md) (Guerreira de Vanguarda):** A capitã destemida com lança pesada e liderança inabalável sobre a milícia.
-3. **[Nhá Benta](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/fichas/pre_gerados/Nha_Benta_Rezadeira_Curandeira.md) (Curandeira & Rezadeira):** A anciã cabocla que cura feridas de morte com rezas, ervas e afasta espectros da noite.
-4. **[Bento Vaqueiro](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/fichas/pre_gerados/Bento_Vaqueiro_do_Sertao.md) (Vaqueiro & Atirador):** O sertanejo experiente com laço de couro, bacamarte trovejante e montaria fiel.
-5. **[Ficha Coletiva de Mata do Remanso](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/fichas/pre_gerados/Ficha_Povoado_Mata_do_Remanso.md):** A ficha de domínio preenchida que o grupo gerencia junto!
+1. **[Tião Guayaná](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Tiao_Batedor_Guayana.md) (Batedor Nativo):** O arqueiro invisível que conhece cada trilha e cada tocaia da serra.
+2. **[Dandara do Quilombo](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Dandara_Guerreira_do_Quilombo.md) (Guerreira de Vanguarda):** A capitã destemida com lança pesada e liderança inabalável sobre a milícia.
+3. **[Nhá Benta](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Nha_Benta_Rezadeira_Curandeira.md) (Curandeira & Rezadeira):** A anciã cabocla que cura feridas de morte com rezas, ervas e afasta espectros da noite.
+4. **[Bento Vaqueiro](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Bento_Vaqueiro_do_Sertao.md) (Vaqueiro & Atirador):** O sertanejo experiente com laço de couro, bacamarte trovejante e montaria fiel.
+5. **[Ficha Coletiva de Mata do Remanso](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Ficha_Povoado_Mata_do_Remanso.md):** A ficha de domínio preenchida que o grupo gerencia junto!
 
 ---
 
