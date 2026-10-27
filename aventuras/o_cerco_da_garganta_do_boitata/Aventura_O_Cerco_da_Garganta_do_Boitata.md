@@ -17,68 +17,73 @@
 
 ---
 
-# 📖 PREFÁCIO DO MESTRE: O CENÁRIO DE JOGO
+# 📖 PREFÁCIO DO MESTRE: O CENÁRIO DE PINDORAMA PARTIDO
 
-**Mata do Remanso** foi fundada há apenas oito meses. É um povoado mestiço — metade quilombo, metade aldeia livre — aninhado na curva de um rio caudaloso sob a sombra imponente da **Serra do Fogo Fátuo**. 
+**Mata do Remanso** foi fundada há apenas oito meses nas terras livres do **Pindorama Partido**. O povoado nasceu do sopro de liberdade que se seguiu ao **Cataclismo Arcano**, quando as senzalas se romperam, as aldeias ergueram suas paliçadas e os povos da floresta juraram nunca mais se curvar a correntes coloniais.
 
-Aqui vivem 65 almas: homens e mulheres que fugiram dos ferros coloniais, famílias indígenas Guayaná cujas tabas foram queimadas e vaqueiros empobrecidos do sertão. Eles limparam o barro, ergueram uma paliçada de peroba e plantaram mandioca, feijão e milho. Pela primeira vez em suas vidas, **eles têm um lar**.
+O assentamento repousa em uma curva estratégica do caudaloso **Rio das Almas** (um afluente vital do lendário **Rio Serpente**), aninhado exatamente na fronteira viva onde a úmida **Grande Floresta das Brumas** encontra as terras vermelhas do **Cerrado das Chamas Eternas**, sob a sombra imponente das **Montanhas das Riquezas Infidáveis**.
 
-Mas a terra de fronteira não perdoa quem relaxa a guarda. Dois perigos mortais convergem contra a comunidade:
-1. **O Capitão-do-Mato Silvério Barreto:** Um mercenário implacável financiado por fazendeiros coloniais para arrasar Mata do Remanso e levar seus habitantes acorrentados. Ele montou acampamento com 15 jagunços na mata seca a apenas 3 léguas de distância.
-2. **O Despertar do Boitatá:** Para abrir clareiras e fustigar a vila, os jagunços atearam fogo na mata baixa. A fumaça densa e o calor sufocante invadiram a **Garganta das Águas Profundas**, despertando o **Boitatá da Mata Escura** — uma serpente gigantesca de olhos em brasa que começou a fazer as águas do rio ferverem, cozinhando os peixes e ameaçando queimar todo o vale!
+Aqui vivem 65 almas livres em comunhão mestiça: guerreiros quilombolas de Palmares forjadores de ferro sagrado, famílias de indígenas Guayaná das matas profundas, anciãos boticários do povo-planta Virrégio e vaqueiros Boitás com sangue de brasa fugidos do jugo dos grandes feudos. Juntos, limparam o barro com as próprias mãos, ergueram uma sólida paliçada de peroba-rosa e plantaram mandioca, milho, feijão e carnaúba. **Pela primeira vez em suas vidas, eles têm um lar sagrado e soberano.**
+
+Mas a terra de fronteira não perdoa quem descansa a vigília. Dois perigos terríveis convergem contra a comunidade:
+1. **Os Mercenários do Bastião de Ferro (Capitão Silvério Barreto):** Um destacamento brutal financiado por barões e consórcios coloniais da costa. Eles buscam reescravizar os habitantes e tomar para si as **fendas ricas em ouro bruto e ferro meteórico** recém-descobertas na garganta da serra. Silvério acampou com 15 jagunços veteranos e canhão portátil a apenas 3 léguas de distância.
+2. **O Despertar do Boitatá das Fendas:** Para abrir clareiras e fustigar a vila, os jagunços atearam fogo na mata seca. A fumaça e as explosões invadiram a sagrada **Garganta das Águas Profundas**, perturbando o sono centenário do **Boitatá** — a titânica serpente de fogo e obsidiana que protege as veias incandescentes da terra. Enfurecida pelo cheiro de pólvora e pelo arcano residual que vazou no Cataclismo, a fera começou a fazer o rio ferver, cozinhando os peixes e ameaçando incendiar todo o vale com um inferno vivo!
 
 ---
 
 # 👤 OS HERÓIS DE MATA DO REMANSO (FICHAS PRÉ-GERADAS)
 
-Para jogar imediatamente, distribua as 4 fichas pré-geradas prontas entre os jogadores (todas inclusas na subpasta `fichas_pre_geradas/`):
+Para começar a jogar imediatamente, distribua as fichas prontas entre os jogadores (todas inclusas na subpasta `fichas_pre_geradas/`), que exibem as culturas e vantagens das raças do Pindorama:
 
-1. **[Tião Guayaná](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Tiao_Batedor_Guayana.md) (Batedor Nativo):** O arqueiro invisível que conhece cada trilha e cada tocaia da serra.
-2. **[Dandara do Quilombo](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Dandara_Guerreira_do_Quilombo.md) (Guerreira de Vanguarda):** A capitã destemida com lança pesada e liderança inabalável sobre a milícia.
-3. **[Nhá Benta](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Nha_Benta_Rezadeira_Curandeira.md) (Curandeira & Rezadeira):** A anciã cabocla que cura feridas de morte com rezas, ervas e afasta espectros da noite.
-4. **[Bento Vaqueiro](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Bento_Vaqueiro_do_Sertao.md) (Vaqueiro & Atirador):** O sertanejo experiente com laço de couro, bacamarte trovejante e montaria fiel.
-5. **[Ficha Coletiva de Mata do Remanso](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Ficha_Povoado_Mata_do_Remanso.md):** A ficha de domínio preenchida que o grupo gerencia junto!
+1. **[Tião Guayaná](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Tiao_Batedor_Guayana.md) (Humano Originário / Batedor das Matas):** Arqueiro invisível que conhece cada tocaia da serra e ouve os avisos das árvores de pindó.
+2. **[Dandara do Quilombo](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Dandara_Guerreira_do_Quilombo.md) (Humana da Resistência / Guerreira de Vanguarda):** Capitã da milícia armada com lança de peroba e ferro meteórico consagrado no axé de Ogum.
+3. **[Nhá Benta da Encruzilhada](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Nha_Benta_Rezadeira_Curandeira.md) (Povo Virrégio / Curandeira & Boticária das Seivas):** Anciã com flores de vitória-régia nas têmporas, seiva regenerativa e orações que quebram feitiços arcanos.
+4. **[Bento Vaqueiro](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Bento_Vaqueiro_do_Sertao.md) (Povo Boitá / Vaqueiro & Atirador do Cerrado):** Sertanejo com escamas de brasa imunes a queimaduras, facão de obsidiana, bacamarte trovejante e laço de couro cru.
+5. **[Jaciara dos Rios](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Jaciara_Barqueira_Iariense.md) (Povo Iariênse / Barqueira & Exploradora Anfíbia):** Filha das correntezas do Rio Serpente, nadadora veloz com arpão de osso e domínio das águas.
+6. **[Ficha Coletiva de Mata do Remanso](file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Ficha_Povoado_Mata_do_Remanso.md):** O domínio vivo que todos gerenciam e defendem juntos!
 
 ---
 
 # ☀️ ATO I: A FUMAÇA NA MATA & A EMBOSCADA DA PONTE
 
 ### Cena 1: A Manhã Sufocante (Downtime Rápido de 10 Minutos)
-A aventura começa ao alvorecer. O sol desponta vermelho como brasa viva sobre as palhoças de Mata do Remanso. Uma névoa morna de cinzas paira no ar.
+A aventura começa ao alvorecer. O sol desponta vermelho como brasa viva sobre as palhoças de Mata do Remanso. Uma névoa leitoso-acinzentada — o resíduo da **Bruma Arcana do Cataclismo** — paira entre as copas das sumaúmas e o capim dourado.
 
 Permita que cada jogador faça **1 Ação de Entre-Aventuras** na vila para aquecer os motores do sistema:
-* **Construir / Fortificar:** Ajudar a cavar trincheiras ou espetar estacas na paliçada (teste de Vigor CD 12: adiciona **+1 Defesa temporária** às muralhas).
-* **Alquimia & Ervas:** Nhá Benta prepara garrafadas no ervanário (produz **2 Unguentos Cicatrizantes**).
-* **Treinamento Marcial:** Dandara treina os lavradores com varas de lança (concede **+1 de Dano** na primeira rodada do cerco).
-* **Reconhecimento das Brenhas:** Tião ou Bento patrulham o perímetro à cavalo ou a pé.
+* **Construir / Fortificar:** Cavar trincheiras e espetar estacas na paliçada (Vigor CD 12: concede **+1 Defesa temporária** às muralhas).
+* **Alquimia & Seivas:** Nhá Benta prepara garrafadas no ervanário (produz **2 Unguentos de Seiva Cicatrizante**).
+* **Treinamento Marcial:** Dandara treina a milícia com hastes de peroba (concede **+1 de Dano** na primeira rodada do cerco).
+* **Reconhecimento das Brenhas:** Tião ou Bento patrulham o perímetro à cavalo ou nas copas das árvores.
+* **Oferenda Fluvial:** Jaciara navega em sua canoa pelas margens do rio deixando flores e fumo para a Mãe-d'Água (Presença CD 12: concede **2 Unidades de Pescado** e bênção que reduz em 1 ponto qualquer dano de queimadura recebido no primeiro combate).
 
 ### Cena 2: O Alerta da Torre & A Ponte em Chamas
 Durante a ronda, a sentinela da **Torre de Vigia** sopra o berrante de alerta: três toques graves ecoam pelo vale!
-Fumaça preta sobe da **Ponte das Perobas** — a única passagem terrestre que liga a vila às roças de mandioca do outro lado do rio.
+Fumaça preta sobe da **Ponte das Perobas** — a única passagem que liga a vila às roças de mandioca do outro lado do rio.
 
 Quando os heróis chegam à margem, encontram:
-* **4 Jagunços Incendiários** ateando archotes de pez nas toras da ponte.
-* **2 Cães de Fila Raivosos** mantendo dois lavradores indefesos encurralados em uma árvore.
-* **Líder do Grupo:** Sargento Mandingueiro (braço direito de Silvério), gritando ordens de cima de um cavalo magro.
+* **4 Jagunços Incendiários** a serviço do Bastião de Ferro, ateando archotes de pez nas toras da ponte.
+* **2 Cães de Presa Infundidos** — mastins cujos olhos vazam fumaça azulada do arcano e mandíbulas reforçadas por cristais, acuando dois lavradores indefesos em uma árvore.
+* **Líder do Grupo:** Sargento Mandingueiro (braço direito de Silvério), gritando ordens de cima de um cavalo de guerra.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
 │                        ESTATÍSTICAS DO ENCONTRO                        │
 ├────────────────────────────────────────────────────────────────────────┤
 │ • 4 JAGUNÇOS: PV 8 cada | Defesa 12 | Facão +3 (1d6+1) ou Garrucha     │
-│ • 2 CÃES DE PRESA: PV 6 cada | Defesa 13 | Mordida +4 (1d4+2 e derruba)│
+│ • 2 MASTINS INFUNDIDOS: PV 7 | Defesa 13 | Mordida +4 (1d6+2 e derruba)│
 │ • SARGENTO MANDINGUEIRO: PV 15 | Defesa 14 | Bacamarte +4 (2d8 trovej.)│
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
 **Táticas dos Heróis:**
 * Tião pode atirar das folhagens sem ser visto;
-* Bento pode laçar o Sargento para arrancá-lo da sela;
-* Dandara lidera a investida de lança para salvar os lavradores;
-* Nhá Benta pode usar sua oração radiante para apavorar os cães de presa!
+* Bento pode laçar o Sargento para arrancá-lo da sela enquanto resiste ao fogo com seu sangue de Boitá;
+* Dandara lidera a investida de lança para salvar os lavradores com seu brado de liberdade;
+* Nhá Benta pode usar sua oração radiante para quebrar a magia residual dos cães infundidos;
+* Jaciara pode surgir da correnteza para apagar as chamas da ponte e fascinar os jagunços com seu canto!
 
 **O Interrogatório:**
-Ao derrotar o bando, o Sargento (ou qualquer jagunço sobrevivente) revela que **o Capitão Silvério Barreto marchará com toda a tropa de 12 jagunços e canhão portátil ao entardecer para queimar a vila até as cinzas**. Além disso, o prisioneiro treme de terror: *"Vocês são loucos de ficar aqui... o bicho da caverna acordou! O fogo da serra acordou a Serpente dos Olhos Acesos!"*
+Ao derrotar o bando, o Sargento (ou qualquer jagunço sobrevivente) revela que **o Capitão Silvério Barreto marchará com toda a tropa de 12 jagunços e canhão portátil ao entardecer para queimar a vila até as cinzas**. Além disso, o prisioneiro treme de terror: *"Vocês são loucos de ficar aqui... os barões querem o ouro e o ferro da serra, mas o fogo acordou o Boitatá da caverna! A serpente de magma vai engolir este vale inteiro!"*
 
 ---
 
@@ -161,10 +166,13 @@ No centro de uma imensa câmara subterrânea com uma lagoa borbulhante repousa o
 
 ---
 
-### 3. A Resolução Alternativa (Apaziguamento Espiritual)
-Nem todo monstro lendário precisa ser esmagado até a morte:
-* Se **Nhá Benta** ou **Tião Guayaná** usarem uma ação para queimar ramos de arruda, fumo de rolo sagrado e realizarem a **Oração de Apaziguamento da Terra (teste de Presença CD 15)**, a besta reconhece que os heróis expulsaram os verdadeiros incendiários coloniais.
-* Se os heróis apagarem os archotes e fogueiras que os jagunços deixaram na entrada da fenda, o Boitatá fecha seus olhos flamejantes, mergulha calmamente no poço profundo e volta ao seu sono centenário, abençoando o rio!
+### 3. A Resolução Alternativa (Apaziguamento dos Espíritos da Terra)
+No Pindorama Partido, nem toda força ancestral da natureza deve ser aniquilada:
+* **Comunhão das Raças de Pindorama:**
+  * **Bento Vaqueiro (Boitá):** Pode usar uma ação para falar na língua ancestral do magma (*Sopro das Brasas*), mostrando suas escamas de obsidiana e jurando que o povoado não permitirá novas queimadas.
+  * **Nhá Benta (Virrégia) & Tião (Originário):** Podem soprar fumo sagrado de alecrim e resina de almécega, realizando a **Reza de Apaziguamento da Terra (Presença CD 14)**.
+  * **Jaciara (Iariênse):** Pode mergulhar nas águas borbulhantes para resfriar os canais subterrâneos com preces à Senhora do Fundo.
+* Se os heróis tiverem apagado as fogueiras coloniais que os jagunços deixaram na entrada das fendas, o **Boitatá** reconhece que os povos livres defendem a floresta. A serpente titânica fecha seus olhos de brasa, mergulha tranquilamente no abismo freático de magma e abençoa o rio com calor brando e águas férteis!
 
 ---
 

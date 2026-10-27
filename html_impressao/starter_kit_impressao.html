@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Os TerraTenentes: Starter Kit Oficial — O Cerco da Garganta do Boitatá</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     @page {
       size: A4 portrait;
@@ -26,224 +23,276 @@
     }
 
     :root {
-      --primary-color: #2b4728;
-      --secondary-color: #8c6d3b;
-      --accent-color: #a73228;
-      --dark-bg: #1c261b;
-      --light-bg: #f9f8f5;
-      --border-color: #d1c7b7;
-      --text-color: #222220;
-      --font-base: 8.5pt;
-      --line-height-base: 1.28;
+      --primary-color: #2b4728;       /* Verde mata profundo */
+      --secondary-color: #7a311b;     /* Terracota rústico */
+      --dark-gold: #9e7326;           /* Ouro velho */
+      --body-text: #1a1a1a;
+      --bg-light: #faf8f4;            /* Papiro suave */
+      --table-border: #d4ccbd;
+      --table-alt: #f3ede2;
+      --code-bg: #f5f0e6;
+      --font-base: 7.5pt;
+      --line-height: 1.25;
     }
 
     body {
-      font-family: 'Crimson Pro', 'Georgia', serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-size: var(--font-base);
-      line-height: var(--line-height-base);
-      color: var(--text-color);
-      background-color: #d5d1c8;
+      line-height: var(--line-height);
+      color: var(--body-text);
+      background-color: #dedede;
       margin: 0;
       padding: 0;
     }
 
-    .toolbar {
+    .screen-toolbar {
       position: sticky;
       top: 0;
       z-index: 9999;
-      background: #1e1e1e;
+      background: #1f2b1d;
       color: #fff;
-      padding: 10px 20px;
+      padding: 8px 16px;
       display: flex;
-      gap: 15px;
+      flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      font-size: 13px;
     }
-    .toolbar button, .toolbar select {
-      background: #2b4728;
+
+    .screen-toolbar .btn-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .screen-toolbar button, .screen-toolbar select {
+      background: #7a311b;
       color: #fff;
-      border: 1px solid #4a7545;
-      padding: 6px 12px;
+      border: 1px solid #9c4329;
       border-radius: 4px;
-      cursor: pointer;
+      padding: 6px 14px;
+      font-size: 13px;
       font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .screen-toolbar button:hover {
+      background: #963d23;
+    }
+
+    .screen-toolbar .badge {
+      background: #344831;
+      padding: 4px 10px;
+      border-radius: 4px;
       font-size: 11px;
-    }
-    .toolbar button:hover { background: #3a5f36; }
-    .toolbar .btn-print { background: #a73228; border-color: #c94035; }
-    .toolbar .btn-print:hover { background: #bd3a2f; }
-
-    @media print {
-      .toolbar { display: none !important; }
-      body { background-color: #fff; }
-      .sheet {
-        margin: 0 !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-        width: 100% !important;
-      }
+      color: #e2ecd9;
     }
 
-    .sheet {
-      width: 210mm;
-      min-height: 297mm;
-      margin: 15mm auto;
-      background: var(--light-bg);
-      padding: 10mm 12mm;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    .document-page {
+      max-width: 210mm;
+      margin: 12px auto;
+      background: var(--bg-light);
+      padding: 12mm 12mm 14mm 12mm;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    }
+
+    .page-break-before {
+      page-break-before: always;
+      break-before: page;
+      height: 0;
+      margin: 0;
+      padding: 0;
     }
 
     .content-columns {
       column-count: 2;
-      column-gap: 6mm;
-      column-fill: auto;
+      column-gap: 5mm;
+      column-rule: 1px solid #e0d8cc;
       text-align: justify;
     }
 
-    .one-column-mode .content-columns {
-      column-count: 1 !important;
+    .content-columns.single-col {
+      column-count: 1;
     }
 
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Cinzel', 'Georgia', serif;
-      font-weight: 700;
-      line-height: 1.15;
-      margin-top: 1.2em;
-      margin-bottom: 0.4em;
-      break-after: avoid;
-    }
-
-    .main-doc-header {
+    .cover-tomo {
       column-span: all;
       text-align: center;
-      padding: 12mm 0 8mm 0;
-      margin-bottom: 6mm;
-      border-bottom: 2px solid var(--secondary-color);
+      padding: 18px 10px 16px 10px;
+      margin: 0 0 16px 0;
+      background: #f0eae1;
+      border: 2px solid var(--secondary-color);
+      border-radius: 4px;
     }
-    .main-title {
-      font-size: 20pt;
-      color: var(--primary-color);
+
+    .cover-tomo h1 {
+      margin: 0 0 4px 0;
+      font-size: 18pt;
+      font-family: 'Cinzel', 'Georgia', serif;
+      color: var(--secondary-color);
+      letter-spacing: 1px;
+    }
+
+    .cover-tomo p {
       margin: 0;
-      letter-spacing: 0.5px;
+      font-size: 8.5pt;
+      font-style: italic;
+      color: #555;
     }
 
     .part-header {
       column-span: all;
-      background: var(--dark-bg);
-      color: #f4eee1;
-      padding: 5mm 8mm;
-      margin: 8mm 0 4mm 0;
-      border-left: 5px solid var(--accent-color);
-      border-radius: 2px;
-      page-break-before: auto;
-    }
-    .part-title {
-      margin: 0;
-      font-size: 13pt;
-      color: #f4eee1;
-      letter-spacing: 0.5px;
+      border-bottom: 2px solid var(--primary-color);
+      margin: 14px 0 8px 0;
+      padding-bottom: 3px;
     }
 
-    .section-title {
-      font-size: 11pt;
+    .part-title {
+      font-size: 11.5pt;
+      font-family: 'Cinzel', 'Georgia', serif;
       color: var(--primary-color);
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 1.5px;
-      margin-top: 1.1em;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 9.5pt;
+      color: var(--secondary-color);
+      border-bottom: 1px solid var(--table-border);
+      padding-bottom: 2px;
+      margin: 10px 0 4px 0;
       break-after: avoid;
     }
 
-    h2 { font-size: 10pt; color: var(--primary-color); }
-    h3 { font-size: 9pt; color: #443e33; }
-    h4 { font-size: 8.5pt; color: #555; }
+    h3 {
+      font-size: 8.5pt;
+      color: #3b281f;
+      margin: 8px 0 3px 0;
+      break-after: avoid;
+    }
 
-    p { margin-top: 0; margin-bottom: 0.6em; text-indent: 1.2em; }
-    p:first-of-type, .part-header + p, h1 + p, h2 + p, h3 + p { text-indent: 0; }
+    p {
+      margin: 0 0 5px 0;
+    }
+
+    ul, ol {
+      margin: 0 0 6px 0;
+      padding-left: 14px;
+    }
+
+    li {
+      margin-bottom: 2px;
+    }
 
     blockquote {
-      margin: 0.6em 0;
+      margin: 6px 0;
       padding: 4px 8px;
       background: #f0ebe1;
       border-left: 3px solid var(--secondary-color);
       font-style: italic;
-      font-size: 0.95em;
+      font-size: 7.2pt;
     }
-    blockquote p { text-indent: 0; margin-bottom: 0; }
 
-    ul, ol {
-      margin: 0.3em 0 0.6em 0;
-      padding-left: 14px;
-    }
-    li { margin-bottom: 0.2em; }
-
-    .table-wrapper, .table-wide-wrapper {
-      margin: 0.6em 0;
-      break-inside: avoid;
-    }
-    .table-wide-wrapper {
+    .table-wrapper {
       column-span: all;
+      margin: 8px 0;
+      overflow-x: auto;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 7.8pt;
-      line-height: 1.18;
-      background: #fff;
-      border: 1px solid var(--border-color);
+      font-size: 7.2pt;
+      margin: 0;
     }
+
     th, td {
-      padding: 3.5px 5px;
-      border: 1px solid #ddd6c9;
+      padding: 3px 6px;
+      border: 1px solid var(--table-border);
       text-align: left;
     }
+
     th {
-      background: #2b4728;
+      background-color: var(--primary-color);
       color: #fff;
-      font-family: 'Cinzel', serif;
       font-weight: 600;
-      font-size: 7.8pt;
-    }
-    tr:nth-child(even) td { background: #f7f5f0; }
-
-    hr {
-      border: 0;
-      height: 1px;
-      background: var(--border-color);
-      margin: 1em 0;
     }
 
-    .page-break-before {
-      break-before: page;
-      page-break-before: always;
+    tr:nth-child(even) {
+      background-color: var(--table-alt);
+    }
+
+    pre {
+      column-span: all;
+      background: var(--code-bg);
+      border: 1px solid var(--table-border);
+      padding: 6px 8px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 6.8pt;
+      line-height: 1.15;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      margin: 6px 0;
     }
 
     code {
-      font-family: 'Consolas', monospace;
-      font-size: 0.9em;
-      background: #eee9df;
+      font-family: 'Consolas', 'Courier New', monospace;
+      background: #eee6d8;
       padding: 1px 3px;
       border-radius: 2px;
+      font-size: 7.2pt;
     }
-</style>
+
+    hr {
+      border: 0;
+      border-top: 1px dashed var(--table-border);
+      margin: 10px 0;
+    }
+
+    @media print {
+      .screen-toolbar {
+        display: none !important;
+      }
+      body {
+        background: none !important;
+      }
+      .document-page {
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        max-width: none !important;
+        background: transparent !important;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="toolbar">
-    <span><strong>Starter Kit Oficial</strong>: O Cerco da Garganta do Boitatá</span>
-    <button onclick="toggleColumns()" id="colBtn">Modo: 2 Colunas (Clique p/ 1)</button>
-    <select onchange="setFontSize(this.value)">
-      <option value="8pt">Densidade: Compacta (8pt)</option>
-      <option value="8.5pt" selected>Densidade: Normal (8.5pt)</option>
-      <option value="9pt">Densidade: Confortável (9pt)</option>
-    </select>
-    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
+
+  <div class="screen-toolbar">
+    <div class="btn-group">
+      <span class="badge">OS TERRATENENTES — STARTER KIT</span>
+      <button onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
+    </div>
+    <div class="btn-group">
+      <button onclick="toggleColumns()">Alternar Colunas</button>
+      <select onchange="changeDensity(this.value)">
+        <option value="6.8pt">Ultra Compacto (6.8pt)</option>
+        <option value="7.5pt" selected>Compacto Padrão (7.5pt)</option>
+        <option value="8.5pt">Confortável (8.5pt)</option>
+      </select>
+    </div>
   </div>
-  <div class="sheet" id="bookContainer">
-    <div class="content-columns">
-      <h1 class="section-title">🗺️ O CERCO DA GARGANTA DO BOITATÁ</h1>
+
+  <main class="document-page">
+    <div class="cover-tomo">
+      <h1>OS TERRATENENTES: STARTER KIT OFICIAL</h1>
+      <p>O Cerco da Garganta do Boitatá — Aventura Introdutória, Ficha de Povoado & 4 Personagens Pré-Gerados</p>
+    </div>
+
+    <div class="content-columns" id="contentColumns">
+      <header class="part-header"><h1 class="part-title">🗺️ O CERCO DA GARGANTA DO BOITATÁ</h1></header>
 <h3>Módulo de Aventura &amp; Starter Kit Oficial dos TerraTenentes</h3>
 <p><em>Uma Aventura Introdutória de Sobrevivência, Guerra de Fronteira e Feras Míticas para 3 a 5 Heróis de 1º Nível.</em></p>
 <hr>
@@ -257,61 +306,65 @@
 └───────────────────────┴───────────────────────┴────────────────────────┘
 </code></pre>
 <hr>
-<h1 class="section-title">📖 PREFÁCIO DO MESTRE: O CENÁRIO DE JOGO</h1>
-<p><strong>Mata do Remanso</strong> foi fundada há apenas oito meses. É um povoado mestiço — metade quilombo, metade aldeia livre — aninhado na curva de um rio caudaloso sob a sombra imponente da <strong>Serra do Fogo Fátuo</strong>. </p>
-<p>Aqui vivem 65 almas: homens e mulheres que fugiram dos ferros coloniais, famílias indígenas Guayaná cujas tabas foram queimadas e vaqueiros empobrecidos do sertão. Eles limparam o barro, ergueram uma paliçada de peroba e plantaram mandioca, feijão e milho. Pela primeira vez em suas vidas, <strong>eles têm um lar</strong>.</p>
-<p>Mas a terra de fronteira não perdoa quem relaxa a guarda. Dois perigos mortais convergem contra a comunidade:</p>
+<header class="part-header"><h1 class="part-title">📖 PREFÁCIO DO MESTRE: O CENÁRIO DE PINDORAMA PARTIDO</h1></header>
+<p><strong>Mata do Remanso</strong> foi fundada há apenas oito meses nas terras livres do <strong>Pindorama Partido</strong>. O povoado nasceu do sopro de liberdade que se seguiu ao <strong>Cataclismo Arcano</strong>, quando as senzalas se romperam, as aldeias ergueram suas paliçadas e os povos da floresta juraram nunca mais se curvar a correntes coloniais.</p>
+<p>O assentamento repousa em uma curva estratégica do caudaloso <strong>Rio das Almas</strong> (um afluente vital do lendário <strong>Rio Serpente</strong>), aninhado exatamente na fronteira viva onde a úmida <strong>Grande Floresta das Brumas</strong> encontra as terras vermelhas do <strong>Cerrado das Chamas Eternas</strong>, sob a sombra imponente das <strong>Montanhas das Riquezas Infidáveis</strong>.</p>
+<p>Aqui vivem 65 almas livres em comunhão mestiça: guerreiros quilombolas de Palmares forjadores de ferro sagrado, famílias de indígenas Guayaná das matas profundas, anciãos boticários do povo-planta Virrégio e vaqueiros Boitás com sangue de brasa fugidos do jugo dos grandes feudos. Juntos, limparam o barro com as próprias mãos, ergueram uma sólida paliçada de peroba-rosa e plantaram mandioca, milho, feijão e carnaúba. <strong>Pela primeira vez em suas vidas, eles têm um lar sagrado e soberano.</strong></p>
+<p>Mas a terra de fronteira não perdoa quem descansa a vigília. Dois perigos terríveis convergem contra a comunidade:</p>
 <ol>
-<li><strong>O Capitão-do-Mato Silvério Barreto:</strong> Um mercenário implacável financiado por fazendeiros coloniais para arrasar Mata do Remanso e levar seus habitantes acorrentados. Ele montou acampamento com 15 jagunços na mata seca a apenas 3 léguas de distância.</li>
-<li><strong>O Despertar do Boitatá:</strong> Para abrir clareiras e fustigar a vila, os jagunços atearam fogo na mata baixa. A fumaça densa e o calor sufocante invadiram a <strong>Garganta das Águas Profundas</strong>, despertando o <strong>Boitatá da Mata Escura</strong> — uma serpente gigantesca de olhos em brasa que começou a fazer as águas do rio ferverem, cozinhando os peixes e ameaçando queimar todo o vale!</li>
+<li><strong>Os Mercenários do Bastião de Ferro (Capitão Silvério Barreto):</strong> Um destacamento brutal financiado por barões e consórcios coloniais da costa. Eles buscam reescravizar os habitantes e tomar para si as <strong>fendas ricas em ouro bruto e ferro meteórico</strong> recém-descobertas na garganta da serra. Silvério acampou com 15 jagunços veteranos e canhão portátil a apenas 3 léguas de distância.</li>
+<li><strong>O Despertar do Boitatá das Fendas:</strong> Para abrir clareiras e fustigar a vila, os jagunços atearam fogo na mata seca. A fumaça e as explosões invadiram a sagrada <strong>Garganta das Águas Profundas</strong>, perturbando o sono centenário do <strong>Boitatá</strong> — a titânica serpente de fogo e obsidiana que protege as veias incandescentes da terra. Enfurecida pelo cheiro de pólvora e pelo arcano residual que vazou no Cataclismo, a fera começou a fazer o rio ferver, cozinhando os peixes e ameaçando incendiar todo o vale com um inferno vivo!</li>
 </ol>
 <hr>
 <header class="part-header"><h1 class="part-title">👤 OS HERÓIS DE MATA DO REMANSO (FICHAS PRÉ-GERADAS)</h1></header>
-<p>Para jogar imediatamente, distribua as 4 fichas pré-geradas prontas entre os jogadores (todas inclusas na subpasta <code>fichas_pre_geradas/</code>):</p>
+<p>Para começar a jogar imediatamente, distribua as fichas prontas entre os jogadores (todas inclusas na subpasta <code>fichas_pre_geradas/</code>), que exibem as culturas e vantagens das raças do Pindorama:</p>
 <ol>
-<li><strong><a href="file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Tiao_Batedor_Guayana.md">Tião Guayaná</a> (Batedor Nativo):</strong> O arqueiro invisível que conhece cada trilha e cada tocaia da serra.</li>
-<li><strong><a href="file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Dandara_Guerreira_do_Quilombo.md">Dandara do Quilombo</a> (Guerreira de Vanguarda):</strong> A capitã destemida com lança pesada e liderança inabalável sobre a milícia.</li>
-<li><strong><a href="file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Nha_Benta_Rezadeira_Curandeira.md">Nhá Benta</a> (Curandeira &amp; Rezadeira):</strong> A anciã cabocla que cura feridas de morte com rezas, ervas e afasta espectros da noite.</li>
-<li><strong><a href="file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Bento_Vaqueiro_do_Sertao.md">Bento Vaqueiro</a> (Vaqueiro &amp; Atirador):</strong> O sertanejo experiente com laço de couro, bacamarte trovejante e montaria fiel.</li>
-<li><strong><a href="file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Ficha_Povoado_Mata_do_Remanso.md">Ficha Coletiva de Mata do Remanso</a>:</strong> A ficha de domínio preenchida que o grupo gerencia junto!</li>
+<li><strong><a href="file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Tiao_Batedor_Guayana.md">Tião Guayaná</a> (Humano Originário / Batedor das Matas):</strong> Arqueiro invisível que conhece cada tocaia da serra e ouve os avisos das árvores de pindó.</li>
+<li><strong><a href="file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Dandara_Guerreira_do_Quilombo.md">Dandara do Quilombo</a> (Humana da Resistência / Guerreira de Vanguarda):</strong> Capitã da milícia armada com lança de peroba e ferro meteórico consagrado no axé de Ogum.</li>
+<li><strong><a href="file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Nha_Benta_Rezadeira_Curandeira.md">Nhá Benta da Encruzilhada</a> (Povo Virrégio / Curandeira &amp; Boticária das Seivas):</strong> Anciã com flores de vitória-régia nas têmporas, seiva regenerativa e orações que quebram feitiços arcanos.</li>
+<li><strong><a href="file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Bento_Vaqueiro_do_Sertao.md">Bento Vaqueiro</a> (Povo Boitá / Vaqueiro &amp; Atirador do Cerrado):</strong> Sertanejo com escamas de brasa imunes a queimaduras, facão de obsidiana, bacamarte trovejante e laço de couro cru.</li>
+<li><strong><a href="file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Jaciara_Barqueira_Iariense.md">Jaciara dos Rios</a> (Povo Iariênse / Barqueira &amp; Exploradora Anfíbia):</strong> Filha das correntezas do Rio Serpente, nadadora veloz com arpão de osso e domínio das águas.</li>
+<li><strong><a href="file:///c:/Users/Drysrina/Desktop/RPG/QUICKSHOW/Os%20TerraTenentes%20-%20Standalone%20Assentamentos/aventuras/o_cerco_da_garganta_do_boitata/fichas_pre_geradas/Ficha_Povoado_Mata_do_Remanso.md">Ficha Coletiva de Mata do Remanso</a>:</strong> O domínio vivo que todos gerenciam e defendem juntos!</li>
 </ol>
 <hr>
 <header class="part-header"><h1 class="part-title">☀️ ATO I: A FUMAÇA NA MATA &amp; A EMBOSCADA DA PONTE</h1></header>
 <h3>Cena 1: A Manhã Sufocante (Downtime Rápido de 10 Minutos)</h3>
-<p>A aventura começa ao alvorecer. O sol desponta vermelho como brasa viva sobre as palhoças de Mata do Remanso. Uma névoa morna de cinzas paira no ar.</p>
+<p>A aventura começa ao alvorecer. O sol desponta vermelho como brasa viva sobre as palhoças de Mata do Remanso. Uma névoa leitoso-acinzentada — o resíduo da <strong>Bruma Arcana do Cataclismo</strong> — paira entre as copas das sumaúmas e o capim dourado.</p>
 <p>Permita que cada jogador faça <strong>1 Ação de Entre-Aventuras</strong> na vila para aquecer os motores do sistema:</p>
 <ul>
-<li><strong>Construir / Fortificar:</strong> Ajudar a cavar trincheiras ou espetar estacas na paliçada (teste de Vigor CD 12: adiciona <strong>+1 Defesa temporária</strong> às muralhas).</li>
-<li><strong>Alquimia &amp; Ervas:</strong> Nhá Benta prepara garrafadas no ervanário (produz <strong>2 Unguentos Cicatrizantes</strong>).</li>
-<li><strong>Treinamento Marcial:</strong> Dandara treina os lavradores com varas de lança (concede <strong>+1 de Dano</strong> na primeira rodada do cerco).</li>
-<li><strong>Reconhecimento das Brenhas:</strong> Tião ou Bento patrulham o perímetro à cavalo ou a pé.</li>
+<li><strong>Construir / Fortificar:</strong> Cavar trincheiras e espetar estacas na paliçada (Vigor CD 12: concede <strong>+1 Defesa temporária</strong> às muralhas).</li>
+<li><strong>Alquimia &amp; Seivas:</strong> Nhá Benta prepara garrafadas no ervanário (produz <strong>2 Unguentos de Seiva Cicatrizante</strong>).</li>
+<li><strong>Treinamento Marcial:</strong> Dandara treina a milícia com hastes de peroba (concede <strong>+1 de Dano</strong> na primeira rodada do cerco).</li>
+<li><strong>Reconhecimento das Brenhas:</strong> Tião ou Bento patrulham o perímetro à cavalo ou nas copas das árvores.</li>
+<li><strong>Oferenda Fluvial:</strong> Jaciara navega em sua canoa pelas margens do rio deixando flores e fumo para a Mãe-d&#39;Água (Presença CD 12: concede <strong>2 Unidades de Pescado</strong> e bênção que reduz em 1 ponto qualquer dano de queimadura recebido no primeiro combate).</li>
 </ul>
 <h3>Cena 2: O Alerta da Torre &amp; A Ponte em Chamas</h3>
 <p>Durante a ronda, a sentinela da <strong>Torre de Vigia</strong> sopra o berrante de alerta: três toques graves ecoam pelo vale!
-Fumaça preta sobe da <strong>Ponte das Perobas</strong> — a única passagem terrestre que liga a vila às roças de mandioca do outro lado do rio.</p>
+Fumaça preta sobe da <strong>Ponte das Perobas</strong> — a única passagem que liga a vila às roças de mandioca do outro lado do rio.</p>
 <p>Quando os heróis chegam à margem, encontram:</p>
 <ul>
-<li><strong>4 Jagunços Incendiários</strong> ateando archotes de pez nas toras da ponte.</li>
-<li><strong>2 Cães de Fila Raivosos</strong> mantendo dois lavradores indefesos encurralados em uma árvore.</li>
-<li><strong>Líder do Grupo:</strong> Sargento Mandingueiro (braço direito de Silvério), gritando ordens de cima de um cavalo magro.</li>
+<li><strong>4 Jagunços Incendiários</strong> a serviço do Bastião de Ferro, ateando archotes de pez nas toras da ponte.</li>
+<li><strong>2 Cães de Presa Infundidos</strong> — mastins cujos olhos vazam fumaça azulada do arcano e mandíbulas reforçadas por cristais, acuando dois lavradores indefesos em uma árvore.</li>
+<li><strong>Líder do Grupo:</strong> Sargento Mandingueiro (braço direito de Silvério), gritando ordens de cima de um cavalo de guerra.</li>
 </ul>
 <pre><code>┌────────────────────────────────────────────────────────────────────────┐
 │                        ESTATÍSTICAS DO ENCONTRO                        │
 ├────────────────────────────────────────────────────────────────────────┤
 │ • 4 JAGUNÇOS: PV 8 cada | Defesa 12 | Facão +3 (1d6+1) ou Garrucha     │
-│ • 2 CÃES DE PRESA: PV 6 cada | Defesa 13 | Mordida +4 (1d4+2 e derruba)│
+│ • 2 MASTINS INFUNDIDOS: PV 7 | Defesa 13 | Mordida +4 (1d6+2 e derruba)│
 │ • SARGENTO MANDINGUEIRO: PV 15 | Defesa 14 | Bacamarte +4 (2d8 trovej.)│
 └────────────────────────────────────────────────────────────────────────┘
 </code></pre>
 <p><strong>Táticas dos Heróis:</strong></p>
 <ul>
 <li>Tião pode atirar das folhagens sem ser visto;</li>
-<li>Bento pode laçar o Sargento para arrancá-lo da sela;</li>
-<li>Dandara lidera a investida de lança para salvar os lavradores;</li>
-<li>Nhá Benta pode usar sua oração radiante para apavorar os cães de presa!</li>
+<li>Bento pode laçar o Sargento para arrancá-lo da sela enquanto resiste ao fogo com seu sangue de Boitá;</li>
+<li>Dandara lidera a investida de lança para salvar os lavradores com seu brado de liberdade;</li>
+<li>Nhá Benta pode usar sua oração radiante para quebrar a magia residual dos cães infundidos;</li>
+<li>Jaciara pode surgir da correnteza para apagar as chamas da ponte e fascinar os jagunços com seu canto!</li>
 </ul>
 <p><strong>O Interrogatório:</strong>
-Ao derrotar o bando, o Sargento (ou qualquer jagunço sobrevivente) revela que <strong>o Capitão Silvério Barreto marchará com toda a tropa de 12 jagunços e canhão portátil ao entardecer para queimar a vila até as cinzas</strong>. Além disso, o prisioneiro treme de terror: <em>&quot;Vocês são loucos de ficar aqui... o bicho da caverna acordou! O fogo da serra acordou a Serpente dos Olhos Acesos!&quot;</em></p>
+Ao derrotar o bando, o Sargento (ou qualquer jagunço sobrevivente) revela que <strong>o Capitão Silvério Barreto marchará com toda a tropa de 12 jagunços e canhão portátil ao entardecer para queimar a vila até as cinzas</strong>. Além disso, o prisioneiro treme de terror: <em>&quot;Vocês são loucos de ficar aqui... os barões querem o ouro e o ferro da serra, mas o fogo acordou o Boitatá da caverna! A serpente de magma vai engolir este vale inteiro!&quot;</em></p>
 <hr>
 <header class="part-header"><h1 class="part-title">🛡️ ATO II: A DEFESA DA PALIÇADA (O CERCO EM 3 FASES)</h1></header>
 <p>Ao entardecer, os batedores confirmam: Silvério Barreto cerca a vila. O céu se tinge de cinza e faíscas. A batalha pelo destino de Mata do Remanso é resolvida nas <strong>3 Fases do Sistema de Cerco</strong>:</p>
@@ -388,14 +441,19 @@ Quando Silvério cai ou é desarmado, os jagunços remanescentes quebram em pân
 <li><strong>Aura Infernal:</strong> Estar a até 2 metros da besta causa <strong>3 pontos de dano contínuo de calor</strong> a qualquer combatente que a atacar corpo a corpo.</li>
 </ul>
 <hr>
-<h3>3. A Resolução Alternativa (Apaziguamento Espiritual)</h3>
-<p>Nem todo monstro lendário precisa ser esmagado até a morte:</p>
+<h3>3. A Resolução Alternativa (Apaziguamento dos Espíritos da Terra)</h3>
+<p>No Pindorama Partido, nem toda força ancestral da natureza deve ser aniquilada:</p>
 <ul>
-<li>Se <strong>Nhá Benta</strong> ou <strong>Tião Guayaná</strong> usarem uma ação para queimar ramos de arruda, fumo de rolo sagrado e realizarem a <strong>Oração de Apaziguamento da Terra (teste de Presença CD 15)</strong>, a besta reconhece que os heróis expulsaram os verdadeiros incendiários coloniais.</li>
-<li>Se os heróis apagarem os archotes e fogueiras que os jagunços deixaram na entrada da fenda, o Boitatá fecha seus olhos flamejantes, mergulha calmamente no poço profundo e volta ao seu sono centenário, abençoando o rio!</li>
+<li><strong>Comunhão das Raças de Pindorama:</strong><ul>
+<li><strong>Bento Vaqueiro (Boitá):</strong> Pode usar uma ação para falar na língua ancestral do magma (<em>Sopro das Brasas</em>), mostrando suas escamas de obsidiana e jurando que o povoado não permitirá novas queimadas.</li>
+<li><strong>Nhá Benta (Virrégia) &amp; Tião (Originário):</strong> Podem soprar fumo sagrado de alecrim e resina de almécega, realizando a <strong>Reza de Apaziguamento da Terra (Presença CD 14)</strong>.</li>
+<li><strong>Jaciara (Iariênse):</strong> Pode mergulhar nas águas borbulhantes para resfriar os canais subterrâneos com preces à Senhora do Fundo.</li>
+</ul>
+</li>
+<li>Se os heróis tiverem apagado as fogueiras coloniais que os jagunços deixaram na entrada das fendas, o <strong>Boitatá</strong> reconhece que os povos livres defendem a floresta. A serpente titânica fecha seus olhos de brasa, mergulha tranquilamente no abismo freático de magma e abençoa o rio com calor brando e águas férteis!</li>
 </ul>
 <hr>
-<h1 class="section-title">🏆 EPÍLOGO: A NOVA AURORA DE MATA DO REMANSO</h1>
+<header class="part-header"><h1 class="part-title">🏆 EPÍLOGO: A NOVA AURORA DE MATA DO REMANSO</h1></header>
 <p>Seja derrotando o Boitatá ou apaziguando seu espírito ancestral, os heróis retornam triunfantes ao povoado enquanto a primeira chuva da primavera cai suavemente sobre as cinzas da mata.</p>
 <h3>Recompensas de Vitória para o Grupo:</h3>
 <ol>
@@ -428,87 +486,94 @@ Quando Silvério cai ou é desarmado, os jagunços remanescentes quebram em pân
 ║                OS TERRATENENTES — GUIA DO MESTRE                       ║
 ║                     FICHA DE ASSENTAMENTO                              ║
 ╠════════════════════════════════════════════════════════════════════════╣
-║ NOME: Mata do Remanso          MODELO: Quilombo / Povoado Agrícola     ║
-║ ESCALA (TIER): Escala I (Povoado de Fronteira)                         ║
-║ LÍDERES: Tião Guayaná, Dandara, Nhá Benta e Bento Vaqueiro             ║
+║ NOME: Mata do Remanso          MODELO: Quilombo Mestiço &amp; Taba Livre   ║
+║ BIOMA: Transição Mata das Brumas / Cerrado das Chamas Eternas          ║
+║ RIO: Braço do Rio Serpente (Rio das Almas) sob as Montanhas Infidáveis ║
+║ ESCALA: Escala I (Povoado de Fronteira Livre do Cataclismo)            ║
+║ LÍDERES: Tião (Originário), Dandara (Quilombola), Nhá Benta (Virrégia) ║
+║          Bento (Boitá) e Jaciara (Iariênse)                            ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ ATRIBUTOS COLETIVOS DO ASSENTAMENTO                                    ║
-║ • FORÇA:        +2  (Capacidade de trabalho braçal e força de milícia) ║
-║ • DESTREZA:     +1  (Rapidez de resposta, armadilhas e batedores)      ║
-║ • CONSTITUIÇÃO: +2  (Resistência a pragas, solidez de paliçadas)       ║
-║ • INTELIGÊNCIA: +0  (Registros, mapas e arquivos da comunidade)        ║
-║ • SABEDORIA:    +2  (Conhecimento da terra, intuição e aviso espiritual║
-║ • CARISMA:      +1  (Moral, acolhimento de refugiados e negociação)    ║
+║ • FORÇA:        +2  (Trabalho braçal, forjas de ferro sagrado e lenha) ║
+║ • DESTREZA:     +1  (Rapidez de resposta, canoas ligeiras e batedores) ║
+║ • CONSTITUIÇÃO: +2  (Resistência à Bruma arcana, paliçadas de peroba)  ║
+║ • INTELIGÊNCIA: +0  (Mapas das fendas montanhosas e rotas fluviais)    ║
+║ • SABEDORIA:    +2  (Axé ancestral, leitura de rastros e avisos fluviais║
+║ • CARISMA:      +1  (Acolhimento de fugitivos, comunhão entre raças)   ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ POPULAÇÃO &amp; VITALIDADE COLETIVA                                        ║
-║ • POPULAÇÃO ATIVA: 65 / 80 Habitantes                                  ║
+║ • POPULAÇÃO ATIVA: 65 / 80 Habitantes (Quilombolas, Guayanás, Virrégios║
+║                     e Boitás dissidentes dos Bastiões de Ferro)        ║
 ║ • MORAL DA COMUNIDADE: 75 / 100                                        ║
 ║ • RESERVA DE EMERGÊNCIA: [X] [X] [ ] [ ] [ ] (2/5 Caixas Preenchidas)  ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ DEFESAS TERRITORIAIS                                                   ║
-║ • DEFESA DAS MURALHAS: 13 (Paliçadas de Peroba &amp; Trincheiras de Barro) ║
-║ • MILÍCIA DISPONÍVEL: 25 Defensores Armados (Lanças, Facões, 4 Arcos)  ║
-║ • GUARNIÇÃO DE BATEDORES: 4 Cães de Caça &amp; 6 Mateiros em Ronda         ║
+║ • DEFESA DAS MURALHAS: 13 (Paliçadas de Peroba &amp; Valas Anti-Infundidos)║
+║ • MILÍCIA DISPONÍVEL: 25 Guerreiros (Lanças com ponta de aço, arcos)   ║
+║ • GUARNIÇÃO DE BATEDORES: 4 Cães de Caça &amp; 6 Mateiros em Ronda fluvial ║
 ╠════════════════════════════════════════════════════════════════════════╣
-║ RECURSOS TANGÍVEIS EM ESTOQUE                                          ║
-║ • OURO / PRATA:       4 Unidades (Moedas e joias guardadas no cofre)   ║
-║ • VÍVERES (COMIDA):   6 Unidades (Farinha de mandioca, carne de sol)   ║
-║ • MADEIRA DE LEI:     5 Unidades (Toras de peroba e ipê no pátio)      ║
-║ • PEDRA DE CANTARIA:  2 Unidades (Blocos para forno e alicerce)        ║
-║ • METAL / FERRAMENTAS:3 Unidades (Foices, enxadas, pregos e chumbo)    ║
-║ • MATERIAIS MÍSTICOS: 2 Unidades (Ervas raras e seiva sagrada)         ║
+║ RECURSOS TANGÍVEIS EM ESTOQUE (PRODUÇÃO REGIONAL)                      ║
+║ • OURO / PRATA:       4 Unidades (Pepitas das fendas e moedas livres)  ║
+║ • VÍVERES (COMIDA):   6 Unidades (Farinha de mandioca, pacus secos)    ║
+║ • MADEIRA DE LEI:     5 Unidades (Toras de peroba-rosa e palmas pindó) ║
+║ • PEDRA DE CANTARIA:  2 Unidades (Basalto e quartzo das montanhas)     ║
+║ • METAL / FERRAMENTAS:3 Unidades (Ferro meteórico, foices e chumbo)    ║
+║ • MATERIAIS MÍSTICOS: 2 Unidades (Seiva de vitória-régia e resina)    ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ INSTALAÇÕES EDIFICADAS                                                 ║
-║ • Quartos Comuns: Malocas de Palha, Cozinha Coletiva, Armazém de Grãos ║
+║ • Básicas: Malocas Coletivas, Cozinha Comunitária, Armazém de Grãos    ║
 ║ • Instalação Especial 1: 🏹 Torre de Vigia da Garganta (Alerta a 3 leg)║
-║ • Instalação Especial 2: 🌿 Ervanário de Nhá Benta (Chás e Unguentos)  ║
+║ • Instalação Especial 2: 🌿 Ervanário das Seivas de Nhá Benta          ║
+║ • Instalação Especial 3: 🛶 Cais Trapiche do Rio das Almas             ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ RELÓGIOS DE TENSÃO ATIVOS:                                             ║
-║ • Incursão do Capitão Silvério Barreto: [X] [X] [ ] [ ] (2/4 Fatias)   ║
-║ • O Despertar do Boitatá na Garganta:   [X] [ ] [ ] [ ] [ ] (1/6 Fatias)║
+║ • Ataque dos Mercenários do Bastião de Ferro: [X] [X] [ ] [ ] (2/4 Fat)║
+║ • Fúria do Boitatá das Fendas de Magma:     [X] [ ] [ ] [ ] [ ] (1/6 Fat)║
 ╚════════════════════════════════════════════════════════════════════════╝
 </code></pre>
 <div class="page-break-before"></div><hr>
-<header class="part-header"><h1 class="part-title">👤 APÊNDICE: OS 4 HERÓIS PRÉ-GERADOS</h1></header>
+<header class="part-header"><h1 class="part-title">👤 APÊNDICE: OS 5 HERÓIS DAS GRANDES LINHAGENS DE PINDORAMA</h1></header>
 <header class="part-header"><h1 class="part-title">📜 FICHA DO TERRATENENTE: TIÃO BATEDOR GUAYANÁ</h1></header>
 <p><em>(Personagem Pré-Gerado — Nível 1)</em></p>
 <pre><code>╔════════════════════════════════════════════════════════════════════════╗
 ║                OS TERRATENENTES — GUIA DO JOGADOR                      ║
 ║                     FICHA DE PERSONAGEM                                ║
 ╠════════════════════════════════════════════════════════════════════════╣
-║ NOME: Tião Guayaná              POVO: Nativo da Terra (Guayaná)        ║
+║ NOME: Tião Guayaná              POVO: Humano Originário de Pindorama   ║
 ║ ARQUÉTIPO: Batedor das Matas    NÍVEL: 1                               ║
 ║ ASSENTAMENTO: Mata do Remanso   PAPEL NO DOMÍNIO: Chefe de Batedores   ║
+║ LÍNGUAS: Nheengatu dos Rios e Língua Geral Brasílica                   ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ ATRIBUTOS BÁSICOS                                                      ║
-║ • VIGOR:    +1  (Resistência, esforço físico e fôlego bruto)           ║
-║ • AGILIDADE:+3  (Furtividade, reflexos rápidos, mira e esquiva)        ║
-║ • ASTÚCIA:  +2  (Rastreamento, sobrevivência na mata, armadilhas)     ║
-║ • PRESENÇA: +0  (Comando, coragem sob pressão e negociação)           ║
+║ • VIGOR:    +1  (Resistência física, fôlego na mata e caminhada)       ║
+║ • AGILIDADE:+3  (Furtividade felina, reflexos, pontaria de arco)       ║
+║ • ASTÚCIA:  +2  (Rastreamento de Infundidos, armadilhas e vento)       ║
+║ • PRESENÇA: +0  (Comunhão com os espíritos e firmeza sob pressão)      ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ COMBATE &amp; SOBREVIVÊNCIA                                                ║
 ║ • PONTOS DE VIDA (PV): 12 / 12  • DEFESA (CA): 14 (Gibão de Couro)     ║
 ║ • DADOS DE FÔLEGO: [d6] [d6] [d6] [d6] (4d6 disponíveis)              ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ ARMAS &amp; ATAQUES                                                        ║
-║ 1. Arco Curto de Ipê:       Ataque +5 (1d20+3+2), Dano 1d8 perfurante  ║
-║ 2. Facão de Mato Serrilhado: Ataque +5 (1d20+3+2), Dano 1d6 cortante    ║
+║ 1. Arco Curto de Tucum e Ipê:   Ataque +5 (1d20+3+2), Dano 1d8 perf.   ║
+║ 2. Facão de Mato Serrilhado:    Ataque +5 (1d20+3+2), Dano 1d6 cort.   ║
 ╠════════════════════════════════════════════════════════════════════════╣
-║ HABILIDADES &amp; PROEZAS (BATEDOR)                                        ║
-║ • Passo Invisível: Vantagem em testes de Furtividade na mata fechada.  ║
-║ • Olhos de Gavião: É impossível ser surpreendido ou emboscado em campo.║
-║ • Tiro Rápido: Uma vez por combate, pode disparar 2 flechas na mesma   ║
-║   ação se estiver escondido.                                           ║
+║ VANTAGEM NATURAL &amp; PROEZAS DE BATEDOR                                  ║
+║ • Vantagem Natural (Olhos de Gavião &amp; Rastros do Pindó): É impossível  ║
+║   ser surpreendido ou emboscado em campo aberto ou mata fechada.       ║
+║ • Passo Invisível: Vantagem em testes de Furtividade na Grande Floresta║
+║ • Tiro das Sombras: Uma vez por combate, pode disparar 2 flechas na    ║
+║   mesma ação se estiver atacando a partir de folhagens ocultas.        ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ EQUIPAMENTO &amp; ITENS DE BOLSO                                           ║
-║ • Gibão de couro curtido com banha de capivara                         ║
-║ • Carcaça de arco curto e aljava com 20 flechas com ponta de osso     ║
-║ • Facão de mato, pederneira com mecha de algodão, cantil de cabaça     ║
+║ • Gibão de couro curtido com banha de capivara e resina de almécega   ║
+║ • Arco de tucum tratado, aljava com 20 flechas com ponta de osso de anta║
+║ • Facão de mato, pederneira, patuá com sementes de tento e urucum      ║
 ║ • 2 Doses de Unguento Cicatrizante de Erva-de-Bicho (cura 1d6 PV)      ║
 ║ • Moedas: 8 Pratas coloniais, 12 Cobres                                ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ CONTRIBUIÇÃO AO ASSENTAMENTO:                                          ║
-║ Concede +2 de Defesa à vila contra ataques surpresa e previne perdas  ║
+║ Concede +2 de Defesa à vila contra ataques surpresa e previne perdas   ║
 ║ de forrageio nas expedições da comunidade.                             ║
 ╚════════════════════════════════════════════════════════════════════════╝
 </code></pre>
@@ -519,9 +584,10 @@ Quando Silvério cai ou é desarmado, os jagunços remanescentes quebram em pân
 ║                OS TERRATENENTES — GUIA DO JOGADOR                      ║
 ║                     FICHA DE PERSONAGEM                                ║
 ╠════════════════════════════════════════════════════════════════════════╣
-║ NOME: Dandara do Quilombo       POVO: Quilombola da Resistência        ║
+║ NOME: Dandara do Quilombo       POVO: Humana da Resistência (Quilombo) ║
 ║ ARQUÉTIPO: Guerreira de Vanguarda NÍVEL: 1                             ║
 ║ ASSENTAMENTO: Mata do Remanso   PAPEL NO DOMÍNIO: Capitã da Milícia    ║
+║ LÍNGUAS: Língua Geral Brasílica e Comum dos Bastiões Livres            ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ ATRIBUTOS BÁSICOS                                                      ║
 ║ • VIGOR:    +3  (Força bruta, impacto de golpes, carga e vigor)        ║
@@ -531,25 +597,27 @@ Quando Silvério cai ou é desarmado, os jagunços remanescentes quebram em pân
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ COMBATE &amp; SOBREVIVÊNCIA                                                ║
 ║ • PONTOS DE VIDA (PV): 16 / 16  • DEFESA (CA): 15 (Escudo e Couro)     ║
-║ • DADOS DE FÔLEGO: [d6] [d6] [d6] [d6] (4d6 disponíveis)              ║
+║ • DADOS DE FÔLEGO: [d6] [d6] [d6] [d6] [d6] (5d6 — Vantagem Humana)    ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ ARMAS &amp; ATAQUES                                                        ║
-║ 1. Lança de Guerra com Ponta de Ferro: Ataque +5, Dano 1d10+3 (duas mãos)║
-║ 2. Machadinha de Arremesso:            Ataque +5, Dano 1d6+3 cortante    ║
+║ 1. Lança de Peroba &amp; Ferro Meteórico: Ataque +5, Dano 1d10+3 (2 mãos)  ║
+║ 2. Machadinha de Arremesso:           Ataque +5, Dano 1d6+3 cortante   ║
 ╠════════════════════════════════════════════════════════════════════════╣
-║ HABILIDADES &amp; PROEZAS (GUERREIRO)                                      ║
+║ VANTAGEM NATURAL &amp; PROEZAS DE GUERREIRA                                ║
+║ • Vantagem Natural (Determinação Indomável): Possui 5d6 de Fôlego e   ║
+║   concede Vantagem no teste de Moral de toda a vila no início do cerco.║
 ║ • Muralha Humana: Uma vez por combate, intercepta um ataque inimigo   ║
 ║   destinado a um aliado adjacente, sofrendo metade do dano.            ║
 ║ • Golpe Demolidor: Se acertar por 5 ou mais acima da Defesa inimiga,   ║
 ║   derruba o alvo no chão (deixando-o caído e indefeso).                ║
 ║ • Grito de Liberdade: Uma vez por dia, restaura 1d6 PV temporários a   ║
-║   todos os aliados que ouvirem seu brado de guerra.                    ║
+║   todos os aliados que ouvirem seu brado de guerra e axé.              ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ EQUIPAMENTO &amp; ITENS DE BOLSO                                           ║
-║ • Peitoral de couro reforçado com placas de ferro forjado              ║
-║ • Lança longa de peroba com ponta de aço, machadinha, escudo de braço  ║
-║ • Corda de sisal (15 metros), pederneira, fumo e cachimbo              ║
-║ • 1 Dose de Garrafada Fortificante (+2 Vigor temporário por 1 hora)    ║
+║ • Peitoral de couro reforçado com placas de ferro forjado das fendas  ║
+║ • Lança longa de peroba-rosa com ponta de ferro meteórico temperado   ║
+║ • Machadinha de corte, escudo de braço reforçado, corda de sisal (15m) ║
+║ • Patuá com figa de guiné, pederneira e 1 Dose de Garrafada de Vigor   ║
 ║ • Moedas: 5 Pratas coloniais, 20 Cobres                                ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ CONTRIBUIÇÃO AO ASSENTAMENTO:                                          ║
@@ -564,43 +632,46 @@ Quando Silvério cai ou é desarmado, os jagunços remanescentes quebram em pân
 ║                OS TERRATENENTES — GUIA DO JOGADOR                      ║
 ║                     FICHA DE PERSONAGEM                                ║
 ╠════════════════════════════════════════════════════════════════════════╣
-║ NOME: Nhá Benta da Encruzilhada POVO: Cabocla dos Sertões              ║
-║ ARQUÉTIPO: Curandeira / Rezadeira NÍVEL: 1                             ║
-║ ASSENTAMENTO: Mata do Remanso   PAPEL NO DOMÍNIO: Guia Espiritual      ║
+║ NOME: Nhá Benta da Encruzilhada POVO: Virrégio (Povo-Planta &amp; Seiva)   ║
+║ ARQUÉTIPO: Curandeira &amp; Rezadeira NÍVEL: 1                             ║
+║ ASSENTAMENTO: Mata do Remanso   PAPEL NO DOMÍNIO: Boticária &amp; Fé       ║
+║ LÍNGUAS: Sussurro das Seivas e Língua Geral Brasílica                  ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ ATRIBUTOS BÁSICOS                                                      ║
-║ • VIGOR:    +0  (Corpo cansado, mas resistente a febres e pragas)      ║
-║ • AGILIDADE:+0  (Passos calmos e medidos)                              ║
-║ • ASTÚCIA:  +2  (Identificação de ervas, raízes, pós e venenos)        ║
-║ • PRESENÇA: +3  (Fé inabalável, autoridade ancestral e comunhão)       ║
+║ • VIGOR:    +0  (Corpo de fibras vegetais, resistente a pragas)        ║
+║ • AGILIDADE:+0  (Passos calmos como folhas sobre águas mansas)         ║
+║ • ASTÚCIA:  +2  (Identificação de seivas, raízes de cura e venenos)   ║
+║ • PRESENÇA: +3  (Reza ancestral, flores de vitória-régia e autoridade) ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ COMBATE &amp; SOBREVIVÊNCIA                                                ║
-║ • PONTOS DE VIDA (PV): 10 / 10  • DEFESA (CA): 11 (Manto benzido)      ║
+║ • PONTOS DE VIDA (PV): 10 / 10  • DEFESA (CA): 11 (Casca de Buriti)    ║
 ║ • DADOS DE FÔLEGO: [d6] [d6] [d6] [d6] (4d6 disponíveis)              ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ ARMAS &amp; ATAQUES                                                        ║
 ║ 1. Bordão de Pau-D&#39;Alho Benzido: Ataque +3, Dano 1d6 contundente       ║
-║ 2. Oração do Espanta-Cão:        Ataque +5 à distância (Presença),     ║
-║    Dano 1d8 radiante/espiritual contra mortos-vivos e assombrações.    ║
+║ 2. Oração do Espanta-Infundido: Ataque +5 à distância (Presença),      ║
+║    Dano 1d8 de luz espiritual contra mortos-vivos, espectros e feras.  ║
 ╠════════════════════════════════════════════════════════════════════════╣
-║ HABILIDADES &amp; PROEZAS (CURANDEIRA)                                     ║
+║ VANTAGEM NATURAL &amp; PROEZAS DE CURANDEIRA                               ║
+║ • Vantagem Natural (Fotossíntese &amp; Seiva Viva): Recupera 1 Dado de     ║
+║   Fôlego extra sob luz solar ou águas limpas; imune a venenos e maleita║
 ║ • Imposição das Mãos &amp; Reza Brava: Pode curar 1d8+3 PV de um aliado    ║
-║   ferido até 3 vezes por dia com ervas e oração.                       ║
-║ • Quebrar Feitiço &amp; Mau-Olhado: Remove paralisia, medo ou envenenamento║
-║   imediatamente com um passe de ramo de arruda.                        ║
-║ • Amuleto de Proteção: Fornece a 1 aliado um Patuá que absorve o       ║
-║   primeiro golpe crítico que o herói sofreria no dia.                  ║
+║   ferido até 3 vezes por dia com seivas aromáticas e oração.           ║
+║ • Quebrar Mau-Olhado Arcano: Remove paralisia, medo ou corrupção       ║
+║   arcana imediatamente com um passe de ramo de arruda e água benta.    ║
+║ • Patuá da Semente Viva: Entrega a 1 aliado um talismã de carnaúba que ║
+║   absorve o primeiro golpe crítico sofrido no dia.                     ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ EQUIPAMENTO &amp; ITENS DE BOLSO                                           ║
-║ • Manto de algodão cru tingido com casca de aroeira                    ║
-║ • Bordão de pau-d&#39;alho esculpido com cruzes e nós sagrados             ║
-║ • Bolsa de couro com sal grosso, dentes de alho, ramos secos de arruda ║
-║ • 2 Frascos de Garrafada de Sete Sangrias (estanca sangramento grave)  ║
-║ • Moedas: 3 Pratas, 15 Cobres                                          ║
+║ • Manto de fibra de carnaúba e botões de vitória-régia aromática       ║
+║ • Bordão de pau-d&#39;alho entalhado com cruzes e nós sagrados da floresta ║
+║ • Bolsa de sementes, sal grosso, dentes de alho e folhas de arruda     ║
+║ • 2 Frascos de Garrafada de Seiva Viva (estanca sangramentos críticos) ║
+║ • Moedas: 3 Pratas coloniais, 15 Cobres                                ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ CONTRIBUIÇÃO AO ASSENTAMENTO:                                          ║
-║ Reduz o custo de sustentação de doentes a zero e impede que o povoado  ║
-║ sofra com pragas de febre ou epidemias sazonais.                       ║
+║ Reduz o custo de sustentação de feridos a zero e impede que o povoado   ║
+║ sofra com febres ou epidemias trazidas pela Bruma do Cataclismo.       ║
 ╚════════════════════════════════════════════════════════════════════════╝
 </code></pre>
 <div class="page-break-before"></div><hr>
@@ -610,57 +681,108 @@ Quando Silvério cai ou é desarmado, os jagunços remanescentes quebram em pân
 ║                OS TERRATENENTES — GUIA DO JOGADOR                      ║
 ║                     FICHA DE PERSONAGEM                                ║
 ╠════════════════════════════════════════════════════════════════════════╣
-║ NOME: Bento das Queimadas       POVO: Sertanejo / Tropeiro             ║
-║ ARQUÉTIPO: Vaqueiro / Atirador  NÍVEL: 1                               ║
+║ NOME: Bento das Queimadas       POVO: Boitá (Herdeiro da Brasa)        ║
+║ ARQUÉTIPO: Vaqueiro &amp; Atirador  NÍVEL: 1                               ║
 ║ ASSENTAMENTO: Mata do Remanso   PAPEL NO DOMÍNIO: Mestre das Tropas    ║
+║ LÍNGUAS: Sopro das Brasas e Língua Geral Brasílica                     ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ ATRIBUTOS BÁSICOS                                                      ║
-║ • VIGOR:    +2  (Couro curtido pelo sol, doma de animais brutos)       ║
-║ • AGILIDADE:+2  (Destreza no laço, pontaria de garrucha e montaria)    ║
-║ • ASTÚCIA:  +1  (Leitura de rastros de gado, armadilhas e vento)       ║
-║ • PRESENÇA: +1  (Aboio de gado, sangue-frio em tiroteios)              ║
+║ • VIGOR:    +2  (Escamas de obsidiana, doma de feras do Cerrado)       ║
+║ • AGILIDADE:+2  (Destreza no laço de couro, tiro rápido de pederneira) ║
+║ • ASTÚCIA:  +1  (Leitura dos ventos de fogo, fendas de magma e rastros)║
+║ • PRESENÇA: +1  (Olhar de brasa ardente, aboio e sangue-frio em cerco) ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ COMBATE &amp; SOBREVIVÊNCIA                                                ║
-║ • PONTOS DE VIDA (PV): 14 / 14  • DEFESA (CA): 14 (Armadura de Couro)  ║
+║ • PONTOS DE VIDA (PV): 14 / 14  • DEFESA (CA): 14 (Couro &amp; Escamas)    ║
 ║ • DADOS DE FÔLEGO: [d6] [d6] [d6] [d6] (4d6 disponíveis)              ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ ARMAS &amp; ATAQUES                                                        ║
 ║ 1. Bacamarte de Pederneira:     Ataque +4, Dano 2d8 trovejante (cone)   ║
 ║ 2. Laço de Couro Trançado:      Ataque +4, Dano 1d4 (imobiliza o alvo)  ║
-║ 3. Faca de Ponta Sangradora:    Ataque +4, Dano 1d6+2 cortante          ║
+║ 3. Faca de Obsidiana &amp; Magma:   Ataque +4, Dano 1d6+2 cortante (+1d4)  ║
 ╠════════════════════════════════════════════════════════════════════════╣
-║ HABILIDADES &amp; PROEZAS (VAQUEIRO)                                       ║
+║ VANTAGEM NATURAL &amp; PROEZAS DE VAQUEIRO                                 ║
+║ • Vantagem Natural (Sangue de Brasa): Completamente imune a fogo       ║
+║   mundano; canaliza calor causando +1d4 de dano de fogo em golpes.     ║
 ║ • Tiro de Pólvora Seca: O disparo de bacamarte causa 2d8 em cone de 5m;║
-║   inimigos adjacentes devem passar em Vigor CD 12 ou caem atordoados.  ║
+║   inimigos atingidos devem passar em Vigor CD 12 ou caem atordoados.   ║
 ║ • Laço Certeiro: Pode laçar um inimigo a até 10m de distância, puxando-o║
-║   para o chão ou impedindo que ele fuja a cavalo.                      ║
-║ • Aboio de Reagrupamento: Acalma animais em pânico ou montarias         ║
-║   assustadas instantaneamente.                                         ║
+║   para o chão ou arrancando-o da sela.                                 ║
+║ • Aboio do Cerrado: Acalma animais em pânico ou montarias em combate.  ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ EQUIPAMENTO &amp; ITENS DE BOLSO                                           ║
-║ • Gibão, perneiras e chapéu de couro de bode curtido                   ║
+║ • Gibão e perneiras de couro tratado anti-chama sobre escamas escuras  ║
 ║ • Bacamarte de pederneira, polvorinho de chifre com 15 cargas, chumbo  ║
-║ • Laço de couro cru de 12 metros, faca de ponta em bainha de couro     ║
-║ • Provisões: Rolo de fumo de corda, paçoca de carne seca no bornal     ║
+║ • Laço de couro cru de 12 metros, facão de obsidiana que nunca cega    ║
+║ • Provisões: Rolo de fumo de corda, paçoca de carne seca com farinha   ║
 ║ • Montaria: 1 Burro ruano de sela (&quot;Mestiço&quot;), fiel e resistente      ║
-║ • Moedas: 10 Pratas, 10 Cobres                                         ║
+║ • Moedas: 10 Pratas coloniais, 10 Cobres                               ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║ CONTRIBUIÇÃO AO ASSENTAMENTO:                                          ║
-║ Garante +2 Unidades de Víveres extras por estação com a lida do gado  ║
-║ e dobra a velocidade de transporte de cargas da vila.                  ║
+║ Garante +2 Unidades de Víveres extras por estação com a lida do gado   ║
+║ e conduz comboios com segurança através do Cerrado das Chamas Eternas. ║
+╚════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+<div class="page-break-before"></div><hr>
+<header class="part-header"><h1 class="part-title">📜 FICHA DO TERRATENENTE: JACIARA BARQUEIRA IARIÊNSE</h1></header>
+<p><em>(Personagem Pré-Gerada — Nível 1)</em></p>
+<pre><code>╔════════════════════════════════════════════════════════════════════════╗
+║                OS TERRATENENTES — GUIA DO JOGADOR                      ║
+║                     FICHA DE PERSONAGEM                                ║
+╠════════════════════════════════════════════════════════════════════════╣
+║ NOME: Jaciara das Águas         POVO: Iariênse (Povo das Águas)        ║
+║ ARQUÉTIPO: Batedora &amp; Navegadora NÍVEL: 1                              ║
+║ ASSENTAMENTO: Mata do Remanso   PAPEL NO DOMÍNIO: Mestra do Porto      ║
+║ LÍNGUAS: Nheengatu dos Rios e Língua Geral Brasílica                   ║
+╠════════════════════════════════════════════════════════════════════════╣
+║ ATRIBUTOS BÁSICOS                                                      ║
+║ • VIGOR:    +1  (Fôlego de mergulho, resistência a correntezas)        ║
+║ • AGILIDADE:+2  (Agilidade sob a água, equilíbrio em canoa, arpão)     ║
+║ • ASTÚCIA:  +1  (Leitura de marés, cardumes e perigos do rio)          ║
+║ • PRESENÇA: +2  (Canto da Mãe-d&#39;Água, liderança e fascínio fluvial)    ║
+╠════════════════════════════════════════════════════════════════════════╣
+║ COMBATE &amp; SOBREVIVÊNCIA                                                ║
+║ • PONTOS DE VIDA (PV): 12 / 12  • DEFESA (CA): 13 (Manto de Escamas)   ║
+║ • DADOS DE FÔLEGO: [d6] [d6] [d6] [d6] (4d6 disponíveis)              ║
+╠════════════════════════════════════════════════════════════════════════╣
+║ ARMAS &amp; ATAQUES                                                        ║
+║ 1. Arpão de Osso de Pirarucu:   Ataque +4, Dano 1d8+2 perfurante (6m)  ║
+║ 2. Faca de Mergulho em Prata:   Ataque +4, Dano 1d6 cortante           ║
+╠════════════════════════════════════════════════════════════════════════╣
+║ VANTAGEM NATURAL &amp; PROEZAS DE NAVEGADORA                               ║
+║ • Vantagem Natural (Filhos da Correnteza): Respira normalmente debaixo ║
+║   d&#39;água doce/salgada; nada com o dobro da velocidade normal; Vantagem ║
+║   em Presença quando a até 10m de corpos d&#39;água.                       ║
+║ • Olhos da Mãe-d&#39;Água: Enxerga perfeitamente na escuridão subaquática. ║
+║ • Canto do Remanso: Uma vez por combate, entoa um canto aquático que   ║
+║   fascina 1 inimigo (Presença CD 13), impedindo-o de agir por 1 rodada.║
+║ • Manobra de Canoa Rápida: Concede vantagem nos testes de manobra em   ║
+║   corredeiras e combate naval contra embarcações inimigas.             ║
+╠════════════════════════════════════════════════════════════════════════╣
+║ EQUIPAMENTO &amp; ITENS DE BOLSO                                           ║
+║ • Manto de escamas de peixe impermeável com reflexos azul-marinho      ║
+║ • Arpão longo de osso de pirarucu com corda de linha encerada          ║
+║ • Faca de prata para escamação e corte submerso, 3 anzóis de prata     ║
+║ • Cabaça com óleo bioluminescente (ilumina 6m debaixo d&#39;água por 2h)   ║
+║ • Canoa de tronco escavado de Angelim (&quot;Moara&quot;) atracada no porto      ║
+║ • Moedas: 6 Pratas coloniais, 16 Cobres                                ║
+╠════════════════════════════════════════════════════════════════════════╣
+║ CONTRIBUIÇÃO AO ASSENTAMENTO:                                          ║
+║ Garante +3 Unidades de Pescado fresco por estação e assegura que       ║
+║ qualquer travessia pelo Rio das Almas seja rápida e segura de emboscadas║
 ╚════════════════════════════════════════════════════════════════════════╝
 </code></pre>
 
     </div>
-  </div>
+  </main>
+
   <script>
     function toggleColumns() {
-      const container = document.getElementById('bookContainer');
-      const btn = document.getElementById('colBtn');
-      container.classList.toggle('one-column-mode');
-      btn.textContent = container.classList.contains('one-column-mode') ? 'Modo: 1 Coluna (Clique p/ 2)' : 'Modo: 2 Colunas (Clique p/ 1)';
+      const cols = document.getElementById('contentColumns');
+      cols.classList.toggle('single-col');
     }
-    function setFontSize(val) {
+
+    function changeDensity(val) {
       document.documentElement.style.setProperty('--font-base', val);
     }
   </script>

@@ -354,6 +354,7 @@ def build_starter_kit():
     f_dandara = os.path.join(adv_dir, 'fichas_pre_geradas', 'Dandara_Guerreira_do_Quilombo.md')
     f_benta = os.path.join(adv_dir, 'fichas_pre_geradas', 'Nha_Benta_Rezadeira_Curandeira.md')
     f_bento = os.path.join(adv_dir, 'fichas_pre_geradas', 'Bento_Vaqueiro_do_Sertao.md')
+    f_jaciara = os.path.join(adv_dir, 'fichas_pre_geradas', 'Jaciara_Barqueira_Iariense.md')
 
     with open(adv_md, 'r', encoding='utf-8') as f: t_adv = f.read()
     with open(f_remanso, 'r', encoding='utf-8') as f: t_rem = f.read()
@@ -361,17 +362,19 @@ def build_starter_kit():
     with open(f_dandara, 'r', encoding='utf-8') as f: t_dan = f.read()
     with open(f_benta, 'r', encoding='utf-8') as f: t_ben = f.read()
     with open(f_bento, 'r', encoding='utf-8') as f: t_bto = f.read()
+    with open(f_jaciara, 'r', encoding='utf-8') as f: t_jac = f.read()
 
     pb = "\n\n<div class=\"page-break-before\"></div>\n\n---\n\n"
     combined = (
         t_adv + pb +
         "# 📋 APÊNDICE: FICHA DE DOMÍNIO DE MATA DO REMANSO\n\n" +
         t_rem + pb +
-        "# 👤 APÊNDICE: OS 4 HERÓIS PRÉ-GERADOS\n\n" +
+        "# 👤 APÊNDICE: OS 5 HERÓIS DAS GRANDES LINHAGENS DE PINDORAMA\n\n" +
         t_tia + pb +
         t_dan + pb +
         t_ben + pb +
-        t_bto
+        t_bto + pb +
+        t_jac
     )
 
     body = compile_markdown_to_body(combined, SCRIPT_DIR)

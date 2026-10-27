@@ -62,12 +62,13 @@ Os TerraTenentes/
 ├── 📁 aventuras/
 │   └── 📁 o_cerco_da_garganta_do_boitata/
 │       ├── Aventura_O_Cerco_da_Garganta_do_Boitata.md # Módulo de Aventura Pronto para Jogar (Nível 1)
-│       └── 📁 fichas_pre_geradas/        # 4 Heróis + 1 Assentamento da Aventura
-│           ├── Tiao_Batedor_Guayana.md          # Batedor Nativo furtivo
-│           ├── Dandara_Guerreira_do_Quilombo.md # Guerreira capitã com lança pesada
-│           ├── Nha_Benta_Rezadeira_Curandeira.md# Curandeira de rezas e ervas
-│           ├── Bento_Vaqueiro_do_Sertao.md      # Atirador de bacamarte e laçador
-│           └── Ficha_Povoado_Mata_do_Remanso.md # Assentamento inicial preenchido
+│       └── 📁 fichas_pre_geradas/        # 5 Heróis das Linhagens + 1 Assentamento
+│           ├── Tiao_Batedor_Guayana.md          # Humano Originário (Batedor das Matas & Arco de Tucum)
+│           ├── Dandara_Guerreira_do_Quilombo.md # Humana da Resistência (Guerreira de Lança & Axé)
+│           ├── Nha_Benta_Rezadeira_Curandeira.md# Povo Virrégio (Curandeira de Seivas & Vitória-Régia)
+│           ├── Bento_Vaqueiro_do_Sertao.md      # Povo Boitá (Vaqueiro do Cerrado, Escamas & Sangue de Brasa)
+│           ├── Jaciara_Barqueira_Iariense.md    # Povo Iariênse (Navegadora das Águas & Arpão de Pirarucu)
+│           └── Ficha_Povoado_Mata_do_Remanso.md # Assentamento inicial preenchido (Quilombo Mestiço)
 │
 ├── 📁 fichas/                           # Fichas de Jogo Oficiais (Modelos em Branco)
 │   ├── Ficha_do_TerraTenente.md         # Ficha de Personagem de 1 página (Fôlego 4d6)
@@ -91,32 +92,6 @@ Os documentos na pasta `html_impressao/` foram diagramados com **CSS A4 em duas 
    * **Tamanho do Papel:** A4
    * **Margens:** Mínimas (ou Nenhuma)
    * **Gráficos de segundo plano:** Marcado (preserva cores e tabelas zebra).
-
----
-
-## 🚀 Guia de Deploy Rápido (GitHub Pages / Vercel / Netlify)
-
-Este repositório está preparado para publicação automática como site ou documentação pública.
-
-### 1. Configurando Chaves Privadas (`.env`)
-Copie o modelo de ambiente para seu arquivo local:
-```bash
-cp .env.example .env
-```
-Edite o arquivo `.env` e configure sua chave de deploy ou Personal Access Token (PAT):
-```env
-GITHUB_DEPLOY_KEY=ghp_sua_chave_de_deploy_rapida_aqui
-GITHUB_REPOSITORY=Drsrina/Os-TerraTenentes
-APP_ENV=production
-```
-
-> **Aviso de Segurança:** O arquivo `.env` já está listado no `.gitignore` e **nunca será versionado**, garantindo a segurança de suas credenciais.
-
-### 2. Ativando o GitHub Pages
-1. Vá até as **Settings** do seu repositório no GitHub.
-2. Acesse a aba **Pages**.
-3. Em *Source*, selecione a branch `main` e a pasta `/html_impressao` ou a raiz.
-4. Seu compêndio estará no ar em segundos!
 
 ---
 
