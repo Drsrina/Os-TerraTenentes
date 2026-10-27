@@ -1,0 +1,22 @@
+# Ambiente & Chaves de Deploy (NUNCA COMITAR .env)
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Node / Dependências de Compilação
+node_modules/
+package-lock.json
+
+# Arquivos Temporários de Build
+temp_*
+*.tmp
+*.log
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
