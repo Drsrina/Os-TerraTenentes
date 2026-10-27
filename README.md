@@ -73,10 +73,18 @@ Os TerraTenentes/
 ├── 📁 fichas/                           # Fichas de Jogo Oficiais (Modelos em Branco)
 │   ├── Ficha_do_TerraTenente.md         # Ficha de Personagem de 1 página (Fôlego 4d6)
 │   └── Ficha_de_Assentamento.md         # Ficha Coletiva de Aldeias, Quilombos e Fortes
+├── 📁 pdfs/                             # 📄 Coleção Completa Exportada em PDF A4 (Pronta para Download)
+│   ├── 00_Os_TerraTenentes_Trilogia_Completa.pdf         # Tomo Mestre Unificado da Trilogia (5.9 MB)
+│   ├── 01_Livro_1_do_Jogador.pdf                         # Regras, 6 Raças, Arquétipos & Combate (2.5 MB)
+│   ├── 02_Livro_2_do_Mestre.pdf                          # Gestão de Feudos, Bastiões & Cercos (2.8 MB)
+│   ├── 03_Livro_3_de_Monstros_e_Encontros.pdf            # Bestiário Folclórico & Saques d100 (1.2 MB)
+│   ├── 04_Starter_Kit_O_Cerco_da_Garganta_do_Boitata.pdf # Aventura Pronta + 5 Heróis de Pindorama (1.0 MB)
+│   ├── 05_Fichas_Oficiais_em_Branco.pdf                  # Fichas em Branco de Herói e Domínio (1.5 MB)
+│   └── 06_Fragmentos_do_Pindorama_Guia_de_Cenario.pdf    # Guia do Mundo, Biomas & 6 Povos (935 KB)
 │
-└── 📁 html_impressao/                   # Documentos A4 Prontos para Impressão e PDF
-    ├── terratenentes_trilogia_impressao.html # Trilogia Completa Unificada (240 KB)
-    └── starter_kit_impressao.html       # Starter Kit Oficial A4 (Aventura + 4 Fichas)
+└── 📁 html_impressao/                   # 🌐 Fontes HTML A4 com Barra Interativa de Impressão
+    ├── terratenentes_trilogia_impressao.html # Trilogia Completa Unificada
+    └── starter_kit_impressao.html       # Starter Kit Oficial A4 (Aventura + 5 Fichas)
 ```
 
 ---

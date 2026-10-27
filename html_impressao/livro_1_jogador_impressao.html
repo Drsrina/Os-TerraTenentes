@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Os TerraTenentes: Livro 1 do Jogador — Heróis & Fronteira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 8mm 8mm 9mm 8mm;
+      @bottom-center {
+        content: counter(page);
+        font-family: 'Cinzel', 'Georgia', serif;
+        font-size: 7.5pt;
+        color: #666;
+      }
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    :root {
+      --primary-color: #2b4728;
+      --secondary-color: #8c6d3b;
+      --accent-color: #a73228;
+      --dark-bg: #1c261b;
+      --light-bg: #f9f8f5;
+      --border-color: #d1c7b7;
+      --text-color: #222220;
+      --font-base: 8.5pt;
+      --line-height-base: 1.28;
+    }
+
+    body {
+      font-family: 'Crimson Pro', 'Georgia', serif;
+      font-size: var(--font-base);
+      line-height: var(--line-height-base);
+      color: var(--text-color);
+      background-color: #d5d1c8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #1e1e1e;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+    }
+    .toolbar button, .toolbar select {
+      background: #2b4728;
+      color: #fff;
+      border: 1px solid #4a7545;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 11px;
+    }
+    .toolbar button:hover { background: #3a5f36; }
+    .toolbar .btn-print { background: #a73228; border-color: #c94035; }
+    .toolbar .btn-print:hover { background: #bd3a2f; }
+
+    @media print {
+      .toolbar { display: none !important; }
+      body { background-color: #fff; }
+      .sheet {
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        width: 100% !important;
+      }
+    }
+
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 15mm auto;
+      background: var(--light-bg);
+      padding: 10mm 12mm;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+
+    .content-columns {
+      column-count: 2;
+      column-gap: 6mm;
+      column-fill: auto;
+      text-align: justify;
+    }
+
+    .one-column-mode .content-columns {
+      column-count: 1 !important;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cinzel', 'Georgia', serif;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-top: 1.2em;
+      margin-bottom: 0.4em;
+      break-after: avoid;
+    }
+
+    .main-doc-header {
+      column-span: all;
+      text-align: center;
+      padding: 12mm 0 8mm 0;
+      margin-bottom: 6mm;
+      border-bottom: 2px solid var(--secondary-color);
+    }
+    .main-title {
+      font-size: 20pt;
+      color: var(--primary-color);
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .part-header {
+      column-span: all;
+      background: var(--dark-bg);
+      color: #f4eee1;
+      padding: 5mm 8mm;
+      margin: 8mm 0 4mm 0;
+      border-left: 5px solid var(--accent-color);
+      border-radius: 2px;
+      page-break-before: auto;
+    }
+    .part-title {
+      margin: 0;
+      font-size: 13pt;
+      color: #f4eee1;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title {
+      font-size: 11pt;
+      color: var(--primary-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.5px;
+      margin-top: 1.1em;
+      break-after: avoid;
+    }
+
+    h2 { font-size: 10pt; color: var(--primary-color); }
+    h3 { font-size: 9pt; color: #443e33; }
+    h4 { font-size: 8.5pt; color: #555; }
+
+    p { margin-top: 0; margin-bottom: 0.6em; text-indent: 1.2em; }
+    p:first-of-type, .part-header + p, h1 + p, h2 + p, h3 + p { text-indent: 0; }
+
+    blockquote {
+      margin: 0.6em 0;
+      padding: 4px 8px;
+      background: #f0ebe1;
+      border-left: 3px solid var(--secondary-color);
+      font-style: italic;
+      font-size: 0.95em;
+    }
+    blockquote p { text-indent: 0; margin-bottom: 0; }
+
+    ul, ol {
+      margin: 0.3em 0 0.6em 0;
+      padding-left: 14px;
+    }
+    li { margin-bottom: 0.2em; }
+
+    .table-wrapper, .table-wide-wrapper {
+      margin: 0.6em 0;
+      break-inside: avoid;
+    }
+    .table-wide-wrapper {
+      column-span: all;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.8pt;
+      line-height: 1.18;
+      background: #fff;
+      border: 1px solid var(--border-color);
+    }
+    th, td {
+      padding: 3.5px 5px;
+      border: 1px solid #ddd6c9;
+      text-align: left;
+    }
+    th {
+      background: #2b4728;
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 7.8pt;
+    }
+    tr:nth-child(even) td { background: #f7f5f0; }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: var(--border-color);
+      margin: 1em 0;
+    }
+
+    .page-break-before {
+      break-before: page;
+      page-break-before: always;
+    }
+
+    code {
+      font-family: 'Consolas', monospace;
+      font-size: 0.9em;
+      background: #eee9df;
+      padding: 1px 3px;
+      border-radius: 2px;
+    }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <span><strong>Os TerraTenentes: Livro 1 do Jogador — Heróis & Fronteira</strong></span>
+    <button onclick="toggleColumns()" id="colBtn">Modo: 2 Colunas (Clique p/ 1)</button>
+    <select onchange="setFontSize(this.value)">
+      <option value="8pt">Densidade: Compacta (8pt)</option>
+      <option value="8.5pt" selected>Densidade: Normal (8.5pt)</option>
+      <option value="9pt">Densidade: Confortável (9pt)</option>
+    </select>
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
+  </div>
+  <div class="sheet" id="bookContainer">
+    <div class="content-columns">
+      <header class="main-doc-header"><h1 class="main-title">🏹 OS TERRATENENTES — LIVRO I: O GUIA DO JOGADOR</h1></header>
+<h2>Manual dos Pioneiros, Guerreiros e Guardiões da Terra</h2>
+<h3>Aldeias, Quilombos e Fortes</h3>
+<hr>
+<header class="part-header"><h1 class="part-title">📖 CAPÍTULO 1: O CHAMADO DA FRONTEIRA</h1></header>
+<blockquote>
+<p><em>&quot;Quem não finca a raiz na terra que pisa é levado pelo primeiro vento forte. Nós escolhemos ficar. Nós escolhemos lutar.&quot;</em><br>— Provérbio dos Quilombos do Sertão</p>
+</blockquote>
+<p>Em <strong>Os TerraTenentes</strong>, você não interpreta um herói errante que passa de taverna em taverna gastando moedas de ouro em noites esquecíveis. Você interpreta um <strong>fundador</strong>, um <strong>guardião</strong>, um <strong>pioneiro</strong>.</p>
+<p>Você é aquele que, junto com seus irmãos de sangue e de causa, escolheu um pedaço de chão na imensidão das matas e dos vales e declarou: <strong>este lugar é nosso</strong>.</p>
+<ul>
+<li>Pode ser uma <strong>Aldeia Ancestral</strong>, guardiã de rios sagrados e florestas profundas;</li>
+<li>Pode ser um <strong>Quilombo Soberano</strong>, refúgio sagrado de liberdade erguido na mata fechada contra os açoites da tirania;</li>
+<li>Pode ser um <strong>Forte de Fronteira</strong>, uma paliçada erguida contra bestas selvagens e impérios vorazes.</li>
+</ul>
+<p>Não importa a forma: o destino do seu herói e o destino da sua comunidade respiram o mesmo ar. Se a sua vila prospera, você se torna uma lenda; se a sua paliçada cair, não haverá refúgio para ninguém.</p>
+<hr>
+<h3>A ORDEM DO JOGO (O CICLO TRIPARTITE)</h3>
+<p>Uma campanha de <strong>Os TerraTenentes</strong> nunca engessa o grupo dentro dos muros do feudo. O ritmo da mesa flui naturalmente através de <strong>três engrenagens integradas</strong>:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                   O CICLO TRIPARTITE DA FRONTEIRA                      │
+├───────────────────────┬───────────────────────┬────────────────────────┤
+│ 1. AVENTURAS NARRADAS │ 2. ENTRE-AVENTURAS    │ 3. TURNO DO BASTIÃO    │
+│ • O foco da sessão    │ • Foco no Herói       │ • Foco no Território   │
+│ • Caçar predadores    │ • Descanso e estudo   │ • Presencial ou remoto │
+│ • Fortalecer a região │ • Forja e garrafadas  │ • 3, 6 ou 30 dias      │
+│ • Missões políticas   │ • Treino e orações    │ • Ações da comunidade  │
+└───────────────────────┴───────────────────────┴────────────────────────┘
+</code></pre>
+<ol>
+<li><strong>⚔️ As Aventuras Narradas (80% da Mesa):</strong> São as sessões presenciais de RPG clássico. O Mestre apresenta ameaças e os heróis partem em expedições para caçar feras míticas, resgatar colonos encurralados, socorrer fazendeiros aliados e desarmar capitães-do-mato. Toda vitória traz <strong>saques, novos moradores, alianças e segurança</strong>.</li>
+<li><strong>⛺ O Entre-Aventuras (Downtime Traduzido — Foco no Indivíduo):</strong> O respiro de descanso entre uma aventura e outra. Os heróis curam ferimentos graves, recuperam o Fôlego, forjam e calibram armas, destilam garrafadas no caldeirão, rezam com a comunidade e pesquisam fraquezas de monstros em velhos acervos.</li>
+<li><strong>🏰 O Turno do Bastião (Foco no Coletivo — Presencial ou À Distância):</strong> A gestão do domínio não depende da presença física dos heróis! Comandados pessoalmente ou à distância (via pombos-correio, falcões mensageiros, ginetes velozes ou sinais de fumaça), o feudo opera em <strong>três escalas temporais</strong>:<ul>
+<li><strong>Ciclo Curto (3 Dias):</strong> Ações e eventos pequenos (reparos rápidos, rondas rotineiras, resolução de boatos locais).</li>
+<li><strong>Ciclo Médio (6 Dias / 1 Semana de Fronteira):</strong> Ações e eventos médios (comboios de troca, produção de ferramentas na forja, envio de batedores, pequenas rixas de rancho).</li>
+<li><strong>Ciclo Longo (30 Dias / 1 Mês de Fronteira):</strong> Grandes obras e eventos capitais (conclusão de Instalações Especiais, colheita e receita de tributos/ouro, virada de estação climática e avanço de relógios de invasão).</li>
+</ul>
+</li>
+</ol>
+<hr>
+<header class="part-header"><h1 class="part-title">🎲 CAPÍTULO 2: AS REGRAS FUNDAMENTAIS (MOTOR D20)</h1></header>
+<p>O sistema de regras foi desenhado para ser rápido, intuitivo e sem travas burocráticas. Tudo gira em torno de uma única rolagem:</p>
+<p>$$\mathbf{1d20} + \mathbf{Atributo} \ge \mathbf{Classe\ de\ Dificuldade\ (CD)}$$</p>
+<h3>1. Quando Rolar os Dados?</h3>
+<p>Você só rola os dados quando tenta realizar uma ação cujo resultado seja <strong>incerto e arriscado</strong> (escalar um barranco sob chuva, desferir um golpe de machado, saltar sobre estacas pontiagudas ou convencer uma aldeia vizinha a forjar uma aliança). Tarefas rotineiras (como acender uma fogueira calma ou preparar mandioca) nunca exigem rolagens.</p>
+<h3>2. A Tabela de CDs (Dificuldade do Desafio)</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="left">Dificuldade</th>
+<th align="center">CD</th>
+<th align="left">Exemplos de Tarefa</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Fácil</strong></td>
+<td align="center"><strong>10</strong></td>
+<td align="left">Rastrear uma presa ferida na lama; notar vigias descuidados; saltar um fosso raso.</td>
+</tr>
+<tr>
+<td align="left"><strong>Moderada</strong></td>
+<td align="center"><strong>13</strong></td>
+<td align="left">Esgueirar-se por batedores atentos; disparar contra um alvo em movimento; curar veneno comum.</td>
+</tr>
+<tr>
+<td align="left"><strong>Difícil</strong></td>
+<td align="center"><strong>16</strong></td>
+<td align="left">Quebrar um portão de madeira pesada; resistir ao veneno da serpente colossal; acalmar uma revolta popular.</td>
+</tr>
+<tr>
+<td align="left"><strong>Quase Impossível</strong></td>
+<td align="center"><strong>20</strong></td>
+<td align="left">Enfrentar uma fera lendária mano a mano; convencer um lorde tirano com palavras; sobreviver a uma queda de abismo.</td>
+</tr>
+</tbody></table></div>
+<h3>3. Vantagem e Desvantagem</h3>
+<ul>
+<li><strong>Vantagem:</strong> Quando a situação é muito favorável (você está escondido na mata escura ou em posição mais alta), role <strong>dois d20</strong> e escolha o <strong>maior resultado</strong>.</li>
+<li><strong>Desvantagem:</strong> Quando a situação é terrível (lama até os joelhos ou cegado por fumaça), role <strong>dois d20</strong> e fique com o <strong>menor resultado</strong>.</li>
+</ul>
+<h3>4. O Dado de Fôlego &amp; Bravura (O Recurso Heroico)</h3>
+<p>Todo herói possui uma reserva de <strong>Fôlego &amp; Bravura (4 dados d6)</strong> por descanso. Você pode gastar 1 dado de Fôlego para:</p>
+<ol>
+<li><strong>Esforço Heroico:</strong> Somar $+1d6$ ao resultado de qualquer teste de d20 após ver o resultado.</li>
+<li><strong>Aparar Golpe:</strong> Reduzir o dano de um ataque sofrido em $1d6 + \text{Vigor}$.</li>
+<li><strong>Ativar Façanha:</strong> Alimentar poderes lendários do seu arquétipo.</li>
+</ol>
+<hr>
+<header class="part-header"><h1 class="part-title">👤 CAPÍTULO 3: CRIAÇÃO DE PERSONAGEM PASSO A PASSO</h1></header>
+<p>Criar um TerraTenente leva apenas 5 minutos. Siga os passos:</p>
+<pre><code>    [1. ESCOLHA SEU POVO / ORIGEM]  ──&gt; Concede uma Característica Cultural.
+                 │
+    [2. DISTRIBUA SEUS 4 ATRIBUTOS] ──&gt; +3, +2, +1, +0 nos atributos vitais.
+                 │
+    [3. ESCOLHA SEU ARQUÉTIPO]      ──&gt; Define suas Armas, PV e 2 Façanhas Iniciais.
+                 │
+    [4. DEFINA SEU PAPEL NA BASE]   ──&gt; Dá +2 a um Atributo do Assentamento.
+                 │
+    [5. EQUIPE-SE E LUTE]           ──&gt; Armas de época, mochila e ferramentas.
+</code></pre>
+<hr>
+<h2>1. Os Quatro Atributos Essenciais</h2>
+<p>Esqueça dezenas de subtotais. Seu personagem é definido por quatro pilares:</p>
+<ul>
+<li><strong>VIGOR (VIG):</strong> Força física bruta, musculatura, constituição, natação contra correntezas e resistência contra pragas e exaustão.</li>
+<li><strong>AGILIDADE (AGI):</strong> Reflexos, coordenação motora, passos silenciosos nas folhas secas, pontaria com arcos e bacamartes e velocidade de fuga.</li>
+<li><strong>ASTÚCIA (AST):</strong> Conhecimento de ervas medicinais, engenharia de pontes e paliçadas, orientação pelas estrelas, táticas de guerrilha e ofícios manuais.</li>
+<li><strong>PRESENÇA (PRE):</strong> Liderança, coragem espiritual, moral comunitária, fé nos ancestrais, rezas de proteção e lábia com mercadores e inimigos.</li>
+</ul>
+<blockquote>
+<p><strong>Distribuição Padrão:</strong> Escolha um atributo para receber <strong>+3</strong>, outro para <strong>+2</strong>, outro para <strong>+1</strong> e o último para <strong>+0</strong>.</p>
+</blockquote>
+<hr>
+<h2>2. Povos &amp; Raças do Pindorama Partido</h2>
+<p>Após o Cataclismo, a magia arcana vazou e fundiu-se à terra, aos rios e à carne dos viventes. Escolha sua linhagem de nascimento:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                   AS SEIS GRANDES LINHAGENS DE PINDORAMA               │
+├───────────────────┬────────────────────────────┬───────────────────────┤
+│ 1. OS IARIÊNSES   │ 2. OS CAPELOBOS            │ 3. OS CAIPORIANOS     │
+│ • Água &amp; Mergulho │ • Fúria Feral &amp; Faro       │ • Rastro Invertido    │
+├───────────────────┼────────────────────────────┼───────────────────────┤
+│ 4. OS VIRRÉGIOS   │ 5. OS BOITÁS               │ 6. OS HUMANOS         │
+│ • Flora &amp; Seiva   │ • Fogo Puro do Cerrado     │ • Vontade Indomável   │
+└───────────────────┴────────────────────────────┴───────────────────────┘
+</code></pre>
+<h3>1. 🌊 Os Iariênses (Povo das Águas &amp; Descendentes da Iara)</h3>
+<p><em>Humanoides ribeirinhos de pele morena ou azulada com brilho perolado, cabelos que flutuam como algas e olhos escuros como o fundo do Rio Serpente.</em></p>
+<ul>
+<li><strong>Vantagem Natural (<em>Filhos da Correnteza</em>):</strong> Respiram normalmente debaixo d&#39;água, nadam o dobro da velocidade normal e possuem <strong>Vantagem em testes de Presença (Fascínio/Diplomacia)</strong> perto da água.</li>
+<li><strong>Línguas:</strong> <em>Nheengatu dos Rios</em> e <em>Língua Geral</em>.</li>
+<li><strong>Equipamento:</strong> Arpão de osso trabalhado (1d6 perfurante / arremesso), manto de escamas impermeável e cabaça de óleo bioluminescente.</li>
+</ul>
+<h3>2. 🐺 Os Capelobos (Povo Feral &amp; Licantropos das Brenhas)</h3>
+<p><em>Guerreiros de feições lupinas e garras duras como ferro, com pelagem curta e sentidos sobrenaturais. Combatentes leais de vanguarda contra os Infundidos.</em></p>
+<ul>
+<li><strong>Vantagem Natural (<em>Couro de Fera &amp; Faro Ancestral</em>):</strong> Ganham <strong>+1 natural na Defesa (CA)</strong> sem necessidade de armadura pesada e têm <strong>Vantagem em testes de Astúcia para rastrear</strong> e notar emboscadas pelo cheiro a até 100m.</li>
+<li><strong>Línguas:</strong> <em>Uivo das Matas</em> e <em>Língua Geral</em>.</li>
+<li><strong>Equipamento:</strong> Faca de descarne de aço bruto (1d6 cortante), gibão de couro reforçado com tendões de anta e cantil de aguardente.</li>
+</ul>
+<h3>3. 🌿 Os Caiporianos (Povo Espiritual das Florestas)</h3>
+<p><em>Povo esguio de cabelos vermelhos como brasa ou verdes de samambaia, com pés voltados para trás. Guardiões jurados da Caipora e do Curupira.</em></p>
+<ul>
+<li><strong>Vantagem Natural (<em>Rastro Invertido &amp; Voz da Mata</em>):</strong> Impossível de ser rastreado no solo por métodos comuns. Uma vez por dia, podem <strong>acalmar ou comandar uma besta silvestre</strong> não-infundida sem necessidade de rolagem de dados.</li>
+<li><strong>Línguas:</strong> <em>Tupi dos Espíritos</em> e <em>Língua Geral</em>.</li>
+<li><strong>Equipamento:</strong> Zarabatana de taquara com 15 dardos, cachimbo de barro com fumo de alecrim e patuá de sementes de tento.</li>
+</ul>
+<h3>4. 🌺 Os Virrégios (Povo-Planta &amp; Flora Viva)</h3>
+<p><em>Nascidos da simbiose viva entre a carne humana e a flora do Cataclismo. Seus corpos são feitos de fibras de vitória-régia, com flores que mudam de cor com o humor e seiva curativa.</em></p>
+<ul>
+<li><strong>Vantagem Natural (<em>Fotossíntese &amp; Seiva Viva</em>):</strong> Descansar 1 hora ao sol ou imerso em água pura recupera <strong>1 Dado de Fôlego adicional gratuito</strong>. São <strong>completamente imunes a venenos vegetais e maleita/malária</strong>.</li>
+<li><strong>Línguas:</strong> <em>Sussurro das Seivas</em> e <em>Língua Geral</em>.</li>
+<li><strong>Equipamento:</strong> Bordão de pau-d&#39;alho (1d6 contundente), bolsa com musgo cicatrizante e túnica de fibra de carnaúba.</li>
+</ul>
+<h3>5. 🔥 Os Boitás (Herdeiros da Serpente de Brasa)</h3>
+<p><em>Humanoides serpentinos do Cerrado das Chamas Eternas e das fendas de magma. Possuem escamas de obsidiana aquecidas e olhos amarelos brilhantes como fogo fátuo.</em></p>
+<ul>
+<li><strong>Vantagem Natural (<em>Sangue de Brasa</em>):</strong> <strong>Imunes a qualquer dano de fogo mundano</strong> (fogueiras, archotes, brasas, queimadas). Seus ataques corporais causam <strong>+1d4 de dano de fogo</strong> extra uma vez por rodada.</li>
+<li><strong>Línguas:</strong> <em>Sopro das Brasas</em> e <em>Língua Geral</em>.</li>
+<li><strong>Equipamento:</strong> Facão forjado em pedra incandescente (1d6 cortante), pederneira de obsidiana pura e capote de couro anti-fogo.</li>
+</ul>
+<h3>6. 👤 Os Humanos da Resistência (Filhos da Aliança)</h3>
+<p><em>A espinha dorsal de Pindorama: Quilombolas de ferro e tambor, Originários mestres do arco de tucum, Bastiões dissidentes da coroa e Mascates de rotas livres.</em></p>
+<ul>
+<li><strong>Vantagem Natural (<em>Determinação Indomável</em>):</strong> Começam a campanha com <strong>1 Proeza de Herói adicional</strong> à sua escolha e ganham <strong>+1 Dado de Fôlego extra (começam com 5d6 de Fôlego)</strong>.</li>
+<li><strong>Línguas:</strong> <em>Língua Geral Brasílica</em> e <em>Comum dos Bastiões</em>.</li>
+<li><strong>Equipamento:</strong> 1 Arma marcial à escolha (lança, bacamarte ou facão de ponta), ferramenta de ofício, rolo de fumo de corda e pederneira com algodão.</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">⚔️ CAPÍTULO 4: OS 5 ARQUÉTIPOS DE FRONTEIRA</h1></header>
+<p>Escolha o papel marcial e comunitário do seu personagem. Cada arquétipo fornece Pontos de Vida, dados de ataque e acesso a <strong>Façanhas Exclusivas</strong>.</p>
+<hr>
+<h2>1. O CAPITÃO DE ARMAS (O Guerreiro Protetor)</h2>
+<p><em>O esteio das muralhas, mestre da lança, do facão e do escudo de jatobá. Quando o inimigo cerca a vila, é ele quem se posta diante dos portões.</em></p>
+<ul>
+<li><strong>Pontos de Vida Iniciais:</strong> $14 + \text{Vigor}$.</li>
+<li><strong>Bônus de Armas:</strong> Lanças, facões, machados, porretes e escudos pesados.</li>
+<li><strong>Contribuição ao Domínio:</strong> $+2$ em Força (Trabalho &amp; Guerra).</li>
+</ul>
+<h3>Façanhas do Capitão (Escolha 2 no Nível 1):</h3>
+<ol>
+<li><strong>Muralha Viva:</strong> Quando um aliado adjacente for atacado, você pode gastar 1 dado de Fôlego para interceptar o ataque e receber o dano em seu lugar, reduzindo-o com o seu escudo.</li>
+<li><strong>Grito de Investida:</strong> Gaste 1 dado de Fôlego ao iniciar o combate. Todos os aliados a até 9 metros ganham $+2$ metros de deslocamento e Vantagem na primeira rolagem de ataque da rodada.</li>
+<li><strong>Golpe de Rompimento:</strong> Ao acertar um ataque corpo a corpo com arma pesada, gaste 1 dado de Fôlego. O alvo é derrubado no chão e sofre $+1d6$ de dano extra.</li>
+<li><strong>Vigília Inabalável:</strong> Você nunca sofre penalidades em testes de percepção enquanto estiver de sentinela em muralhas ou postos de vigia.</li>
+</ol>
+<hr>
+<h2>2. O MATEIRO / CAÇADOR (O Olho Invisível)</h2>
+<p><em>Rastreador silencioso, arqueiro letal e mestre das armadilhas. Ele anda pelas sombras da mata sem fazer estalar uma folha seca.</em></p>
+<ul>
+<li><strong>Pontos de Vida Iniciais:</strong> $10 + \text{Vigor}$.</li>
+<li><strong>Bônus de Armas:</strong> Arcos de tucum, zarabatanas com dardos venenosos, facas de caça e espingardas leves.</li>
+<li><strong>Contribuição ao Domínio:</strong> $+2$ em Destreza (Logística &amp; Batedores).</li>
+</ul>
+<h3>Façanhas do Mateiro (Escolha 2 no Nível 1):</h3>
+<ol>
+<li><strong>Tocaia Letal:</strong> Se atacar um inimigo que não tenha notado sua presença, gaste 1 dado de Fôlego para causar $+2d6$ de dano imediato.</li>
+<li><strong>Caminho dos Espíritos:</strong> Você pode guiar até 10 aliados por mata fechada em silêncio absoluto. O grupo não pode ser rastreado por cães ou patrulhas sem o auxílio de magia.</li>
+<li><strong>Disparo Certeiro:</strong> Ignore cobertura leve ou média de galhos e paliçadas ao disparar com arco ou arma de tiro.</li>
+<li><strong>Armadilha de Trilha:</strong> Com 10 minutos de trabalho e ramos secos, você prepara uma armadilha de laço ou estacas. Quem pisar nela faz teste de Agilidade (CD 13) ou fica preso e sofre $2d6$ de dano.</li>
+</ol>
+<hr>
+<h2>3. O PAJÉ / BENZEDEIRO (O Curandeiro Sagrado)</h2>
+<p><em>Aquele que conhece as rezas antigas, as raízes secretas da terra e as vontades dos espíritos ancestrais. Onde há dor, ele traz alívio.</em></p>
+<ul>
+<li><strong>Pontos de Vida Iniciais:</strong> $8 + \text{Vigor}$.</li>
+<li><strong>Bônus de Armas:</strong> Bordões de madeira nobre, adagas rituais, fundas e arcos leves.</li>
+<li><strong>Contribuição ao Domínio:</strong> $+2$ em Sabedoria (Ervas, Rituais &amp; Colheita).</li>
+</ul>
+<h3>Façanhas do Pajé (Escolha 2 no Nível 1):</h3>
+<ol>
+<li><strong>Unguento das Matas:</strong> Gaste 1 dado de Fôlego e toque um aliado ferido. Ele recupera imediatamente $1d6 + \text{Astúcia}$ Pontos de Vida e remove a condição <em>Envenenado</em>.</li>
+<li><strong>Reza Forte:</strong> Erguendo amuletos de sementes e ossos, gaste 1 dado de Fôlego. Uma criatura espectral, morto-vivo ou demônio a até 9 metros deve fazer um teste de Presença contra sua CD ou fugirá em pavor por 1 minuto.</li>
+<li><strong>Fumaça Roteadora:</strong> Queimando ervas sagradas em um cachimbo ou braseiro, você entra em transe e pergunta ao Mestre uma revelação sobre a região (onde encontrar água limpa, a direção de um ninho de bestas ou a presença de invasores).</li>
+<li><strong>Bênção do Plantio:</strong> Se você liderar o trabalho nas roças do assentamento durante o descanso, o feudo produz $+2$ Unidades de Víveres extras nesta estação.</li>
+</ol>
+<hr>
+<h2>4. O MESTRE DE ENGENHO / OBRAS (O Arquiteto Prático)</h2>
+<p><em>O homem da forja, da alvenaria e dos trapiches. Ele sabe o peso que uma tora suporta, como misturar cal com óleo e como fundir ferro nas chamas.</em></p>
+<ul>
+<li><strong>Pontos de Vida Iniciais:</strong> $12 + \text{Vigor}$.</li>
+<li><strong>Bônus de Armas:</strong> Martelos pesados, machadinhas, malhos de obra e bacamartes de cano curto.</li>
+<li><strong>Contribuição ao Domínio:</strong> $+2$ em Inteligência (Engenharia &amp; Forja).</li>
+</ul>
+<h3>Façanhas do Mestre de Obras (Escolha 2 no Nível 1):</h3>
+<ol>
+<li><strong>Fortificação de Trincheira:</strong> Em 1 hora de trabalho com seus homens, ergue uma barricada de troncos ou fosso que concede Cobertura Pesada (+4 na Defesa) para quem estiver atrás dela.</li>
+<li><strong>Ferreiro de Batalha:</strong> Gaste 1 dado de Fôlego e trabalhe numa forja por uma tarde: você remove qualquer amassado ou ferrugem de armas e concede $+1$ no dano daquela arma até o próximo descanso.</li>
+<li><strong>Golpe de Aríete:</strong> Seus golpes contra portas, muralhas, grades e estruturas causam dano duplo.</li>
+<li><strong>Engenho Econômico:</strong> Reduz o custo de madeira e pedra de qualquer edificação construída sob sua supervisão em 1 unidade de recurso.</li>
+</ol>
+<hr>
+<h2>5. O EMISSÁRIO / ORADOR (A Voz do Povo)</h2>
+<p><em>Aquele que acalma motins com uma frase, negocia tréguas na ponta da língua e enche os corações dos oprimidos com o fogo da coragem.</em></p>
+<ul>
+<li><strong>Pontos de Vida Iniciais:</strong> $10 + \text{Vigor}$.</li>
+<li><strong>Bônus de Armas:</strong> Sabres, espadas curtas, pistolas de pederneira e chicotes.</li>
+<li><strong>Contribuição ao Domínio:</strong> $+2$ em Carisma (Moral Social &amp; Diplomacia).</li>
+</ul>
+<h3>Façanhas do Emissário (Escolha 2 no Nível 1):</h3>
+<ol>
+<li><strong>Voz Que Ecoa:</strong> Gaste 1 dado de Fôlego em combate para dar uma ordem a um aliado a até 9 metros. Ele pode realizar imediatamente um ataque extra ou mover-se metade do deslocamento sem provocar ataques de oportunidade.</li>
+<li><strong>Discurso Inflamado:</strong> Fale aos aldeões do seu assentamento reunidos no terreiro central. Faça um teste de Presença (CD 13). No sucesso, o domínio ganha $+10$ pontos de Moral imediatos!</li>
+<li><strong>Pacto de Sangue:</strong> Ao negociar com bandos rivais, mercadores ou caciques nativos, você garante uma trégua temporária ou desconto de 20% em trocas comerciais.</li>
+<li><strong>Provocação Ácida:</strong> Gaste 1 dado de Fôlego e xingue um inimigo a até 9 metros. Ele deve fazer teste de Presença contra sua CD ou será obrigado a focar todos os seus ataques exclusivamente em você na próxima rodada, ignorando aliados feridos.</li>
+</ol>
+<hr>
+<header class="part-header"><h1 class="part-title">🎒 CAPÍTULO 5: ARSENAL &amp; EQUIPAMENTO DE FRONTEIRA</h1></header>
+<p>Na fronteira do sertão e das matas, o ferro é caro e a pólvora é preciosa. O equipamento combina materiais nativos com espólios coloniais.</p>
+<h3>Tabela de Armas Brancas</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="left">Arma</th>
+<th align="center">Dano</th>
+<th align="left">Propriedades</th>
+<th align="center">Custo Típico</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Facão de Mato / Peixeira</strong></td>
+<td align="center"><strong>1d6 Cortante</strong></td>
+<td align="left">Leve (pode lutar com duas), Ágil (usa Vigor ou Agilidade).</td>
+<td align="center">2 Pratas</td>
+</tr>
+<tr>
+<td align="left"><strong>Lança de Caça / Ibirapema</strong></td>
+<td align="center"><strong>1d8 Perfurante</strong></td>
+<td align="left">Versátil (1d10 com duas mãos), Alcance longo.</td>
+<td align="center">3 Pratas</td>
+</tr>
+<tr>
+<td align="left"><strong>Machado de Lenhador</strong></td>
+<td align="center"><strong>1d10 Cortante</strong></td>
+<td align="left">Pesada, Duas mãos, Causa dano duplo em madeira.</td>
+<td align="center">5 Pratas</td>
+</tr>
+<tr>
+<td align="left"><strong>Bordão de Jatobá</strong></td>
+<td align="center"><strong>1d6 Concussão</strong></td>
+<td align="left">Versátil (1d8), pode ser usado como cajado de cura.</td>
+<td align="center">1 Prata</td>
+</tr>
+<tr>
+<td align="left"><strong>Foice de Roça</strong></td>
+<td align="center"><strong>1d6 Cortante</strong></td>
+<td align="left">Pode derrubar montarias ou tripés com teste de Vigor.</td>
+<td align="center">2 Pratas</td>
+</tr>
+<tr>
+<td align="left"><strong>Porrete Cravejado</strong></td>
+<td align="center"><strong>1d8 Concussão</strong></td>
+<td align="left">Atordoa o alvo em caso de acerto crítico no d20.</td>
+<td align="center">2 Pratas</td>
+</tr>
+</tbody></table></div>
+<h3>Tabela de Armas de Disparo &amp; Pólvora</h3>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="5">
+<thead>
+<tr>
+<th align="left">Arma</th>
+<th align="center">Dano</th>
+<th align="center">Alcance</th>
+<th align="left">Propriedades</th>
+<th align="center">Custo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Arco de Tucum / Jatobá</strong></td>
+<td align="center"><strong>1d8 Perfurante</strong></td>
+<td align="center">30 metros</td>
+<td align="left">Silencioso, munição recuperável na mata.</td>
+<td align="center">8 Pratas</td>
+</tr>
+<tr>
+<td align="left"><strong>Zarabatana com Curare</strong></td>
+<td align="center"><strong>1d4 + Veneno</strong></td>
+<td align="center">12 metros</td>
+<td align="left">Indetectável; alvo faz teste de Vigor CD 13 ou cai desacordado.</td>
+<td align="center">6 Pratas</td>
+</tr>
+<tr>
+<td align="left"><strong>Bacamarte de Pederneira</strong></td>
+<td align="center"><strong>2d8 Concussão</strong></td>
+<td align="center">9 metros</td>
+<td align="left">Disparo em cone curto; causa fumaça densa; recarga lenta (1 ação).</td>
+<td align="center">25 Pratas</td>
+</tr>
+<tr>
+<td align="left"><strong>Garrucha / Pistola Antiga</strong></td>
+<td align="center"><strong>1d10 Perfurante</strong></td>
+<td align="center">15 metros</td>
+<td align="left">Leve; barulhenta; exige pederneira seca.</td>
+<td align="center">15 Pratas</td>
+</tr>
+<tr>
+<td align="left"><strong>Espingarda de Caça</strong></td>
+<td align="center"><strong>1d12 Perfurante</strong></td>
+<td align="center">45 metros</td>
+<td align="left">Precisa; duas mãos; recarga de 1 ação.</td>
+<td align="center">30 Pratas</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h3>Armaduras e Proteções</h3>
+<ul>
+<li><strong>Sem Armadura:</strong> Defesa = $10 + \text{Agilidade}$.</li>
+<li><strong>Gibão de Couro de Anta / Onça:</strong> Defesa = $12 + \text{Agilidade}$ (máximo +2 de Agilidade). Custo: 10 Pratas.</li>
+<li><strong>Colete de Chapas de Ferro Batido:</strong> Defesa = $14 + \text{Agilidade}$ (máximo +1). Custo: 30 Pratas.</li>
+<li><strong>Escudo de Madeira de Lei (Trançado ou Tábua):</strong> $+2$ na Defesa passiva (exige uma mão livre). Custo: 5 Pratas.</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">⏳ CAPÍTULO 6: O DOWNTIME — A VIDA NA SUA TERRA</h1></header>
+<p>Entre uma missão e outra nos ermos, passam-se semanas ou meses no calendário da campanha. É o tempo de <strong>Downtime</strong>.<br>Cada TerraTenente tem direito a <strong>2 Ações Pessoais</strong> por estação do ano. Veja o que você pode declarar ao Mestre:</p>
+<ol>
+<li><strong>Supervisionar Obras:</strong> Trabalhe lado a lado com os carpinteiros para erguer a paliçada, moinho ou forja. Reduz o tempo de entrega em 1 mês ou reduz 1 custo de material.</li>
+<li><strong>Treinar a Milícia:</strong> Vá para o terreiro instruir homens e mulheres no arco e lança. A guarnição da vila ganha $+1$ em combate no próximo cerco.</li>
+<li><strong>Trabalhar a Roça e o Forrageio:</strong> Cace na mata ou cuide das sementes de milho e mandioca. Faça teste de Astúcia (CD 12): sucesso rende $+2$ Unidades de Víveres para os celeiros.</li>
+<li><strong>Forjar Armas &amp; Armadilhas:</strong> Gaste metal e lenha para fabricar armaduras ou 3 estacas de defesa para os portões.</li>
+<li><strong>Preparar Garrafadas &amp; Unguentos:</strong> O curandeiro ou mateiro colhe raízes e prepara <strong>2 Poções de Cura</strong> gratuitas para a próxima expedição.</li>
+<li><strong>Festejar &amp; Dança Comunitária:</strong> Organize uma fogueira com música de viola, tambores e comida farta. Faça teste de Presença (CD 12) para curar <strong>2d10 pontos de Moral</strong> do povo!</li>
+<li><strong>Explorar os Limites:</strong> Cavalgue ou caminhe pelas redondezas com batedores. O Mestre revela 1 ponto de interesse no mapa (um veio mineral, uma ruína misteriosa ou pegadas de monstros).</li>
+</ol>
+<hr>
+<header class="part-header"><h1 class="part-title">🩸 CAPÍTULO 7: COMBATE, FERIMENTOS &amp; DESCANSO</h1></header>
+<h3>1. Como Funciona a Rodada de Combate</h3>
+<p>O combate é dividido em rodadas de cerca de 6 segundos:</p>
+<ol>
+<li><strong>Iniciativa:</strong> Todos os jogadores rolam <strong>1d20 + Agilidade</strong>. Quem tirar mais alto que os monstros age primeiro.</li>
+<li><strong>Seu Turno:</strong> Você pode se mover até <strong>9 metros</strong> e realizar <strong>1 Ação</strong> (Atacar, Correr, Usar Item, Ajudar um Aliado ou Ativar uma Façanha).</li>
+<li><strong>Ataque:</strong> Role $1d20 + \text{Vigor ou Agilidade}$ contra a Defesa do alvo. Se empatar ou superar, role o dado de dano da sua arma!</li>
+</ol>
+<h3>2. O que Acontece ao Chegar a 0 PV?</h3>
+<p>Você cai inconsciente no chão, sangrando na terra. A cada rodada que começar com 0 PV, faça um <strong>Teste contra a Morte (1d20 seco, sem bônus)</strong>:</p>
+<ul>
+<li><strong>10 ou mais:</strong> Sucesso. Você resiste à morte. Se acumular <strong>3 sucessos</strong>, fica estável (vivo, mas inconsciente por 1d4 horas).</li>
+<li><strong>9 ou menos:</strong> Falha. Se acumular <strong>3 falhas</strong>, seu espírito parte para a terra dos ancestrais.</li>
+<li><strong>20 Natural:</strong> Você desperta com uma onda de adrenalina e recupera 1 PV imediatamente!</li>
+<li><strong>1 Natural:</strong> Conta como duas falhas imediatas!</li>
+</ul>
+<h3>3. Descanso e Recuperação</h3>
+<ul>
+<li><strong>Descanso Curto (1 hora de pausa na trilha):</strong> Beba água fresca de cantil, faça curativos rápidos e recupere <strong>metade dos seus PV máximos</strong>. Você só pode fazer um descanso curto por dia de aventura.</li>
+<li><strong>Descanso Longo (1 noite segura no Assentamento):</strong> Dormir sob teto acolhedor com comida quente recupera <strong>todos os PV</strong>, todos os <strong>dados de Fôlego</strong> e cura doenças leves. Além disso, as instalações da vila fornecem seus bônus especiais para a próxima jornada!</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">⚒️ CAPÍTULO 8: ARTESANATO &amp; FORJA DE FRONTEIRA (GUIA DE CRAFTING)</h1></header>
+<p>Em <strong>Os TerraTenentes</strong>, você não depende de mascates distantes para ter itens poderosos. Tudo o que o seu herói precisa pode ser criado na forja, na oca de ervas ou no terreiro do seu assentamento!</p>
+<h3>1. O Ciclo de Criação em 3 Passos</h3>
+<ol>
+<li><strong>Coleta de Materiais:</strong> Extraia carcaças de monstros, raízes medicinais, madeiras de lei e ferro de minas nas suas expedições.</li>
+<li><strong>Instalação Adequada:</strong> Utilize a oficina certa da sua vila (Forja para armas e armaduras; Oca/Laboratório para garrafadas; Curtume para couros).</li>
+<li><strong>Teste de Ofício:</strong> Role <strong>1d20 + Astúcia</strong> contra a CD da receita. Um sucesso cria o item; uma falha gasta metade dos materiais sem completar a obra.</li>
+</ol>
+<h3>2. Tabela de Dificuldade &amp; Tempo de Fabricação</h3>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="5">
+<thead>
+<tr>
+<th align="left">Raridade do Item</th>
+<th align="center">CD de Astúcia</th>
+<th align="center">Tempo de Trabalho</th>
+<th align="center">Ajudantes Úteis</th>
+<th align="left">Exemplo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Comum</strong></td>
+<td align="center"><strong>CD 10</strong></td>
+<td align="center">1 dia</td>
+<td align="center">0</td>
+<td align="left">Facão de mato, tochas, corda de tucum, garrafada básica.</td>
+</tr>
+<tr>
+<td align="left"><strong>Incomum</strong></td>
+<td align="center"><strong>CD 13</strong></td>
+<td align="center">3 dias</td>
+<td align="center">1 aprendiz</td>
+<td align="left">Bacamarte de pederneira, gibão de couro reforçado, patuá da sorte.</td>
+</tr>
+<tr>
+<td align="left"><strong>Raro</strong></td>
+<td align="center"><strong>CD 16</strong></td>
+<td align="center">7 dias</td>
+<td align="center">2 artesãos</td>
+<td align="left">Espingarda de cano raiado, armadura de placas, elixir do Boitatá.</td>
+</tr>
+<tr>
+<td align="left"><strong>Lendário</strong></td>
+<td align="center"><strong>CD 20</strong></td>
+<td align="center">15 dias</td>
+<td align="center">Mestre da Forja</td>
+<td align="left">Lança de prata estelar, canhão de bronze, manto do Curupira.</td>
+</tr>
+</tbody></table></div>
+<blockquote>
+<p><strong>Bônus de Instalação:</strong> Usar uma oficina de nível alto (Escala II ou III) reduz a CD em <strong>-2</strong>. Cada ajudante qualificado reduz o tempo de trabalho em <strong>25%</strong>!</p>
+</blockquote>
+<hr>
+<header class="part-header"><h1 class="part-title">🧪 CAPÍTULO 9: O ARSENAL DE FRONTEIRA</h1></header>
+<hr>
+<h2>1. As 20 Garrafadas &amp; Elixires dos Curandeiros</h2>
+<p><em>Preparadas em garrafas escuras com cachaça de alambique, raízes maceradas e banhas animais. Duram até o próximo descanso longo.</em></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d20</th>
+<th align="left">Garrafada / Elixir</th>
+<th align="left">Efeito Mecânico na Mesa</th>
+<th align="left">Ingrediente Principal</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01</strong></td>
+<td align="left"><strong>Garrafada do Couro Curtido</strong></td>
+<td align="left">Subtrai <strong>3 pontos de dano</strong> de qualquer golpe físico sofrido.</td>
+<td align="left">Casca de barbatimão &amp; banha de capivara.</td>
+</tr>
+<tr>
+<td align="center"><strong>02</strong></td>
+<td align="left"><strong>Sumo do Olho de Gavião</strong></td>
+<td align="left">Uma vez por combate, <strong>rerrole 1 disparo</strong> de arco ou arma de fogo.</td>
+<td align="left">Flor de maracujá-do-mato &amp; semente de urucum.</td>
+</tr>
+<tr>
+<td align="center"><strong>03</strong></td>
+<td align="left"><strong>Óleo de Sucuri</strong></td>
+<td align="left">Escapa automaticamente de qualquer corda, laço ou manobra de agarrar.</td>
+<td align="left">Gordura purificada de Mboi-Açu.</td>
+</tr>
+<tr>
+<td align="center"><strong>04</strong></td>
+<td align="left"><strong>Tintura do Coração Valente</strong></td>
+<td align="left">Imunidade total a medo, pânico e abalos morais por 8 horas.</td>
+<td align="left">Raiz de guaraná silvestre &amp; cachaça envelhecida.</td>
+</tr>
+<tr>
+<td align="center"><strong>05</strong></td>
+<td align="left"><strong>Elixir do Fôlego de Onça</strong></td>
+<td align="left">Ganhe <strong>+10 Pontos de Vida Temporários</strong> como reserva de vitalidade.</td>
+<td align="left">Coração de anta &amp; pó de café verde.</td>
+</tr>
+<tr>
+<td align="center"><strong>06</strong></td>
+<td align="left"><strong>Destilado de Raiz Amarga</strong></td>
+<td align="left">Neutraliza qualquer veneno e cura enjoo e paralisia imediatamente.</td>
+<td align="left">Raiz de carqueja-amarga &amp; sumo de limão-cravo.</td>
+</tr>
+<tr>
+<td align="center"><strong>07</strong></td>
+<td align="left"><strong>Garrafada da Fúria Sertaneja</strong></td>
+<td align="left">+2 no dano corpo a corpo, mas sofre -1 na Defesa passiva por 1 hora.</td>
+<td align="left">Pimenta-malagueta macerada em aguardente.</td>
+</tr>
+<tr>
+<td align="center"><strong>08</strong></td>
+<td align="left"><strong>Sumo da Flor Noturna</strong></td>
+<td align="left">Concede <strong>visão no escuro perfeita</strong> por 8 horas (enxerga vultos na mata).</td>
+<td align="left">Pétalas de flor da lua &amp; orvalho da serra.</td>
+</tr>
+<tr>
+<td align="center"><strong>09</strong></td>
+<td align="left"><strong>Mel de Abelha Jataí Ungido</strong></td>
+<td align="left">Bebida suave que cura <strong>2d6 Pontos de Vida</strong> e alivia qualquer tosse.</td>
+<td align="left">Mel silvestre de jataí &amp; leite de amêndoa de coco.</td>
+</tr>
+<tr>
+<td align="center"><strong>10</strong></td>
+<td align="left"><strong>Óleo de Peçonha Concentrado</strong></td>
+<td align="left">Aplica em até 3 lâminas: o próximo acerto causa <strong>+1d6 de dano de veneno</strong>.</td>
+<td align="left">Seiva de sapo-pimenta &amp; fel de cascavel.</td>
+</tr>
+<tr>
+<td align="center"><strong>11</strong></td>
+<td align="left"><strong>Vinho de Catuaba Selvagem</strong></td>
+<td align="left">Vantagem em todos os testes de Vigor para marcha forçada por 1 dia inteiro.</td>
+<td align="left">Casca de catuaba roxa fervida em vinho de jabuticaba.</td>
+</tr>
+<tr>
+<td align="center"><strong>12</strong></td>
+<td align="left"><strong>Pó de Casca de Quina</strong></td>
+<td align="left">Cura febres malignas, malária e infecções de feridas em 24 horas.</td>
+<td align="left">Casca de árvore de quina desidratada.</td>
+</tr>
+<tr>
+<td align="center"><strong>13</strong></td>
+<td align="left"><strong>Destilado da Mente Férrea</strong></td>
+<td align="left">+3 de bônus em testes de Presença para resistir a ilusões e espíritos.</td>
+<td align="left">Folhas de alecrim-do-campo &amp; incenso de benjoim.</td>
+</tr>
+<tr>
+<td align="center"><strong>14</strong></td>
+<td align="left"><strong>Infusão de Tabaco Sagrado</strong></td>
+<td align="left">Fumar em cachimbo recupera <strong>1 dado de Fôlego gasto</strong> sem precisar descansar.</td>
+<td align="left">Folha de fumo crioulo benzida pelo Pajé.</td>
+</tr>
+<tr>
+<td align="center"><strong>15</strong></td>
+<td align="left"><strong>Banha de Peixe-Boi Balsâmica</strong></td>
+<td align="left">Protege o corpo contra hipotermia; ignora penalidades de frio e chuva.</td>
+<td align="left">Banha densa de peixe fluvial &amp; óleo de copaíba.</td>
+</tr>
+<tr>
+<td align="center"><strong>16</strong></td>
+<td align="left"><strong>Sumo de Mandacaru Concentrado</strong></td>
+<td align="left">Permite marchar por 3 dias inteiros sem necessidade de beber água.</td>
+<td align="left">Polpa de cacto mandacaru prensada em linho.</td>
+</tr>
+<tr>
+<td align="center"><strong>17</strong></td>
+<td align="left"><strong>Garrafada do Passo Ligeiro</strong></td>
+<td align="left">Adiciona <strong>+3 metros no deslocamento</strong> por 1 hora inteira de exploração.</td>
+<td align="left">Raiz de canela-de-velho &amp; cipó-alho.</td>
+</tr>
+<tr>
+<td align="center"><strong>18</strong></td>
+<td align="left"><strong>Tintura do Olhar Verdadeiro</strong></td>
+<td align="left">Detecta emboscadas ocultas e armadilhas de trilha a até 15 metros.</td>
+<td align="left">Colírio de folha de arruda &amp; água de nascente.</td>
+</tr>
+<tr>
+<td align="center"><strong>19</strong></td>
+<td align="left"><strong>Elixir da Pele de Pedra</strong></td>
+<td align="left">Concede resistência a dano cortante por 3 rodadas de combate intenso.</td>
+<td align="left">Pó de esteatita (pedra-sabão) &amp; resina de jatobá.</td>
+</tr>
+<tr>
+<td align="center"><strong>20</strong></td>
+<td align="left"><strong>Lágrima dos Ancestrais</strong></td>
+<td align="left">Se um golpe for reduzi-lo a 0 PV, <strong>fique com 1 PV</strong> em vez de cair inconsciente!</td>
+<td align="left">Resina sagrada de jequitibá milenar consagrada.</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2>2. Os 15 Patuás, Amuletos &amp; Sementes Sagradas</h2>
+<p><em>Pequenos talismãs que o herói amarra no cinto, no pescoço ou incrusta na coronha de suas armas durante o descanso curto.</em></p>
+<ol>
+<li><strong>Patuá de Olho-de-Cabra:</strong> Sementes vermelhas e pretas que desviam disparos (+1 Defesa contra projéteis).</li>
+<li><strong>Dente de Onça Calejado:</strong> Amarrado no punho do facão: concede <strong>+1 no dano</strong> de ataques corpo a corpo.</li>
+<li><strong>Figa de Guiné Entalhada:</strong> Protege contra feitiços coloniais e mau-olhado (Vantagem em testes de Presença).</li>
+<li><strong>Pedra-Estrela do Remanso:</strong> Quartzo brilhante que pulsa com calor suave quando monstros estão a menos de 30m.</li>
+<li><strong>Guizo de Cascavel da Sorte:</strong> Uma vez por descanso longo, transforme um resultado 1 natural do d20 em uma rolagem normal!</li>
+<li><strong>Cordão de Sementes de Jatobá:</strong> Aumenta a sua reserva máxima de Fôlego em <strong>+1 dado d6</strong>.</li>
+<li><strong>Escama de Sucuri Gravada:</strong> Permite prender a respiração debaixo d&#39;água por 10 minutos sem afogamento.</li>
+<li><strong>Pena de Arara-Canindé:</strong> Amarrada ao arco: aumenta o alcance eficaz de tiro em $+15$ metros.</li>
+<li><strong>Chifre de Queixada de Guerra:</strong> Ao realizar uma investida, empurre o alvo 3 metros para trás se acertar o golpe.</li>
+<li><strong>Patuá de Areia da Encruzilhada:</strong> Gaste 1 dado de Fôlego ao fugir: você cria uma nuvem de poeira e desaparece na mata.</li>
+<li><strong>Pedaço de Raio Fóssil (Fulgurito):</strong> Encanta uma arma: seus golpes causam $+1d4$ de faíscas elétricas por 3 rodadas.</li>
+<li><strong>Dente de Jacaré Prateado:</strong> Vantagem permanente em testes de natação e combate dentro da água ou lama.</li>
+<li><strong>Talismã da Raiz de Pau-Brasil:</strong> Concede $+2$ em testes de Carisma ao negociar com povos nativos e quilombos.</li>
+<li><strong>Nó de Pinho Sagrado:</strong> Absorve completamente o dano de um ataque crítico inimigo, partindo-se em dois após o uso.</li>
+<li><strong>Cachimbo de Barro dos Anciãos:</strong> Soprar fumaça benzida acalma feras territoriais não-mágicas (CD 13 de Presença).</li>
+</ol>
+<hr>
+<h2>3. As 15 Armas &amp; Equipamentos Sob Medida da Forja</h2>
+<ol>
+<li><strong>Facão de Aço Damasco em Óleo de Pequi:</strong> $+1$ nos ataques; ignora cobertura leve e armaduras de couro fino.</li>
+<li><strong>Espingarda de Cano Raiado de Precisão:</strong> Alcance estendido para 60 metros; causa $+2$ de dano em tiros mirados.</li>
+<li><strong>Bacamarte de Bronze Maritroante:</strong> Dispara em cone largo de 9 metros; alvos atingidos devem passar em teste de Vigor ou são derrubados.</li>
+<li><strong>Lança de Ibirapema com Ponta de Ferro Estelar:</strong> Causa dano dobrado contra mortos-vivos e assombrações.</li>
+<li><strong>Escudo de Braúna com Cravos de Ferro:</strong> $+3$ na Defesa passiva; pode ser usado como arma secundária (1d6 concussão).</li>
+<li><strong>Gibão de Anta Curtido com Salitre:</strong> Imune a queimaduras de fogo comum e óleo fervente.</li>
+<li><strong>Machado de Lenhador de Aço Carbono:</strong> Destrói escudos de madeira comuns com um único golpe crítico.</li>
+<li><strong>Arco de Tucum Duplamente Trançado:</strong> Permite somar o modificador de Vigor (em vez de Agilidade) no dano perfurante.</li>
+<li><strong>Colete de Chapas com Rebites de Cobre:</strong> Defesa 15; reduz o dano de balas de mosquete em 3 pontos.</li>
+<li><strong>Porrete de Pau-Ferro Maciço:</strong> Qualquer acerto com rolagem 15 ou mais no d20 atordoa o inimigo por 1 rodada.</li>
+<li><strong>Zarabatana de Taquara Imperial com Mira de Cobre:</strong> $+3$ no ataque quando disparada furtivamente das copas.</li>
+<li><strong>Adaga de Caça com Canaleta de Veneno:</strong> Permite carregar duas doses de peçonha sem escorrer nas mãos.</li>
+<li><strong>Botas de Couro de Capivara Enceradas:</strong> Passos completamente inaudíveis sobre cascalho, folhas secas e lodo.</li>
+<li><strong>Cinta de Cartuchos de Saque Rápido:</strong> Recarregar um bacamarte ou espingarda passa a ser uma ação bônus.</li>
+<li><strong>Capa de Folhagens e Cipós Camuflada:</strong> Concede Vantagem permanente em testes de furtividade em matas e capoeiras.</li>
+</ol>
+<hr>
+<h3>4. As 12 Preces de Reação Rápida &amp; Fórmulas de Impulso</h3>
+<p><em>Orações rápidas, rezas de terço e fumaças alquímicas que manipulam o d20 no calor do combate:</em></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d12</th>
+<th align="left">Prece / Fórmula de Impulso</th>
+<th align="left">Momento de Uso &amp; Aplicação no d20</th>
+<th align="center">Preço Estimado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>1</strong></td>
+<td align="left"><strong>Prece da Pontaria Certeira</strong></td>
+<td align="left">Ação Bônus. Concede <strong>+3 de bônus imediato</strong> na sua próxima rolagem de ataque ou tiro.</td>
+<td align="center">3 Pratas</td>
+</tr>
+<tr>
+<td align="center"><strong>2</strong></td>
+<td align="left"><strong>Manto de Santo Antônio</strong></td>
+<td align="left">Reação. <strong>Anula completamente um acerto crítico inimigo</strong> desferido contra você ou aliado adjacente.</td>
+<td align="center">6 Pratas</td>
+</tr>
+<tr>
+<td align="center"><strong>3</strong></td>
+<td align="left"><strong>Grito de Fúria dos Palmares</strong></td>
+<td align="left">Ação Livre. Dá <strong>+2 de dano em todos os ataques</strong>, mas impõe -1 na sua Defesa durante o combate.</td>
+<td align="center">4 Pratas</td>
+</tr>
+<tr>
+<td align="center"><strong>4</strong></td>
+<td align="left"><strong>Reza do Fôlego Imediato</strong></td>
+<td align="left">Ação Livre. Recupera <strong>2d8 Pontos de Vida</strong> instantaneamente no momento em que sofreria dano.</td>
+<td align="center">8 Pratas</td>
+</tr>
+<tr>
+<td align="center"><strong>5</strong></td>
+<td align="left"><strong>Passo do Saci (Vento Fantasma)</strong></td>
+<td align="left">Reação. Permite deslocar-se <strong>6 metros instantâneos</strong> sem provocar ataques de oportunidade de inimigos.</td>
+<td align="center">5 Pratas</td>
+</tr>
+<tr>
+<td align="center"><strong>6</strong></td>
+<td align="left"><strong>Couro de Tatu (Casca Grossa)</strong></td>
+<td align="left">Reação. Concede <strong>+2 na Defesa e em testes de Vigor</strong> contra um ataque ou bafo de monstro iminente.</td>
+<td align="center">5 Pratas</td>
+</tr>
+<tr>
+<td align="center"><strong>7</strong></td>
+<td align="left"><strong>Sopro de Pólvora Viva</strong></td>
+<td align="left">Ação Bônus. Dispara uma garrucha ou bacamarte descarregado usando apenas centelha mística (dano elétrico/fogo).</td>
+<td align="center">6 Pratas</td>
+</tr>
+<tr>
+<td align="center"><strong>8</strong></td>
+<td align="left"><strong>Fagulha do Boitatá</strong></td>
+<td align="left">Ação Bônus. O próximo ataque causa <strong>+1d8 de dano de fogo</strong> e ilumina inimigos camuflados ou invisíveis.</td>
+<td align="center">5 Pratas</td>
+</tr>
+<tr>
+<td align="center"><strong>9</strong></td>
+<td align="left"><strong>Olhar da Coruja da Mata</strong></td>
+<td align="left">Ação Livre. Concede <strong>Visão no Escuro total</strong> e anula qualquer penalidade de névoa ou fumaça por 1 minuto.</td>
+<td align="center">4 Pratas</td>
+</tr>
+<tr>
+<td align="center"><strong>10</strong></td>
+<td align="left"><strong>Fio de Prata (Quebra-Cadeia)</strong></td>
+<td align="left">Reação. Rompe instantaneamente laços de corda, correntes de ferro ou efeitos de paralisia e imobilização.</td>
+<td align="center">6 Pratas</td>
+</tr>
+<tr>
+<td align="center"><strong>11</strong></td>
+<td align="left"><strong>Escudo de Farpas de Juazeiro</strong></td>
+<td align="left">Reação. Inimigos que te acertarem corpo a corpo sofrem <strong>1d6 de dano perfurante</strong> das cascas espinhosas.</td>
+<td align="center">5 Pratas</td>
+</tr>
+<tr>
+<td align="center"><strong>12</strong></td>
+<td align="left"><strong>Oração do Retorno Seguro</strong></td>
+<td align="left">Fora de Combate. O grupo encontra a trilha direta de volta ao assentamento, ignorando tempestades ou perdição.</td>
+<td align="center">4 Pratas</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">🏛️ CAPÍTULO 10: CLASSES &amp; SUBCLASSES DE ASSENTAMENTO</h1></header>
+<p>Assim como cada herói escolhe um arquétipo marcial, a comunidade escolhe em conjunto a sua <strong>Classe de Domínio</strong> ao ser fundada. Cada classe possui duas <strong>Subclasses Especializadas</strong> que definem os poderes de soberania da vila:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                   AS TRÊS GRANDES CLASSES DE DOMÍNIO                   │
+├───────────────────┬────────────────────────────┬───────────────────────┤
+│ O QUILOMBO        │ A ALDEIA ANCESTRAL         │ O FORTE DE FRONTEIRA  │
+│ Liberdade &amp; Luta  │ Harmonia &amp; Espíritos       │ Ordem &amp; Artilharia    │
+│ • Mocambo Guerrilha│ • Guardiões da Mata        │ • Bastião de Artilharia│
+│ • Refúgio Aliança │ • Nação das Águas          │ • Feitoria Mercantil  │
+└───────────────────┴────────────────────────────┴───────────────────────┘
+</code></pre>
+<hr>
+<h2>1. CLASSE: O QUILOMBO SOBERANO (Liberdade &amp; Resistência)</h2>
+<p><em>Comunidade forjada no fogo da resistência. Seus habitantes valorizam a autonomia acima da própria vida e conhecem os segredos da mata melhor do que qualquer perseguidor.</em></p>
+<ul>
+<li><strong>Atributo Primário:</strong> Destreza &amp; Carisma.</li>
+<li><strong>Poder Central:</strong> <em>Vontade de Aço.</em> O quilombo começa com <strong>Moral 85</strong> (em vez de 50) e recupera $+1d6$ de Moral extra em qualquer festival comunitário.</li>
+</ul>
+<h3>Escolha sua Subclasse:</h3>
+<h4>Subclasse A: O Mocambo de Guerrilha</h4>
+<p><em>Foco em emboscadas, armadilhas traiçoeiras e táticas de terra arrasada contra invasores.</em></p>
+<ol>
+<li><strong>Trilhas de Estrepes:</strong> Qualquer bando inimigo que tente atacar a vila deve rolar teste de Agilidade (CD 14) ou perde $2d6$ homens em fossos e espinhos envenenados antes de alcançar as paliçadas.</li>
+<li><strong>Surtida Noturna:</strong> Os heróis podem liderar um ataque noturno contra acampamentos de cerco inimigos, ganhando Vantagem em todas as rolagens da primeira rodada.</li>
+</ol>
+<h4>Subclasse B: O Refúgio da Aliança</h4>
+<p><em>Foco em solidariedade, acolhimento de oprimidos e coesão comunitária inabalável.</em></p>
+<ol>
+<li><strong>Portas Abertas:</strong> Refugiados que chegam à vila aumentam a População sem exigir aumento imediato no consumo de comida durante o primeiro mês.</li>
+<li><strong>Espírito de Fraternidade:</strong> Quando o domínio sofrer dano em Moral por eventos críticos, a perda é reduzida pela metade de forma automática.</li>
+</ol>
+<hr>
+<h2>2. CLASSE: A ALDEIA ANCESTRAL (Simbiose &amp; Tradição)</h2>
+<p><em>Comunidade milenar erguida sob a copa das árvores centenárias e às margens de rios sagrados. O solo, a água e os animais protegem o povo.</em></p>
+<ul>
+<li><strong>Atributo Primário:</strong> Sabedoria &amp; Constituição.</li>
+<li><strong>Poder Central:</strong> <em>Bênção da Terra.</em> O assentamento produz $+2$ Unidades de Víveres extras em todas as estações de colheita e tem Vantagem para resistir a epidemias.</li>
+</ul>
+<h3>Escolha sua Subclasse:</h3>
+<h4>Subclasse A: Os Guardiões da Mata Sagrada</h4>
+<p><em>Foco em comunhão com feras da floresta, venenos ancestrais e xamanismo de fronteira.</em></p>
+<ol>
+<li><strong>Feras Sentinelas:</strong> Onças e aves da floresta rondam a aldeia. Invasores não podem se aproximar sem disparar um coro de gritos que anula qualquer tentativa de ataque surpresa.</li>
+<li><strong>Farmácia Viva:</strong> O curandeiro da aldeia recebe +1 dose gratuita de qualquer receita de garrafada preparada durante o <em>Downtime</em>.</li>
+</ol>
+<h4>Subclasse B: A Nação dos Rios &amp; Igarapés</h4>
+<p><em>Foco em controle fluvial, canoas de guerra, trapiches e abundância de pesca.</em></p>
+<ol>
+<li><strong>Flotilha Veloz:</strong> Canoas de guerra construídas na aldeia navegam o dobro da velocidade e ganham bônus de $+2$ na Defesa em combates fluviais.</li>
+<li><strong>Fartura das Águas:</strong> O assentamento pode sustentar até 200 habitantes a mais apenas com o pescado e mariscos retirados dos rios.</li>
+</ol>
+<hr>
+<h2>3. CLASSE: O FORTE DE FRONTEIRA (Ordem &amp; Engenho Militar)</h2>
+<p><em>Assentamento planejado com disciplina militar, fossos geométricos e chaminés de ferraria. Aqui, a lei é mantida na ponta da baioneta e no estalar da pólvora.</em></p>
+<ul>
+<li><strong>Atributo Primário:</strong> Força &amp; Inteligência.</li>
+<li><strong>Poder Central:</strong> <em>Estrutura Blindada.</em> Todas as muralhas e paliçadas começam com $+2$ natural na Defesa e suportam 50% mais dano de cerco.</li>
+</ul>
+<h3>Escolha sua Subclasse:</h3>
+<h4>Subclasse A: A Bateria de Artilharia</h4>
+<p><em>Foco em poder de fogo concentrado, canhões de bronze, paióis protegidos e salvas de tiros.</em></p>
+<ol>
+<li><strong>Chuva de Chumbo:</strong> Defensores disparando das ameias com bacamartes e mosquetes causam dano duplo contra tropas inimigas em campo aberto.</li>
+<li><strong>Canhoneira Pesada:</strong> O forte pode instalar canhões que atingem alvos a até 500 metros antes que as tropas inimigas alcancem o alcance de arcos.</li>
+</ol>
+<h4>Subclasse B: A Feitoria Mercantil</h4>
+<p><em>Foco em controle alfandegário, entrepostos comerciais, balanças fiscais e forjas corporativas.</em></p>
+<ol>
+<li><strong>Dízimo da Fronteira:</strong> Todas as caravanas e mascates que cruzarem a comarca pagam taxas alfandegárias que rendem $+2$ Ouro por estação para o forte.</li>
+<li><strong>Oficina de Mestres:</strong> Armas e armaduras de ferro produzidas no forte recebem bônus de $+1$ permanente no dano ou na Defesa sem custo adicional.</li>
+</ol>
+<hr>
+<header class="part-header"><h1 class="part-title">🏰 CAPÍTULO 11: CATÁLOGO DE INSTALAÇÕES — COMUNS &amp; ESPECIAIS</h1></header>
+<p>Para planejar a evolução da sua comunidade, as obras são divididas em duas categorias:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                   DUAS CATEGORIAS DE EDIFICAÇÃO                        │
+├────────────────────────────────────────┬───────────────────────────────┤
+│ QUARTOS COMUNS (BÁSICOS)               │ INSTALAÇÕES ESPECIAIS         │
+│ • Sem limite rígido de espaço          │ • Limitadas pela Escala (Tier)│
+│ • Conforto, moradia e armazenamento    │ • Concedem poderes mecânicos  │
+│ • Custo baixo de madeira e barro       │ • Forjas, torres e oficinas   │
+└────────────────────────────────────────┴───────────────────────────────┘
+</code></pre>
+<hr>
+<h2>1. Quartos Comuns (Instalações Básicas — Sem Limite Rígido)</h2>
+<p><em>Estruturas essenciais que qualquer povoado ergue conforme cresce:</em></p>
+<ol>
+<li><strong>Malocas &amp; Choupanas de Palha/Barro:</strong> Abriga até 50 habitantes com conforto rústico. Custo: 1 Madeira.</li>
+<li><strong>Cozinha Comunitária &amp; Forno de Barro:</strong> Preparações diárias e fogueira de ensopado. Dormir com barriga cheia dá <strong>+1 PV temporário</strong> a todos os heróis. Custo: 1 Madeira, 1 Pedra.</li>
+<li><strong>Armazém de Farinha &amp; Secos:</strong> Guarda até 10 Unidades de Víveres protegidas de ratos e umidade. Custo: 2 Madeira.</li>
+<li><strong>Pátio do Terreiro / Praça Central:</strong> Ponto de encontro, dança e debates cívicos da vila. Custo: 1 Madeira.</li>
+<li><strong>Rancho das Mulas &amp; Estábulo:</strong> Abriga até 6 animais de carga e montaria com cochos limpos. Custo: 2 Madeira.</li>
+<li><strong>Curral de Cabras &amp; Galinheiro:</strong> Fornece ovos, leite e adubo fresco para as roças comunitárias. Custo: 1 Madeira.</li>
+<li><strong>Horta de Quintal &amp; Ervanário Simples:</strong> Ervas diárias para chás digestivos e curativos de corte. Custo: 1 Víveres.</li>
+</ol>
+<hr>
+<h2>2. Instalações Especiais (Salas de Poder — Limite por Escala)</h2>
+<p><em>Edificações complexas que exigem especialistas e concedem bônus de jogo diretos aos heróis e à vila:</em></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="left">Instalação Especial</th>
+<th align="left">Custo de Obra</th>
+<th align="center">Requisito</th>
+<th align="left">Benefício Exclusivo para os Heróis &amp; Domínio</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>🔨 Grande Forja de Fole</strong></td>
+<td align="left">4 Pedra, 3 Metal, 3 Ouro</td>
+<td align="center">Escala II</td>
+<td align="left">Reduz custo de fabricação de armas em 40%; permite trabalhar aço temperado.</td>
+</tr>
+<tr>
+<td align="left"><strong>🧪 Laboratório Alquímico</strong></td>
+<td align="left">3 Madeira, 2 Pedra, 1 Místico, 3 Ouro</td>
+<td align="center">Escala II</td>
+<td align="left">Produz <strong>2 Garrafadas ou Unguentos gratuitos</strong> para o grupo por estação.</td>
+</tr>
+<tr>
+<td align="left"><strong>🏹 Torre de Vigia com Sinal</strong></td>
+<td align="left">3 Madeira, 2 Pedra, 1 Ouro</td>
+<td align="center">Escala I</td>
+<td align="left">Impossível sofrer emboscadas; alerta batedores a 3 léguas de distância.</td>
+</tr>
+<tr>
+<td align="left"><strong>⚔️ Pátio de Armas &amp; Campo de Tiro</strong></td>
+<td align="left">3 Madeira, 2 Pedra, 2 Ouro</td>
+<td align="center">Escala I</td>
+<td align="left">Heróis que treinem aqui ganham <strong>+1 Dado de Inspiração Marcial (1d6)</strong> para a próxima aventura.</td>
+</tr>
+<tr>
+<td align="left"><strong>⛪ Oca dos Ancestrais / Santuário</strong></td>
+<td align="left">5 Pedra, 2 Madeira, 1 Místico, 4 Ouro</td>
+<td align="center">Escala II</td>
+<td align="left">Abençoa heróis com comunhão espiritual; protege o feudo contra assombrações.</td>
+</tr>
+<tr>
+<td align="left"><strong>🐕 Canil de Cães de Fila &amp; Caça</strong></td>
+<td align="left">2 Madeira, 1 Víveres, 2 Ouro</td>
+<td align="center">Escala I</td>
+<td align="left">Mantém matilha de 4 cães farejadores treinados para caçar invasores nas trincheiras.</td>
+</tr>
+<tr>
+<td align="left"><strong>📜 Arquivo de Mapas &amp; Cartografia</strong></td>
+<td align="left">4 Madeira, 2 Pedra, 3 Ouro</td>
+<td align="center">Escala II</td>
+<td align="left">Concede Vantagem em testes para decifrar mapas de minas antigas e rotas secretas.</td>
+</tr>
+<tr>
+<td align="left"><strong>♨️ Casa de Banhos das Águas Termais</strong></td>
+<td align="left">4 Pedra, 2 Madeira, 3 Ouro</td>
+<td align="center">Escala II</td>
+<td align="left">Descanso aqui remove 1 nível de exaustão e recupera <strong>todos os dados de Fôlego</strong>.</td>
+</tr>
+<tr>
+<td align="left"><strong>🍺 Alambique de Cachaça Fina</strong></td>
+<td align="left">2 Metal, 2 Madeira, 3 Ouro</td>
+<td align="center">Escala I</td>
+<td align="left">Rende <strong>+2 Unidades de Ouro</strong> líquido por estação em comércio e troca.</td>
+</tr>
+<tr>
+<td align="left"><strong>🔒 Carceragem &amp; Prisão de Tronco</strong></td>
+<td align="left">3 Madeira, 3 Pedra, 2 Ouro</td>
+<td align="center">Escala I</td>
+<td align="left">Permite prender até 10 jagunços ou espiões capturados com risco de fuga nulo.</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">🚩 CAPÍTULO 12: A CASA DAS BANDEIRAS &amp; A GUILDA DE EXPLORADORES</h1></header>
+<p>Conforme o assentamento cresce para a Escala II ou superior, os TerraTenentes não conseguem estar em todos os lugares ao mesmo tempo. Ao fundar uma <strong>Casa das Bandeiras</strong> (ou Guilda de Exploradores), os heróis podem contratar grupos de aventureiros, batedores e mateiros NPCs para desbravar os confins da fronteira.</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│             CICLO DE EXPEDIÇÃO TERCEIRIZADA (GUILDA NPC)              │
+│ 1. ESCOLHER MISSÃO ➔ 2. FINANCIAR EQUIPE ➔ 3. ROLAR 1d20 ➔ 4. COLETAR │
+└────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>1. Quadro de Missões Disponíveis (Role 1d12 no início da Estação)</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d12</th>
+<th align="left">Missão da Fronteira</th>
+<th align="center">Custo de Envio</th>
+<th align="left">Recompensa em Sucesso</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>1</strong></td>
+<td align="left"><strong>Mapear Pântano Inexplorado</strong></td>
+<td align="center">1 Ouro, 1 Víveres</td>
+<td align="left">Revela covil de monstros e rota fluvial segura (+1 Ponto de Ação).</td>
+</tr>
+<tr>
+<td align="center"><strong>2</strong></td>
+<td align="left"><strong>Escoltar Mascates na Garganta dos Ventos</strong></td>
+<td align="center">1 Ouro</td>
+<td align="left">2 Ouro líquido e +3 de Moral para o assentamento.</td>
+</tr>
+<tr>
+<td align="center"><strong>3</strong></td>
+<td align="left"><strong>Caçar Bando de Ladrões de Gado</strong></td>
+<td align="center">2 Ouro, 1 Metal</td>
+<td align="left">Recupera 2 Víveres em gado e traz 1d6 prisioneiros para trabalho.</td>
+</tr>
+<tr>
+<td align="center"><strong>4</strong></td>
+<td align="left"><strong>Explorar Mina Abandonada</strong></td>
+<td align="center">2 Ouro, 1 Madeira</td>
+<td align="left">Rende 3 Unidades de Minério de Ferro e mapa do subsolo.</td>
+</tr>
+<tr>
+<td align="center"><strong>5</strong></td>
+<td align="left"><strong>Resgatar Batedor Desaparecido</strong></td>
+<td align="center">1 Ouro</td>
+<td align="left">Salva veterano de guerra que se junta à milícia com nível 2.</td>
+</tr>
+<tr>
+<td align="center"><strong>6</strong></td>
+<td align="left"><strong>Investigar Ruínas da Velha Missão</strong></td>
+<td align="center">2 Ouro, 1 Místico</td>
+<td align="left">Rende 1 Relíquia Antiga e 1d100 na Tabela de Curiosidades.</td>
+</tr>
+<tr>
+<td align="center"><strong>7</strong></td>
+<td align="left"><strong>Caçar Monstro que Assombra o Rio</strong></td>
+<td align="center">3 Ouro, 1 Metal</td>
+<td align="left">Couro ou dentes da besta (2 Materiais Místicos) e alívio regional.</td>
+</tr>
+<tr>
+<td align="center"><strong>8</strong></td>
+<td align="left"><strong>Infiltrar Feitoria Inimiga</strong></td>
+<td align="center">2 Ouro</td>
+<td align="left">Revela planos de ataque inimigos (atrasa Relógio de Pressão em 2 fatias).</td>
+</tr>
+<tr>
+<td align="center"><strong>9</strong></td>
+<td align="left"><strong>Coletar Ervas Raras na Serra Nevada</strong></td>
+<td align="center">2 Ouro, 1 Víveres</td>
+<td align="left">3 Doses de Ervas Raras para Garrafadas Lendárias.</td>
+</tr>
+<tr>
+<td align="center"><strong>10</strong></td>
+<td align="left"><strong>Negociar Aliança com Tribo Isolada</strong></td>
+<td align="center">3 Ouro (em presentes)</td>
+<td align="left">Abre rota comercial segura que rende +2 Ouro por estação.</td>
+</tr>
+<tr>
+<td align="center"><strong>11</strong></td>
+<td align="left"><strong>Recuperar Baú de Pagamento Naufragado</strong></td>
+<td align="center">3 Ouro (em canoas)</td>
+<td align="left">Encontra cofre submerso com 8 Ouro em moedas coloniais!</td>
+</tr>
+<tr>
+<td align="center"><strong>12</strong></td>
+<td align="left"><strong>Desarmar Tocaia de Capitão-do-Mato</strong></td>
+<td align="center">3 Ouro, 2 Metal</td>
+<td align="left">Elimina capitão rival e apreende 3 armas de fogo e 2 cães de caça!</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h3>2. Tabela de Resolução da Expedição de NPCs (Role 1d20)</h3>
+<p>O Mestre ou jogador rola <strong>1d20 + Nível da Guilda (Escala do Assentamento)</strong>:</p>
+<ul>
+<li><strong>01–05: Desastre Total.</strong> A expedição foi emboscada ou devorada por feras. O investimento é perdido e 1 sobrevivente ferido retorna avisando de um perigo terrível à espreita (+1 fatia no Relógio de Pressão mais próximo).</li>
+<li><strong>06–11: Retirada com Perdas.</strong> Os exploradores encontraram perigos além de sua força. Eles voltam sem a recompensa principal, mas trazem informações úteis e metade do equipamento recuperado.</li>
+<li><strong>12–17: Sucesso Pleno!</strong> A missão foi concluída com louvor. Os heróis recebem a recompensa total listada no quadro.</li>
+<li><strong>18–20+: Sucesso Crítico &amp; Descoberta Extraordinária!</strong> Sucesso perfeito sem nenhuma baixa! Além da recompensa integral, os exploradores trazem um mapa secreto de tesouro ou um item de qualidade excepcional para o arsenal do assentamento!</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">📚 CAPÍTULO 13: PESQUISA, ACERVOS &amp; CONHECIMENTO ANCESTRAL</h1></header>
+<p>Quando o assentamento constrói um <strong>Arquivo de Mapas</strong>, uma <strong>Biblioteca de Manuscritos</strong> ou uma <strong>Casa de Reza Ancestral</strong>, os heróis podem gastar uma Ação de Entre-Aventuras para realizar <strong>Pesquisa Histórica e Arcanológica</strong>.</p>
+<h3>1. Áreas de Pesquisa Disponíveis:</h3>
+<ol>
+<li><strong>Vulnerabilidade de Monstros Lendários:</strong> Descubra o ponto fraco de uma criatura mitológica (ex: que a Boitatá cega-se com espelhos d&#39;água ou que o Mapinguari tem ferida secreta no umbigo). Concede <strong>Vantagem em todos os testes de ataque</strong> contra a fera.</li>
+<li><strong>Decifrar Mapas de Minas Antigas:</strong> Identifica veios de ouro e prata soterrados, revelando locais exatos de expedição lucrativa.</li>
+<li><strong>Tradução de Pergaminhos Arcanos:</strong> Permite aos conjuradores aprenderem novas magias ou criarem receitas inéditas de Garrafadas e Patuás.</li>
+<li><strong>Genealogias &amp; Chantagens Políticas:</strong> Encontra podres e dívidas de governadores, barões e magistrados, concedendo <strong>+3 em testes de Diplomacia e Coerção</strong> durante negociações de trégua.</li>
+</ol>
+<h3>2. Teste de Pesquisa (Astúcia + Escala da Biblioteca):</h3>
+<ul>
+<li><strong>Resultado 10–14:</strong> Conhecimento vago, lendas orais e rumores contraditórios.</li>
+<li><strong>Resultado 15–19:</strong> Conhecimento preciso com localização geográfica exata e detalhes das defesas.</li>
+<li><strong>Resultado 20+:</strong> Revelação magistral! O herói descobre não apenas a fraqueza do inimigo, mas a localização exata de um artefato capaz de subjugá-lo imediatamente!</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">🍲 CAPÍTULO 14: SERVIÇOS DE RANCHO, VENDA &amp; GASTRONOMIA DE FRONTEIRA</h1></header>
+<p>Na vastidão do sertão e das florestas, uma boa refeição quente e um rancho seco valem mais do que ouro em pó. Ao passar por vilas, feitorias e ranchos tropeiros, os heróis podem gastar moedas de prata para saborear pratos típicos que concedem <strong>Bônus de Vigor</strong>:</p>
+<h3>1. Cardápio da Fronteira &amp; Benefícios de Sustento:</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="left">Prato / Bebida Tradicional</th>
+<th align="center">Preço</th>
+<th align="left">Efeito Nutritivo para a Próxima Aventura</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Feijão Tropeiro com Toucinho &amp; Couve</strong></td>
+<td align="center">2 Pratas</td>
+<td align="left">Dá <strong>+3 Pontos de Vida Temporários</strong> e resiste à exaustão por marchas forçadas durante 24 horas.</td>
+</tr>
+<tr>
+<td align="left"><strong>Paçoca de Carne Seca no Pilão</strong></td>
+<td align="center">1 Prata</td>
+<td align="left">Ração leve e imperecível para viagem. Recupera <strong>1 dado de Fôlego extra</strong> durante descansos curtos na estrada.</td>
+</tr>
+<tr>
+<td align="left"><strong>Caldo de Mocotó Fervente com Farinha</strong></td>
+<td align="center">2 Pratas</td>
+<td align="left">Fortalece ossos e articulações; cura 1 nível de fadiga ou fraqueza muscular imediatamente.</td>
+</tr>
+<tr>
+<td align="left"><strong>Grolho de Farinha de Mandioca &amp; Rapadura</strong></td>
+<td align="center">5 Cobres</td>
+<td align="left">Alimento rápido de batedor. Evita fome por 12 horas inteiras sem pesar no bornal.</td>
+</tr>
+<tr>
+<td align="left"><strong>Galinha Caipira ao Molho Pardo</strong></td>
+<td align="center">3 Pratas</td>
+<td align="left">Comida de festa de arraial. Concede <strong>+1 em todos os testes de Vigor</strong> pelo dia seguinte.</td>
+</tr>
+<tr>
+<td align="left"><strong>Garapa Fresca com Limão-Cravo</strong></td>
+<td align="center">3 Cobres</td>
+<td align="left">Mata a sede ardente da canícula; remove desidratação e tontura de calor.</td>
+</tr>
+<tr>
+<td align="left"><strong>Trago de Cachaça da Serra Curtida em Ipê</strong></td>
+<td align="center">5 Cobres</td>
+<td align="left">Aquece o peito e alivia tremedeiras de medo (+2 em testes de Moral contra assombrações).</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h3>2. Serviços da Venda &amp; Rancho de Estrada:</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="left">Serviço de Povoado</th>
+<th align="center">Preço</th>
+<th align="left">Benefício Prático para o Grupo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Pernoite em Cama de Palha &amp; Galpão Seco</strong></td>
+<td align="center">1 Prata</td>
+<td align="left">Descanso seguro livre de mosquitos e sereno da noite; recupera todo o Fôlego.</td>
+</tr>
+<tr>
+<td align="left"><strong>Banho de Tina Quente com Sabão de Cinza</strong></td>
+<td align="center">5 Cobres</td>
+<td align="left">Higiene completa; remove carrapatos, sanguessugas e cheiro de caça (-2 na detecção por feras).</td>
+</tr>
+<tr>
+<td align="left"><strong>Ferrador de Tropas (4 Patas Ferradas)</strong></td>
+<td align="center">2 Pratas</td>
+<td align="left">Troca ferraduras gastas; a montaria ganha +2 léguas de velocidade por dia durante 1 mês.</td>
+</tr>
+<tr>
+<td align="left"><strong>Barbeiro-Sangrador (Extração de Peçonha)</strong></td>
+<td align="center">3 Pratas</td>
+<td align="left">Drena veneno de serpente, extrai dentes podres e limpa feridas gangrenadas com ferro quente.</td>
+</tr>
+<tr>
+<td align="left"><strong>Reza Forte com Ramo de Arruda (Rezadeira)</strong></td>
+<td align="center">Doação</td>
+<td align="left">Afasta quebranto e mau-olhado; concede <strong>1 Dado de Sorte (1d4)</strong> para rolar em qualquer teste do dia.</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">👷 CAPÍTULO 15: CATÁLOGO DE ESPECIALISTAS &amp; ARTÍFICES CONTRATÁVEIS</h1></header>
+<p>Um assentamento não progride apenas com braços fortes de lavoura: ele necessita de <strong>Mestres de Ofício</strong> com conhecimentos raros. Os heróis podem contratar especialistas em cidades coloniais ou resgatá-los de cativeiros para fixar moradia em sua comunidade:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="left">Especialista</th>
+<th align="center">Custo Mensal</th>
+<th align="left">Benefício Exclusivo para o Domínio e para os Heróis</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Mestre Pedreiro de Cantaria</strong></td>
+<td align="center">1 Ouro</td>
+<td align="left">Reduz o custo em Pedra de todas as fortificações em 25% e acelera obras em 1 estação.</td>
+</tr>
+<tr>
+<td align="left"><strong>Armeiro &amp; Ferreiro de Fole</strong></td>
+<td align="center">1 Ouro</td>
+<td align="left">Fornece munição de chumbo e pólvora infinita para a milícia; conserta armaduras quebradas de graça.</td>
+</tr>
+<tr>
+<td align="left"><strong>Curandeira &amp; Parteira Tradicional</strong></td>
+<td align="center">1 Ouro</td>
+<td align="left">Reduz mortes na colônia a zero; produz 1 Garrafada Básica gratuita por estação para a reserva.</td>
+</tr>
+<tr>
+<td align="left"><strong>Mateiro Velho / Guia de Sertão</strong></td>
+<td align="center">5 Pratas</td>
+<td align="left">Avisa a comunidade com 48 horas de antecedência sobre qualquer bando armado a 5 léguas de distância.</td>
+</tr>
+<tr>
+<td align="left"><strong>Tabelião &amp; Guarda-Livros Colonial</strong></td>
+<td align="center">1 Ouro</td>
+<td align="left">Audita estoques e colheitas, evitando desvios; aumenta a arrecadação de Ouro em +1 por estação.</td>
+</tr>
+<tr>
+<td align="left"><strong>Tropeiro-Chefe de Boiada e Mulas</strong></td>
+<td align="center">1 Ouro</td>
+<td align="left">Reduz o risco de perda de caravanas e comboios para 0% em rotas comerciais mapeadas.</td>
+</tr>
+<tr>
+<td align="left"><strong>Mestre de Artilharia de Bronze</strong></td>
+<td align="center">2 Ouro</td>
+<td align="left">Calibra canhões do forte, concedendo <strong>+2 de Ataque e +1d10 de Dano</strong> em tiros de muralha.</td>
+</tr>
+</tbody></table></div>
+<hr>
+<p><em>Manual do TerraTenente — Pela Terra, Pelo Povo, Pela Liberdade.</em></p>
+
+    </div>
+  </div>
+  <script>
+    function toggleColumns() {
+      const container = document.getElementById('bookContainer');
+      const btn = document.getElementById('colBtn');
+      container.classList.toggle('one-column-mode');
+      btn.textContent = container.classList.contains('one-column-mode') ? 'Modo: 1 Coluna (Clique p/ 2)' : 'Modo: 2 Colunas (Clique p/ 1)';
+    }
+    function setFontSize(val) {
+      document.documentElement.style.setProperty('--font-base', val);
+    }
+  </script>
+</body>
+</html>

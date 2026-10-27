@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Os TerraTenentes: Livro 2 do Mestre — Gestão, Bastiões & Cercos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 8mm 8mm 9mm 8mm;
+      @bottom-center {
+        content: counter(page);
+        font-family: 'Cinzel', 'Georgia', serif;
+        font-size: 7.5pt;
+        color: #666;
+      }
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    :root {
+      --primary-color: #2b4728;
+      --secondary-color: #8c6d3b;
+      --accent-color: #a73228;
+      --dark-bg: #1c261b;
+      --light-bg: #f9f8f5;
+      --border-color: #d1c7b7;
+      --text-color: #222220;
+      --font-base: 8.5pt;
+      --line-height-base: 1.28;
+    }
+
+    body {
+      font-family: 'Crimson Pro', 'Georgia', serif;
+      font-size: var(--font-base);
+      line-height: var(--line-height-base);
+      color: var(--text-color);
+      background-color: #d5d1c8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #1e1e1e;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+    }
+    .toolbar button, .toolbar select {
+      background: #2b4728;
+      color: #fff;
+      border: 1px solid #4a7545;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 11px;
+    }
+    .toolbar button:hover { background: #3a5f36; }
+    .toolbar .btn-print { background: #a73228; border-color: #c94035; }
+    .toolbar .btn-print:hover { background: #bd3a2f; }
+
+    @media print {
+      .toolbar { display: none !important; }
+      body { background-color: #fff; }
+      .sheet {
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        width: 100% !important;
+      }
+    }
+
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 15mm auto;
+      background: var(--light-bg);
+      padding: 10mm 12mm;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+
+    .content-columns {
+      column-count: 2;
+      column-gap: 6mm;
+      column-fill: auto;
+      text-align: justify;
+    }
+
+    .one-column-mode .content-columns {
+      column-count: 1 !important;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cinzel', 'Georgia', serif;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-top: 1.2em;
+      margin-bottom: 0.4em;
+      break-after: avoid;
+    }
+
+    .main-doc-header {
+      column-span: all;
+      text-align: center;
+      padding: 12mm 0 8mm 0;
+      margin-bottom: 6mm;
+      border-bottom: 2px solid var(--secondary-color);
+    }
+    .main-title {
+      font-size: 20pt;
+      color: var(--primary-color);
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .part-header {
+      column-span: all;
+      background: var(--dark-bg);
+      color: #f4eee1;
+      padding: 5mm 8mm;
+      margin: 8mm 0 4mm 0;
+      border-left: 5px solid var(--accent-color);
+      border-radius: 2px;
+      page-break-before: auto;
+    }
+    .part-title {
+      margin: 0;
+      font-size: 13pt;
+      color: #f4eee1;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title {
+      font-size: 11pt;
+      color: var(--primary-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.5px;
+      margin-top: 1.1em;
+      break-after: avoid;
+    }
+
+    h2 { font-size: 10pt; color: var(--primary-color); }
+    h3 { font-size: 9pt; color: #443e33; }
+    h4 { font-size: 8.5pt; color: #555; }
+
+    p { margin-top: 0; margin-bottom: 0.6em; text-indent: 1.2em; }
+    p:first-of-type, .part-header + p, h1 + p, h2 + p, h3 + p { text-indent: 0; }
+
+    blockquote {
+      margin: 0.6em 0;
+      padding: 4px 8px;
+      background: #f0ebe1;
+      border-left: 3px solid var(--secondary-color);
+      font-style: italic;
+      font-size: 0.95em;
+    }
+    blockquote p { text-indent: 0; margin-bottom: 0; }
+
+    ul, ol {
+      margin: 0.3em 0 0.6em 0;
+      padding-left: 14px;
+    }
+    li { margin-bottom: 0.2em; }
+
+    .table-wrapper, .table-wide-wrapper {
+      margin: 0.6em 0;
+      break-inside: avoid;
+    }
+    .table-wide-wrapper {
+      column-span: all;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.8pt;
+      line-height: 1.18;
+      background: #fff;
+      border: 1px solid var(--border-color);
+    }
+    th, td {
+      padding: 3.5px 5px;
+      border: 1px solid #ddd6c9;
+      text-align: left;
+    }
+    th {
+      background: #2b4728;
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 7.8pt;
+    }
+    tr:nth-child(even) td { background: #f7f5f0; }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: var(--border-color);
+      margin: 1em 0;
+    }
+
+    .page-break-before {
+      break-before: page;
+      page-break-before: always;
+    }
+
+    code {
+      font-family: 'Consolas', monospace;
+      font-size: 0.9em;
+      background: #eee9df;
+      padding: 1px 3px;
+      border-radius: 2px;
+    }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <span><strong>Os TerraTenentes: Livro 2 do Mestre — Gestão, Bastiões & Cercos</strong></span>
+    <button onclick="toggleColumns()" id="colBtn">Modo: 2 Colunas (Clique p/ 1)</button>
+    <select onchange="setFontSize(this.value)">
+      <option value="8pt">Densidade: Compacta (8pt)</option>
+      <option value="8.5pt" selected>Densidade: Normal (8.5pt)</option>
+      <option value="9pt">Densidade: Confortável (9pt)</option>
+    </select>
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
+  </div>
+  <div class="sheet" id="bookContainer">
+    <div class="content-columns">
+      <header class="main-doc-header"><h1 class="main-title">👑 OS TERRATENENTES — LIVRO II: O GUIA DO MESTRE</h1></header>
+<h2>Manual do Soberano, Fronteiras Vivas &amp; Guerras de Domínio</h2>
+<h3>Aldeias, Quilombos e Fortes</h3>
+<hr>
+<header class="part-header"><h1 class="part-title">📜 CAPÍTULO 1: A FILOSOFIA DO MESTRE DE FRONTEIRA</h1></header>
+<p>Conduzir uma campanha de <strong>Os TerraTenentes</strong> é uma experiência diferente de mestrar masmorras convencionais. Nos jogos tradicionais, os jogadores são turistas em um mundo estático. Aqui, <strong>os jogadores são os alicerces do mundo</strong>.</p>
+<h3>1. O Mundo Reage às Obras do Grupo</h3>
+<p>Se os jogadores erguem uma paliçada alta e uma forja de ferro, as redondezas sentem o impacto:</p>
+<ul>
+<li>Aldeões vizinhos pedem abrigo;</li>
+<li>Caçadores de recompensa e capitães-do-mato começam a planejar um ataque antes que o forte fique inexpugnável;</li>
+<li>Tribos nativas enviam emissários para saber se os heróis trazem paz ou machados de desmatamento.</li>
+</ul>
+<h3>2. A Regra de Ouro do Ritmo (80 / 20)</h3>
+<ul>
+<li><strong>20% da Sessão (10 a 15 minutos):</strong> O Turno de Domínio (<em>Downtime</em>). Acontece no início ou no final da sessão. O grupo recolhe a produção, alimenta os aldeões, declara 2 ações por herói e você rola 1d20 na tabela de eventos.</li>
+<li><strong>80% da Sessão:</strong> Aventura viva! As ações de gerenciamento devem alimentar as missões. Se os heróis querem forjar uma couraça de placas ou canhões para a muralha, a missão de hoje é encontrar minério de ferro nas serras proibidas.</li>
+</ul>
+<h3>3. A Lei de Ouro: &quot;Telegrafe o Perigo!&quot;</h3>
+<p>Nunca destrua o assentamento dos jogadores em uma rolagem surpresa. Nada é mais frustrante do que o Mestre dizer: <em>&quot;Vocês acordam e o celeiro pegou fogo, percam 5 víveres.&quot;</em></p>
+<ul>
+<li><strong>A Maneira Correta:</strong> <em>“Os vigias da torre notaram fumaça no horizonte ao sul. Dois batedores encontraram estacas com crânios marcando o território dos bandeirantes. Vocês têm três dias antes que a primeira tropa chegue. Como preparam suas defesas?”</em>
+Dê aos heróis o prazer de usar as armadilhas, batedores e paliçadas que construíram com tanto suor!</li>
+</ul>
+<hr>
+<h3>4. A Ordem do Jogo: O Ciclo Tripartite &amp; Gestão à Distância</h3>
+<p>Uma campanha flui por três engrenagens bem calibradas que nunca travam a exploração:</p>
+<ol>
+<li><strong>Aventuras Narradas (80% do tempo):</strong> Histórias centradas nos personagens, expedições na mata, caça a predadores ferozes e socorro a comunidades vizinhas.</li>
+<li><strong>Entre-Aventuras (Downtime Traduzido):</strong> O momento em que os heróis cuidam de si: recuperação de Fôlego, forja de armas de mestre, destilação de garrafadas, treino e comunhão com a comunidade.</li>
+<li><strong>Turno do Bastião (Presencial ou À Distância):</strong> A comunidade não congela enquanto os heróis viajam! Ordens podem ser emitidas <strong>de dentro da vila</strong> ou <strong>à distância</strong> (usando pombos-correio, falcões, estafetas a cavalo, fogueiras de sinal ou rezas espirituais) em três ritmos:<ul>
+<li><strong>Ciclo Curto (3 Dias):</strong> Ações de manutenção leve, pequenas rondas de batedores e boatos de rancho.</li>
+<li><strong>Ciclo Médio (6 Dias / 1 Semana de Fronteira):</strong> Produção em lote de oficinas, envio de comboios mercantis e avanço de batedores inimigos (+1 fatia de relógio).</li>
+<li><strong>Ciclo Longo (30 Dias / 1 Mês de Fronteira):</strong> Conclusão de Grandes Instalações, receita de dividendos e tributos, viradas climáticas de estação e cercos militares.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<header class="part-header"><h1 class="part-title">🏕️ CAPÍTULO 2: OS TRÊS MODELOS DE ASSENTAMENTO</h1></header>
+<p>Cada tipo de domínio possui uma alma, benefícios mecânicos e desafios próprios.</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                        MODELOS DE DOMÍNIO                              │
+├───────────────────┬────────────────────────────┬───────────────────────┤
+│ ALDEIA ANCESTRAL  │ QUILOMBO SOBERANO          │ FORTE DE FRONTEIRA    │
+│ • Simbiose vegetal│ • Resistência oculta       │ • Ordem e artilharia  │
+│ • Cura tradicional│ • Táticas de guerrilha     │ • Pólvora e forjas    │
+│ • Rituais da terra│ • Moral comunitária férrea │ • Guarnição regular   │
+└───────────────────┴────────────────────────────┴───────────────────────┘
+</code></pre>
+<hr>
+<h2>1. A ALDEIA ANCESTRAL</h2>
+<p><em>Assentamentos construídos nas clareiras das matas, às margens de grandes rios ou no sopé de serras sagradas. Não desafiam a natureza: integram-se a ela.</em></p>
+<ul>
+<li><strong>Liderança Típica:</strong> Conselho de Anciãos, Caciques de Guerra e Pajés/xamãs.</li>
+<li><strong>Estilo Arquitetônico:</strong> Ocas comunitárias de taquara e palha de palmeira, hortas consorciadas de mandioca, milho e cará, caminhos fluviais protegidos por canoas rápidas.</li>
+<li><strong>Bônus Mecânicos Exclusivos:</strong><ul>
+<li><strong>Mata Farta:</strong> Produz $+2$ Unidades de Víveres extras em toda estação de primavera e verão.</li>
+<li><strong>Conexão Espiritual:</strong> +2 em todos os testes de Sabedoria do domínio para resistir a pragas e febres.</li>
+<li><strong>Rituais Sagrados:</strong> Seus guerreiros recebem bênçãos com urucum e jenipapo que concedem $+2$ de vida temporária na primeira rodada de combate.</li>
+</ul>
+</li>
+<li><strong>Vulnerabilidades:</strong> Estruturas de madeira e palha são vulneráveis a flechas incendiárias e artilharia pesada.</li>
+</ul>
+<hr>
+<h2>2. O QUILOMBO SOBERANO</h2>
+<p><em>Comunidades fortificadas em vales de difícil acesso, no alto de morros pedregosos ou no coração de pântanos intransponíveis. Nascidos da fuga da escravidão e da aliança entre povos oprimidos.</em></p>
+<ul>
+<li><strong>Liderança Típica:</strong> Líderes eleitos por bravura, comandantes de guerrilha e matriarcas sábias.</li>
+<li><strong>Estilo Arquitetônico:</strong> Mocambos camuflados pela copa das árvores, fossos camuflados com estacas de jatobá envenenadas (<em>estrepes</em>), ferrarias subterrâneas e trilhas falsas que levam perseguidores para atoleiros.</li>
+<li><strong>Bônus Mecânicos Exclusivos:</strong><ul>
+<li><strong>Caminhos de Espinho:</strong> Invasores que tentem atacar o quilombo sofrem desvantagem em testes de marcha e sofrem $2d6$ de dano de armadilhas naturais antes mesmo de verem a primeira paliçada.</li>
+<li><strong>Moral de Aço:</strong> A Moral do quilombo começa em <strong>85 pontos</strong> (em vez de 50) e tem Vantagem em testes para evitar pânico e motim.</li>
+<li><strong>Rede de Irmandade:</strong> Refugiados acolhidos tornam-se trabalhadores dedicados sem custo de atração.</li>
+</ul>
+</li>
+<li><strong>Vulnerabilidades:</strong> Se a localização for descoberta por traição, atrai grandes expedições de caçadores de recompensa e tropas do governo colonial.</li>
+</ul>
+<hr>
+<h2>3. O FORTE DE FRONTEIRA</h2>
+<p><em>Construções militares imponentes erguidas em encruzilhadas estratégicas, confluência de rios navegáveis ou passos de montanha. Erguidos por soldados rebeldes, bandeirantes dissidentes ou pioneiros destemidos.</em></p>
+<ul>
+<li><strong>Liderança Típica:</strong> Capitão-Governador, Conselho de Oficiais e Mestres de Engenho.</li>
+<li><strong>Estilo Arquitetônico:</strong> Paliçadas duplas de toras de lei com terrapleno interno, fossos secos com pontes levadiças, plataformas de tiro para arcabuzes e canhões e paióis de pólvora protegidos por alvenaria.</li>
+<li><strong>Bônus Mecânicos Exclusivos:</strong><ul>
+<li><strong>Paredão Militar:</strong> +2 natural na Defesa das muralhas contra qualquer ataque físico.</li>
+<li><strong>Poder de Fogo:</strong> Cada unidade de atiradores na muralha dispara salvas de mosquetes que causam dano em área ($3d8$ em cone).</li>
+<li><strong>Forjas de Ferro Batido:</strong> Produz $+2$ Minério por estação e equipa tropas regulares com lanças de ponta de aço e couraças leves.</li>
+</ul>
+</li>
+<li><strong>Vulnerabilidades:</strong> Alto custo de manutenção em ouro e farinha; dependência de rotas comerciais externas para insumos finos.</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">📈 CAPÍTULO 3: AS 4 ESCALAS DO DOMÍNIO (TIERS)</h1></header>
+<p>À medida que a comunidade cresce em população, fama e força militar, ela sobe de <strong>Escala</strong>:</p>
+<pre><code class="language-mermaid">graph LR
+    T1[Escala I: O Pouso / Mocambo] --&gt;|100+ hab &amp; Paliçada| T2[Escala II: A Aldeia / Forte]
+    T2 --&gt;|1.000+ hab &amp; Muralha de Pedra| T3[Escala III: A Cidadela Livre]
+    T3 --&gt;|10.000+ hab &amp; Aliança Regional| T4[Escala IV: O Território Soberano]
+</code></pre>
+<h3>Detalhamento das Escalas:</h3>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="6">
+<thead>
+<tr>
+<th align="center">Escala</th>
+<th align="left">Denominação</th>
+<th align="center">População</th>
+<th align="center">Defesa Base</th>
+<th align="center">Instalações Máx.</th>
+<th align="center">Raio de Patrulha</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>I</strong></td>
+<td align="left"><strong>O Pouso / Mocambo</strong></td>
+<td align="center">10 a 100 hab.</td>
+<td align="center"><strong>+2</strong></td>
+<td align="center">Até 3 obras</td>
+<td align="center">1 légua (6 km)</td>
+</tr>
+<tr>
+<td align="center"><strong>II</strong></td>
+<td align="left"><strong>Aldeia / Quilombo / Forte</strong></td>
+<td align="center">100 a 1.000 hab.</td>
+<td align="center"><strong>+4</strong></td>
+<td align="center">Até 6 obras</td>
+<td align="center">3 léguas (18 km)</td>
+</tr>
+<tr>
+<td align="center"><strong>III</strong></td>
+<td align="left"><strong>Cidadela Amuralhada</strong></td>
+<td align="center">1.000 a 10.000 hab.</td>
+<td align="center"><strong>+6</strong></td>
+<td align="center">Até 10 obras</td>
+<td align="center">6 léguas (36 km)</td>
+</tr>
+<tr>
+<td align="center"><strong>IV</strong></td>
+<td align="left"><strong>Território Soberano</strong></td>
+<td align="center">10.000+ hab.</td>
+<td align="center"><strong>+8</strong></td>
+<td align="center">15+ obras</td>
+<td align="center">Toda a Província</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">⚔️ CAPÍTULO 4: O MAPA POLÍTICO &amp; FACÇÕES DE FRONTEIRA</h1></header>
+<p>O assentamento não existe no vácuo. Ao redor dele operam <strong>Cinco Grandes Forças</strong>. O Mestre acompanha a relação da comunidade com cada facção em uma escala de reputação:</p>
+<pre><code>[-2: Guerra de Morte] ──&gt; [-1: Rivalidade Tensa] ──&gt; [0: Neutro] ──&gt; [+1: Trégua/Comércio] ──&gt; [+2: Aliança de Sangue]
+</code></pre>
+<h3>1. A Coroa Colonial &amp; O Governador-Geral</h3>
+<ul>
+<li><strong>Objetivo:</strong> Impor a soberania do império, cobrar 20% de impostos sobre todo ouro e ferro e desmantelar comunidades autônomas.</li>
+<li><strong>Recursos:</strong> Regimentos de infantaria regular, navios de guerra fluviais e decretos reais de expropriação.</li>
+<li><strong>Ganchos:</strong> Envio de cobradores de impostos arrogantes escoltados por soldados; ofertas traiçoeiras de &quot;anistia real&quot; se o grupo entregar fugitivos.</li>
+</ul>
+<h3>2. Os Bandeirantes &amp; Caçadores de Recompensa</h3>
+<ul>
+<li><strong>Objetivo:</strong> Dinheiro rápido, escravização de nativos e quilombolas, pilhagem de depósitos minerais e queima de roças.</li>
+<li><strong>Recursos:</strong> Batedores cruéis, cães de caça farejadores e milícias armadas com bacamartes.</li>
+<li><strong>Ganchos:</strong> Incursões noturnas de raptores nas lavouras periféricas; emboscadas contra carretas de suprimento do grupo.</li>
+</ul>
+<h3>3. As Nações Indígenas Independentes</h3>
+<ul>
+<li><strong>Objetivo:</strong> Preservar suas terras ancestrais, rios sagrados e locais de sepultamento contra invasores.</li>
+<li><strong>Recursos:</strong> Flecheiros com peçonha mortal, conhecimento total dos atalhos das matas e auxílio de feras e espíritos.</li>
+<li><strong>Ganchos:</strong> Conflitos territoriais acidentais por caçadores do grupo; propostas de pacto de defesa mútua contra bandeirantes.</li>
+</ul>
+<h3>4. Os Barões de Terra &amp; Senhores de Engenho</h3>
+<ul>
+<li><strong>Objetivo:</strong> Expandir seus latifúndios de cana e gado, monopolizar os portos fluviais e esmagar qualquer concorrência livre.</li>
+<li><strong>Recursos:</strong> Jagunços particulares armados, influência junto a juízes coloniais e estoques fartos de ouro.</li>
+<li><strong>Ganchos:</strong> Tentativas de suborno de líderes da vila; queima criminosa de pastos e bloqueio de estradas.</li>
+</ul>
+<h3>5. Os Mercadores Clandestinos &amp; Piratas de Rio</h3>
+<ul>
+<li><strong>Objetivo:</strong> Lucro no contrabando de pólvora, tabaco, sal e ferramentas de ferro longe dos olhos da coroa.</li>
+<li><strong>Recursos:</strong> Barcos a vapor ou canoas rápidas, redes de espiões nos portos litorâneos e moedas estrangeiras.</li>
+<li><strong>Ganchos:</strong> Venda de armas raras por preços inflacionados; pedidos para esconder cargas ilegais dentro das muralhas do assentamento.</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">🛡️ CAPÍTULO 5: O SISTEMA DE CERCO E GUERRA EM MASSA</h1></header>
+<p>Quando uma expedição inimiga marchar para arrasar o assentamento, você <strong>não precisa de dezenas de miniaturas</strong>. Conduza a batalha no sistema ágil em <strong>3 Fases</strong>:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│ FASE 1: EMBOSCADAS NAS BRENHAS &amp; ARTILHARIA DE APROXIMAÇÃO             │
+│ Os invasores precisam atravessar a mata e os atoleiros.               │
+│ • Batedores e arqueiros do grupo atacam das copas das árvores.         │
+│ • Teste de Destreza / Astúcia do Domínio vs Marcha do Inimigo.         │
+│ • Se o grupo preparou estrepes/trincheiras: Inimigo perde 25% da tropa!│
+├────────────────────────────────────────────────────────────────────────┤
+│ FASE 2: O ASSALTO ÀS PALIÇADAS E PORTÕES                              │
+│ O inimigo tenta escalar ou quebrar a muralha com aríetes ou machados.  │
+│ • A Defesa da Fortificação absorve o impacto inicial.                  │
+│ • Capitães de armas lideram a defesa das ameias com lanças e óleo.     │
+│ • Se as muralhas cederem: A luta passa para as vielas da vila!         │
+├────────────────────────────────────────────────────────────────────────┤
+│ FASE 3: O CONFRONTO DOS CAMPEÕES (DUELO DECISIVO)                     │
+│ Os heróis enfrentam o Comandante Inimigo (o Capitão-do-Mato, o Coronel │
+│ tirano ou o Feiticeiro mercenário) em combate direto na praça central! │
+│ • A derrota do líder faz o restante da tropa invasora debandar!       │
+└────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>Resultados da Batalha:</h3>
+<ul>
+<li><strong>Vitória Brilhante:</strong> O inimigo foge em pânico abandonando carroças de armas e munição. O domínio ganha $+20$ Moral e $+3$ Metal recuperado dos invasores.</li>
+<li><strong>Vitória com Cicatrizes:</strong> O ataque foi repelido, mas as paliçadas sofreram danos graves e houve luto entre os aldeões (perda de 1d4 de População útil e necessidade de reparos).</li>
+<li><strong>Derrota / Retirada Estratégica:</strong> Os heróis devem cobrir a fuga dos civis pelos caminhos secretos da mata. A vila é incendiada, mas o povo sobreviveu com suas armas e sementes para fundar um novo bastião e buscar vingança!</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">🎲 CAPÍTULO 6: TABELAS DE EVENTOS REGIONAIS &amp; DESASTRES (D100)</h1></header>
+<p>Sempre que rodar o <strong>Passo 4 do Turno de Downtime</strong>, role <strong>1d100</strong> (ou 1d20 para eventos rápidos):</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">d100</th>
+<th align="left">Evento</th>
+<th align="left">Consequência Mecânica</th>
+<th align="left">Gancho de Aventura</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01–05</strong></td>
+<td align="left"><strong>Peste / Febre das Águas</strong></td>
+<td align="left">Teste de Constituição CD 14. Falha: -15 Moral e 10% da população acamada.</td>
+<td align="left">O curandeiro precisa buscar a flor da cura no pântano proibido.</td>
+</tr>
+<tr>
+<td align="center"><strong>06–10</strong></td>
+<td align="left"><strong>Incursão Noturna de Jagunços</strong></td>
+<td align="left">Tentativa de queimar os silos de comida. Sentinelas fazem teste de Percepção.</td>
+<td align="left">Bando capturado revela que foram pagos pelo Barão vizinho.</td>
+</tr>
+<tr>
+<td align="center"><strong>11–15</strong></td>
+<td align="left"><strong>Seca Inclemente / Sol de Fogo</strong></td>
+<td align="left">Produção de lavouras cai pela metade nesta estação.</td>
+<td align="left">Poços secam; o grupo precisa desviar o riacho de uma serra perigosa.</td>
+</tr>
+<tr>
+<td align="center"><strong>16–20</strong></td>
+<td align="left"><strong>Tromba d’Água / Enchente de Rio</strong></td>
+<td align="left">Pontes e trapiches sofrem avarias (-1 Madeira para reparos).</td>
+<td align="left">As águas trazem o cadáver de um nobre com um mapa misterioso.</td>
+</tr>
+<tr>
+<td align="center"><strong>21–25</strong></td>
+<td align="left"><strong>Motim de Povoadores</strong></td>
+<td align="left">Moral em baixa gera protestos contra a liderança.</td>
+<td align="left">Um agitador nas tavernas acusa os heróis de reterem ouro.</td>
+</tr>
+<tr>
+<td align="center"><strong>26–30</strong></td>
+<td align="left"><strong>Cobrador da Coroa com Escolta</strong></td>
+<td align="left">Exige 15% de todo o ouro em taxas atrasadas.</td>
+<td align="left">Pagar o dízimo da coroa ou expulsar as tropas do rei a tiros?</td>
+</tr>
+<tr>
+<td align="center"><strong>31–35</strong></td>
+<td align="left"><strong>Ataque de Feras Territoriais</strong></td>
+<td align="left">Bando de jacarés gigantes ou lobos-guarás cerca as roças.</td>
+<td align="left">O caçador lidera uma expedição para exterminar o ninho.</td>
+</tr>
+<tr>
+<td align="center"><strong>36–40</strong></td>
+<td align="left"><strong>Espião Entre Nós</strong></td>
+<td align="left">Plantas das defesas da vila foram furtadas da Oca Maior.</td>
+<td align="left">O ladino do grupo investiga os forasteiros recém-chegados.</td>
+</tr>
+<tr>
+<td align="center"><strong>41–50</strong></td>
+<td align="left"><strong>Estação Serena de Paz</strong></td>
+<td align="left">Vida calma; colheitas rotineiras (+5 Moral).</td>
+<td align="left">Aldeões celebram casamentos e festejam com música sertaneja.</td>
+</tr>
+<tr>
+<td align="center"><strong>51–60</strong></td>
+<td align="left"><strong>Caravana de Mascates &amp; Ciganos</strong></td>
+<td align="left">Venda de tecidos, sal, pederneiras e itens mágicos raros.</td>
+<td align="left">O líder da caravana oferece comprar produtos do feudo com 30% de lucro.</td>
+</tr>
+<tr>
+<td align="center"><strong>61–70</strong></td>
+<td align="left"><strong>Comboio de Retirantes Famintos</strong></td>
+<td align="left">$+150$ almas chegam pedindo abrigo e dispostas a trabalhar.</td>
+<td align="left">Se acolhidos, o domínio ganha mão de obra, mas consome +2 comida.</td>
+</tr>
+<tr>
+<td align="center"><strong>71–80</strong></td>
+<td align="left"><strong>Descoberta de Veio de Ferro/Ouro</strong></td>
+<td align="left">Mineiros acham uma caverna rica em minério nos morros (+4 Metal).</td>
+<td align="left">A caverna conecta-se a galerias antigas habitadas por trogloditas.</td>
+</tr>
+<tr>
+<td align="center"><strong>81–85</strong></td>
+<td align="left"><strong>Artesão Mestre Pede Cidadania</strong></td>
+<td align="left">Um lendário armeiro ou mestre cervejeiro quer morar na vila.</td>
+<td align="left">Reduz permanentemente o custo de forja de armas em 1 Metal.</td>
+</tr>
+<tr>
+<td align="center"><strong>86–90</strong></td>
+<td align="left"><strong>Pacto com Tribo das Águas</strong></td>
+<td align="left">Canoeiros nativos oferecem rota segura pelo rio em troca de ferro.</td>
+<td align="left">O domínio passa a receber $+2$ Víveres em pescado por estação.</td>
+</tr>
+<tr>
+<td align="center"><strong>91–95</strong></td>
+<td align="left"><strong>Aliança Militar com Quilombo Vizinho</strong></td>
+<td align="left">Pacto de socorro mútuo: caso atacados, reforços chegam em 2 dias.</td>
+<td align="left">Os heróis são convidados para o conselho dos grandes chefes livres.</td>
+</tr>
+<tr>
+<td align="center"><strong>96–00</strong></td>
+<td align="left"><strong>Ano da Abundância &amp; Glória!</strong></td>
+<td align="left">As colheitas quebram recordes! Ganhe <strong>+1 Reserva de Emergência</strong>, <strong>+20 Moral</strong> e renome em toda a fronteira!</td>
+<td align="left">Nobres e governadores reconhecem a soberania do domínio!</td>
+</tr>
+</tbody></table></div>
+<hr>
+<hr>
+<header class="part-header"><h1 class="part-title">🎭 CAPÍTULO 8: GERADOR DE NPCs DE FRONTEIRA EM 5 SEGUNDOS</h1></header>
+<p>Gere qualquer habitante, tropeiro ou viajante em instantes combinando quatro rolagens rápidas:</p>
+<pre><code>[Ocupação da Terra] + [Maneirismo / Traço] + [Atitude Inicial] + [Segredo ou Necessidade]
+</code></pre>
+<h3>1. Ocupação da Terra (1d20)</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d20</th>
+<th align="left">Ocupação</th>
+<th align="left">Equipamento Típico / Detalhe Visual</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01</strong></td>
+<td align="left"><strong>Balseiro de Rio</strong></td>
+<td align="left">Vara longa de peroba, chapéu de palha desfiado, calo nas mãos.</td>
+</tr>
+<tr>
+<td align="center"><strong>02</strong></td>
+<td align="left"><strong>Tropeiro / Condutor de Mulas</strong></td>
+<td align="left">Poncho de lã grossa, esporas de latão, chicote de couro cru.</td>
+</tr>
+<tr>
+<td align="center"><strong>03</strong></td>
+<td align="left"><strong>Parteira &amp; Rezadeira</strong></td>
+<td align="left">Sacola com ramos de arruda e alecrim, terço de sementes, olhos atentos.</td>
+</tr>
+<tr>
+<td align="center"><strong>04</strong></td>
+<td align="left"><strong>Lenhador de Jacarandá</strong></td>
+<td align="left">Machado de duas mãos afiado, braços musculosos, cheiro de seiva.</td>
+</tr>
+<tr>
+<td align="center"><strong>05</strong></td>
+<td align="left"><strong>Coureiro / Curtidor</strong></td>
+<td align="left">Avental pesado de sola, faca de descarne, mãos manchadas de tanino.</td>
+</tr>
+<tr>
+<td align="center"><strong>06</strong></td>
+<td align="left"><strong>Coletor de Resina / Seringueiro</strong></td>
+<td align="left">Faca de sangria, tigelas de barro nas costas, pernas protegidas contra cobras.</td>
+</tr>
+<tr>
+<td align="center"><strong>07</strong></td>
+<td align="left"><strong>Boticário de Garrafadas</strong></td>
+<td align="left">Garrafas de vidro escuras com raízes e cachaça, almofariz de pedra.</td>
+</tr>
+<tr>
+<td align="center"><strong>08</strong></td>
+<td align="left"><strong>Canoeiro Nativo</strong></td>
+<td align="left">Remo entalhado com desenhos tribais, colar de dentes de piranha.</td>
+</tr>
+<tr>
+<td align="center"><strong>09</strong></td>
+<td align="left"><strong>Ferreiro de Enxadas &amp; Foices</strong></td>
+<td align="left">Avental chamuscado, martelo pesado, fôlego de fole.</td>
+</tr>
+<tr>
+<td align="center"><strong>10</strong></td>
+<td align="left"><strong>Garimpeiro Clandestino</strong></td>
+<td align="left">Bateia de madeira gasta, saco de couro com fagulhas de pirita, olhar febril.</td>
+</tr>
+<tr>
+<td align="center"><strong>11</strong></td>
+<td align="left"><strong>Caçador de Onça</strong></td>
+<td align="left">Lança de ponta reforçada com osso, cão magro e valente na coleira.</td>
+</tr>
+<tr>
+<td align="center"><strong>12</strong></td>
+<td align="left"><strong>Tecelã de Algodão Cru</strong></td>
+<td align="left">Fusos de madeira, novelo de fio rústico, dedos ágeis e calejados.</td>
+</tr>
+<tr>
+<td align="center"><strong>13</strong></td>
+<td align="left"><strong>Desertor Fardado</strong></td>
+<td align="left">Jaqueta militar rasgada sem insígnias, espingarda sem pólvora, medo da forca.</td>
+</tr>
+<tr>
+<td align="center"><strong>14</strong></td>
+<td align="left"><strong>Cozinheira de Rancho</strong></td>
+<td align="left">Colher de pau enorme, panelão de ferro fundido, cheiro de alho e feijão.</td>
+</tr>
+<tr>
+<td align="center"><strong>15</strong></td>
+<td align="left"><strong>Coletor de Dízimo da Coroa</strong></td>
+<td align="left">Livro de atas encadernado, balancinha de latão, escolta armada nervosa.</td>
+</tr>
+<tr>
+<td align="center"><strong>16</strong></td>
+<td align="left"><strong>Capataz Arrependido</strong></td>
+<td align="left">Chicote enrolado no cinto que se recusa a usar, olhar cabisbaixo.</td>
+</tr>
+<tr>
+<td align="center"><strong>17</strong></td>
+<td align="left"><strong>Carpinteiro de Ocas &amp; Carretas</strong></td>
+<td align="left">Trena de barbante, enxó de ferro, lascas de cedro no cabelo.</td>
+</tr>
+<tr>
+<td align="center"><strong>18</strong></td>
+<td align="left"><strong>Mascate Itinerante</strong></td>
+<td align="left">Burro carregado de pentes, sal, agulhas, fumo e espelhos baratos.</td>
+</tr>
+<tr>
+<td align="center"><strong>19</strong></td>
+<td align="left"><strong>Mestre de Alambique</strong></td>
+<td align="left">Serpentina de cobre brilhante, garrafa de aguardente envelhecida em jequitibá.</td>
+</tr>
+<tr>
+<td align="center"><strong>20</strong></td>
+<td align="left"><strong>Violeiro / Cantador Cego</strong></td>
+<td align="left">Viola caipira de dez cordas, memória viva de todas as lendas e fofocas da comarca.</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h3>2. Maneirismo &amp; Traço Marcante (1d20)</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d20</th>
+<th align="left">Maneirismo Marcante</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01</strong></td>
+<td align="left">Masca fumo de rolo o tempo todo, cuspindo no chão com precisão.</td>
+</tr>
+<tr>
+<td align="center"><strong>02</strong></td>
+<td align="left">Aperta um patuá ou saquinho de ervas no peito antes de responder qualquer pergunta.</td>
+</tr>
+<tr>
+<td align="center"><strong>03</strong></td>
+<td align="left">Fala olhando de esguelha para as árvores, como se esperasse uma flecha das folhagens.</td>
+</tr>
+<tr>
+<td align="center"><strong>04</strong></td>
+<td align="left">Limpa as unhas obsessivamente com a ponta de uma faca de mato.</td>
+</tr>
+<tr>
+<td align="center"><strong>05</strong></td>
+<td align="left">Benze-se com a mão esquerda toda vez que ouve o nome de uma besta da selva.</td>
+</tr>
+<tr>
+<td align="center"><strong>06</strong></td>
+<td align="left">Anda manquejando da perna esquerda por causa de uma picada de cascavel antiga.</td>
+</tr>
+<tr>
+<td align="center"><strong>07</strong></td>
+<td align="left">Fala baixo, quase sussurrando, puxando o ouvinte para perto pela manga.</td>
+</tr>
+<tr>
+<td align="center"><strong>08</strong></td>
+<td align="left">Ri alto demais de piadas sem graça para quebrar o medo da noite.</td>
+</tr>
+<tr>
+<td align="center"><strong>09</strong></td>
+<td align="left">Tem os dentes cerrados e a pele curtida pelo sol inclemente do sertão.</td>
+</tr>
+<tr>
+<td align="center"><strong>10</strong></td>
+<td align="left">Usa provérbios e ditos populares para tudo (<em>&quot;Macaco velho não pula em galho seco&quot;</em>).</td>
+</tr>
+<tr>
+<td align="center"><strong>11</strong></td>
+<td align="left">Tem uma tosse seca e rouca provocada pela fumaça de queimada.</td>
+</tr>
+<tr>
+<td align="center"><strong>12</strong></td>
+<td align="left">Nunca fica de costas para a porta ou para a saída da cabana.</td>
+</tr>
+<tr>
+<td align="center"><strong>13</strong></td>
+<td align="left">Tem uma cicatriz profunda de garra de onça atravessando o braço direito.</td>
+</tr>
+<tr>
+<td align="center"><strong>14</strong></td>
+<td align="left">Não olha nos olhos dos heróis; foca fixamente nas armas e botas deles.</td>
+</tr>
+<tr>
+<td align="center"><strong>15</strong></td>
+<td align="left">Acaricia a coronha da espingarda ou o cabo do facão como se fosse um animal de estimação.</td>
+</tr>
+<tr>
+<td align="center"><strong>16</strong></td>
+<td align="left">Oferece um gole de aguardente de cabaça antes de tratar de qualquer negócio.</td>
+</tr>
+<tr>
+<td align="center"><strong>17</strong></td>
+<td align="left">Fala muito devagar, pesando cada palavra como se custasse ouro.</td>
+</tr>
+<tr>
+<td align="center"><strong>18</strong></td>
+<td align="left">Usa chapéu de couro de aba larga com abelhas secas ou dentes presos na fita.</td>
+</tr>
+<tr>
+<td align="center"><strong>19</strong></td>
+<td align="left">Gesticula muito com os braços, invadindo o espaço de quem escuta.</td>
+</tr>
+<tr>
+<td align="center"><strong>20</strong></td>
+<td align="left">É extremamente seco e desconfiado: para ele, todo forasteiro é capitão-do-mato até prova em contrário.</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h3>3. Atitude Inicial (1d10)</h3>
+<ul>
+<li><strong>01–02 (Hostil / Desconfiado):</strong> Mãos pousadas na arma; responde com monossílabos; ameaça assobiar para a guarda.</li>
+<li><strong>03–04 (Apressado / Ríspido):</strong> <em>&quot;A chuva está armando e a farinha vai molhar! Falem logo o que querem!&quot;</em></li>
+<li><strong>05–06 (Neutro / Comerciante):</strong> Interessa-se se houver troca de ferro, sal ou prata; pragmático e cauteloso.</li>
+<li><strong>07–08 (Acolhedor / Curioso):</strong> Pede notícias de outras vilas, oferece assento no toco e água fresca de moringa.</li>
+<li><strong>09 (Aterrorizado):</strong> Acha que os heróis são jagunços vingativos; gagueja e treme nas bases.</li>
+<li><strong>10 (Leal / Entusiasmado):</strong> Reconhece a fama dos TerraTenentes e oferece ajuda imediata de bom grado.</li>
+</ul>
+<hr>
+<h3>4. Segredo ou Necessidade Urgente (1d20)</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d20</th>
+<th align="left">Segredo ou Necessidade do NPC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01</strong></td>
+<td align="left">Descobriu um veio de ferro de flor da terra na serra, mas teme que os bandeirantes vejam.</td>
+</tr>
+<tr>
+<td align="center"><strong>02</strong></td>
+<td align="left">O irmão mais novo foi capturado por caçadores de recompensa e está amarrado num rancho a duas léguas.</td>
+</tr>
+<tr>
+<td align="center"><strong>03</strong></td>
+<td align="left">Escondeu um saco de moedas de prata sob a soleira de uma igreja queimada.</td>
+</tr>
+<tr>
+<td align="center"><strong>04</strong></td>
+<td align="left">Viu o Boitatá cruzando a curva do rio ontem à meia-noite e perdeu a fala por horas.</td>
+</tr>
+<tr>
+<td align="center"><strong>05</strong></td>
+<td align="left">É um batedor pago pelo Barão vizinho para desenhar as fraquezas da muralha do quilombo.</td>
+</tr>
+<tr>
+<td align="center"><strong>06</strong></td>
+<td align="left">Está secretamente apaixonado pela filha de um cacique arredio do outro lado do rio.</td>
+</tr>
+<tr>
+<td align="center"><strong>07</strong></td>
+<td align="left">Está com a perna infectada por uma ferida de espinho de mandioca-brava e precisa de cura urgente.</td>
+</tr>
+<tr>
+<td align="center"><strong>08</strong></td>
+<td align="left">Sabe de um carregamento de pólvora da Coroa que tombou com a carreta no atoleiro.</td>
+</tr>
+<tr>
+<td align="center"><strong>09</strong></td>
+<td align="left">Encontrou um feto de Mapinguari empalhado dentro de uma caverna sagrada.</td>
+</tr>
+<tr>
+<td align="center"><strong>10</strong></td>
+<td align="left">Roubou duas mulas do exército colonial e teme a patrulha montada que está em seu encalço.</td>
+</tr>
+<tr>
+<td align="center"><strong>11</strong></td>
+<td align="left">Ouviu boatos de que o poço central da vila vizinha foi envenenado com sumo de timbó.</td>
+</tr>
+<tr>
+<td align="center"><strong>12</strong></td>
+<td align="left">Guarda um mapa em couro de cabra indicando uma cidade de pedra soterrada pelos cipós.</td>
+</tr>
+<tr>
+<td align="center"><strong>13</strong></td>
+<td align="left">Sabe que o taberneiro do forte mistura água na cachaça e vende fumo estragado.</td>
+</tr>
+<tr>
+<td align="center"><strong>14</strong></td>
+<td align="left">Foi expulso da aldeia por desrespeitar os ossos dos ancestrais e busca redenção.</td>
+</tr>
+<tr>
+<td align="center"><strong>15</strong></td>
+<td align="left">Seu barco furou e 10 sacas de sal marinho estão afundando no remanso do rio.</td>
+</tr>
+<tr>
+<td align="center"><strong>16</strong></td>
+<td align="left">Reconheceu um dos heróis como fugitivo procurado com cartaz de recompensa na capital colonial.</td>
+</tr>
+<tr>
+<td align="center"><strong>17</strong></td>
+<td align="left">Sabe o dia exato em que a caravana de cobrança de impostos passará pela garganta do morro.</td>
+</tr>
+<tr>
+<td align="center"><strong>18</strong></td>
+<td align="left">Trouxe mudas raras de café e cana que podem enriquecer a comunidade se plantadas logo.</td>
+</tr>
+<tr>
+<td align="center"><strong>19</strong></td>
+<td align="left">Sonhou com um incêndio devorando a Oca Maior e acredita ser um aviso dos espíritos.</td>
+</tr>
+<tr>
+<td align="center"><strong>20</strong></td>
+<td align="left">Deseja desertar para o quilombo dos heróis e ensinar aos defensores como fundir canhões de bronze.</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">🐎 CAPÍTULO 9: LOGÍSTICA, MONTARIAS &amp; TRANSPORTE DE FRONTEIRA</h1></header>
+<p>Sem estradas calçadas, o transporte de matérias-primas e comida depende de animais resistentes e vias fluviais.</p>
+<h3>1. Transportes Fluviais &amp; Lacustres</h3>
+<p>Os rios são as verdadeiras rodovias da América colonial e da floresta virgem:</p>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="6">
+<thead>
+<tr>
+<th align="left">Embarcação</th>
+<th align="center">Capacidade Máxima</th>
+<th align="center">Tripulação / Passageiros</th>
+<th align="center">Velocidade</th>
+<th align="center">Custo Típico</th>
+<th align="left">Particularidades de Navegação</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Canoa de Peroba (Tronco Único)</strong></td>
+<td align="center">250 kg (2 sacas)</td>
+<td align="center">1 a 3 pessoas</td>
+<td align="center">30 km/dia</td>
+<td align="center">10 Pratas</td>
+<td align="left">Silenciosa; passa em igarapés rasos e remansos estreitos.</td>
+</tr>
+<tr>
+<td align="left"><strong>Jangada de Junco &amp; Buriti</strong></td>
+<td align="center">500 kg (4 sacas)</td>
+<td align="center">2 pessoas</td>
+<td align="center">15 km/dia</td>
+<td align="center">20 Pratas</td>
+<td align="left">Estável em lagoas e marés calmas; não vira com ondas baixas.</td>
+</tr>
+<tr>
+<td align="left"><strong>Bote de Ribanceira a Remo</strong></td>
+<td align="center">600 kg (5 sacas)</td>
+<td align="center">4 pessoas</td>
+<td align="center">20 km/dia</td>
+<td align="center">35 Pratas</td>
+<td align="left">Casco de tábuas vedado com piche; bom para pesca pesada.</td>
+</tr>
+<tr>
+<td align="left"><strong>Balsa Fluvial de Toras Maciças</strong></td>
+<td align="center">2.000 kg (15 sacas)</td>
+<td align="center">4 a 6 pessoas</td>
+<td align="center">Correnteza</td>
+<td align="center">40 Pratas</td>
+<td align="left">Conduzida por varas; ideal para descer ferro e madeira de lei.</td>
+</tr>
+<tr>
+<td align="left"><strong>Chalupa Mercantil de Trapiche</strong></td>
+<td align="center">5.000 kg (40 sacas)</td>
+<td align="center">8 tripulantes</td>
+<td align="center">25 km/dia</td>
+<td align="center">2 Ouro</td>
+<td align="left">Pequeno velame auxiliar; conecta entrepostos em grandes deltas fluviais.</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h3>2. Transportes Terrestres &amp; Animais de Tração</h3>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="6">
+<thead>
+<tr>
+<th align="left">Veículo Terrestre</th>
+<th align="center">Carga Máxima</th>
+<th align="center">Tração Necessária</th>
+<th align="center">Velocidade</th>
+<th align="center">Custo Típico</th>
+<th align="left">Terreno Recomendado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Carrinho de Mão Reforçado</strong></td>
+<td align="center">100 kg (1 saca)</td>
+<td align="center">1 homem forte</td>
+<td align="center">15 km/dia</td>
+<td align="center">2 Pratas</td>
+<td align="left">Uso interno na vila para carregar pedras e terra de trincheira.</td>
+</tr>
+<tr>
+<td align="left"><strong>Mula com Cangalha / Burro de Carga</strong></td>
+<td align="center">120 kg (1 saca)</td>
+<td align="center">1 animal com arreio</td>
+<td align="center">28 km/dia</td>
+<td align="center">15 Pratas</td>
+<td align="left">Sobe encostas pedregosas e trilhas íngremes sem empacar.</td>
+</tr>
+<tr>
+<td align="left"><strong>Carro de Boi (Eixo Cantador)</strong></td>
+<td align="center">1.000 kg (8 sacas)</td>
+<td align="center">2 a 4 bois emparelhados</td>
+<td align="center">12 km/dia</td>
+<td align="center">50 Pratas</td>
+<td align="left">O eixo range avisando batedores a léguas; transporta toras brutas.</td>
+</tr>
+<tr>
+<td align="left"><strong>Carreta Fechada com Toldo de Couro</strong></td>
+<td align="center">1.200 kg (10 sacas)</td>
+<td align="center">2 mulas fortes</td>
+<td align="center">20 km/dia</td>
+<td align="center">60 Pratas</td>
+<td align="left">Protege sacas de sal e farinha contra chuvas torrenciais.</td>
+</tr>
+<tr>
+<td align="left"><strong>Carruagem Blindada de Comissário</strong></td>
+<td align="center">800 kg (passageiros)</td>
+<td align="center">4 cavalos de tiro</td>
+<td align="center">30 km/dia</td>
+<td align="center">3 Ouro</td>
+<td align="left">Chapas de ferro contra flechas e bacamartes; usada por nobres e juízes.</td>
+</tr>
+</tbody></table></div>
+<blockquote>
+<p><strong>Regra de Estrada Rústica:</strong> Construir uma <em>Estrada de Terra Batida</em> entre duas vilas (obra de Escala II) dobra a velocidade de carretas de boi e previne atoleiros na estação das chuvas!</p>
+</blockquote>
+<hr>
+<header class="part-header"><h1 class="part-title">📜 CAPÍTULO 10: O QUADRO DE DEMANDAS &amp; CONTRATOS (1D20)</h1></header>
+<p>Em vez de &quot;guildas mercenárias&quot;, o assentamento mantém um <strong>Quadro de Tarefas Comunitárias</strong> na porta da intendência ou no tronco central:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d20</th>
+<th align="left">Demanda / Contrato Comunitário</th>
+<th align="left">Recompensa para os Heróis &amp; Benefício à Base</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01</strong></td>
+<td align="left"><strong>Resgatar a Comitiva de Sal Atolada:</strong> Carreta de sal presa na lama cercada por queixadas.</td>
+<td align="left">Sal farto para o inverno (+2 Víveres) e 15 moedas de prata.</td>
+</tr>
+<tr>
+<td align="center"><strong>02</strong></td>
+<td align="left"><strong>Desmatar a Clareira das Cabras:</strong> Eliminar ninho de jararacas gigantes na colina oeste.</td>
+<td align="left">Nova área de pasto aberta (+50 capacidade de população).</td>
+</tr>
+<tr>
+<td align="center"><strong>03</strong></td>
+<td align="left"><strong>Encontrar Madeira de Angico:</strong> Derrubar e transportar 4 toras de lei para a paliçada.</td>
+<td align="left">+2 Madeira de Lei e a gratidão dos carpinteiros (+5 Moral).</td>
+</tr>
+<tr>
+<td align="center"><strong>04</strong></td>
+<td align="left"><strong>Caçar o Predador dos Currais:</strong> Rastrear a onça que matou três bezerros da vila.</td>
+<td align="left">Couro blindado para o capitão e carne salgada (+1 Víveres).</td>
+</tr>
+<tr>
+<td align="center"><strong>05</strong></td>
+<td align="left"><strong>Fazer a Rota das Ervas Medicinais:</strong> Coletar raízes de timbó e ipecacuanha no brejo.</td>
+<td align="left">O boticário entrega <strong>3 Poções de Cura</strong> gratuitas ao grupo.</td>
+</tr>
+<tr>
+<td align="center"><strong>06</strong></td>
+<td align="left"><strong>Desobstruir a Corredeira do Rio:</strong> Dinamitar ou quebrar tronco colossal que impede canoas.</td>
+<td align="left">Restaura a rota de comércio (+2 Ouro líquido por estação).</td>
+</tr>
+<tr>
+<td align="center"><strong>07</strong></td>
+<td align="left"><strong>Escolta da Farinha da Roça:</strong> Proteger comboio de 20 aldeões trazendo colheita de mandioca.</td>
+<td align="left">+4 Víveres garantidos nos celeiros da comunidade.</td>
+</tr>
+<tr>
+<td align="center"><strong>08</strong></td>
+<td align="left"><strong>Investigar Fumaça Misteriosa:</strong> Averiguar fogueira estranha a 1 légua das trincheiras.</td>
+<td align="left">Descoberta antecipada de acampamento de invasores (sem surpresa).</td>
+</tr>
+<tr>
+<td align="center"><strong>09</strong></td>
+<td align="left"><strong>Capturar o Ladrão de Ferramentas:</strong> Descobrir quem furtou enxadas e foices da forja.</td>
+<td align="left">Recupera 1 Unidade de Metal e expõe um espião infiltrado.</td>
+</tr>
+<tr>
+<td align="center"><strong>10</strong></td>
+<td align="left"><strong>Prospecção de Argila Branca:</strong> Achar veio de argila de olaria para telhas de barro.</td>
+<td align="left">Reduz risco de incêndio nas casas (+1 Ponto de Reserva).</td>
+</tr>
+<tr>
+<td align="center"><strong>11</strong></td>
+<td align="left"><strong>Pacto com a Tribo dos Remadores:</strong> Levar presentes de ferro para selar trégua no rio.</td>
+<td align="left">Acesso livre às pescarias e apoio de 4 canoas em caso de guerra.</td>
+</tr>
+<tr>
+<td align="center"><strong>12</strong></td>
+<td align="left"><strong>Destruir o Alambique Clandestino de Jagunços:</strong> Queimar rancho onde bandoleiros bebem e conspiram.</td>
+<td align="left">Espólio de 40 pratas, 2 espingardas e paz nas estradas vicinais.</td>
+</tr>
+<tr>
+<td align="center"><strong>13</strong></td>
+<td align="left"><strong>Curar a Febre do Mestre de Obras:</strong> O ferreiro principal adoeceu gravemente.</td>
+<td align="left">Se curado em 3 dias, a obra em andamento ganha $+2$ em engenharia.</td>
+</tr>
+<tr>
+<td align="center"><strong>14</strong></td>
+<td align="left"><strong>Resgatar Fugitivos das Correntes:</strong> Grupo de 15 escravizados fugidos perseguidos na mata.</td>
+<td align="left">+15 de População dedicada e aumento de <strong>+10 na Moral</strong> do quilombo!</td>
+</tr>
+<tr>
+<td align="center"><strong>15</strong></td>
+<td align="left"><strong>Recuperar Mula de Carga Perdida:</strong> Encontrar o burro empacado na mata com sacas de ferramentas.</td>
+<td align="left">Recupera 1 Metal e fumo de rolo precioso para trocas.</td>
+</tr>
+<tr>
+<td align="center"><strong>16</strong></td>
+<td align="left"><strong>Caçar o Porco de Ferro (Queixada Alfa):</strong> Matar o líder descomunal que guia a manada destruidora.</td>
+<td align="left">+3 Víveres em carne e presas que viram pontas de lança.</td>
+</tr>
+<tr>
+<td align="center"><strong>17</strong></td>
+<td align="left"><strong>Mapear a Fenda dos Morros:</strong> Desenhar o caminho até o planalto para instalar torre de vigia.</td>
+<td align="left">Instalação da torre de vigia fica 50% mais rápida.</td>
+</tr>
+<tr>
+<td align="center"><strong>18</strong></td>
+<td align="left"><strong>Escoltar o Mascate Itinerante:</strong> Guiar o mercador em segurança por trecho infestado de salteadores.</td>
+<td align="left">O mascate oferece desconto de 30% em pólvora e ferramentas.</td>
+</tr>
+<tr>
+<td align="center"><strong>19</strong></td>
+<td align="left"><strong>Purificar a Fonte d&#39;Água:</strong> Remover carcaça apodrecida atirada por inimigos no ribeirão.</td>
+<td align="left">Evita epidemia grave e devolve água pura ao povo (+10 Moral).</td>
+</tr>
+<tr>
+<td align="center"><strong>20</strong></td>
+<td align="left"><strong>Enfrentar o Capitão-do-Mato Fanfarrão:</strong> O vilão mandou recado desafiando os heróis na encruzilhada.</td>
+<td align="left">A vitória destrói a moral dos caçadores de recompensa na região!</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">🗣️ CAPÍTULO 11: HISTÓRIAS DE FOGUEIRA &amp; BOATOS DE RANCHO (1D20)</h1></header>
+<p>Role <strong>1d20</strong> sempre que os heróis conversarem com viajantes no terreiro da vila ou ao redor das brasas:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d20</th>
+<th align="left">Boato / Rumor de Fogueira</th>
+<th align="left">Verdade por Trás da História</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01</strong></td>
+<td align="left"><em>&quot;Dizem que as luzes azuis que dançam no brejo à meia-noite são ouro enterrado.&quot;</em></td>
+<td align="left"><strong>Parcialmente Falso:</strong> É o Boitatá caçando. Mas o covil dele tem despojos de soldados mortos!</td>
+</tr>
+<tr>
+<td align="center"><strong>02</strong></td>
+<td align="left"><em>&quot;O Barão do Engenho Velho comprou três canhões de bronze que chegaram da capital.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> Ele planeja usá-los no próximo cerco contra as muralhas do grupo!</td>
+</tr>
+<tr>
+<td align="center"><strong>03</strong></td>
+<td align="left"><em>&quot;A serra do norte tem uma fenda onde o chão é quente e brota fumaça com cheiro de enxofre.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> Há um veio de salitre puríssimo para fabricação caseira de pólvora!</td>
+</tr>
+<tr>
+<td align="center"><strong>04</strong></td>
+<td align="left"><em>&quot;Dizem que se você deixar fumo de rolo num toco oco, o Curupira não deixa ninguém se perder.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> Respeitar o espírito concede Vantagem em navegação na mata por 1 mês!</td>
+</tr>
+<tr>
+<td align="center"><strong>05</strong></td>
+<td align="left"><em>&quot;Um destacamento de dragões reais da Coroa desertou e sumiu nos sertões com a folha de pagamento.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> Estão escondidos numa tapera velha com 200 moedas de ouro e armas finas.</td>
+</tr>
+<tr>
+<td align="center"><strong>06</strong></td>
+<td align="left"><em>&quot;As águas do Rio Manso estão baixando rápido demais para esta época do ano...&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> Uma barragem de castores gigantes ou de jagunços está represando a água rio acima!</td>
+</tr>
+<tr>
+<td align="center"><strong>07</strong></td>
+<td align="left"><em>&quot;O Corpo-Seco foi visto arranhando a porteira do cemitério da missão abandonada.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> O monstro vaga pelas noites sem lua e precisa ser queimado com óleo e reza.</td>
+</tr>
+<tr>
+<td align="center"><strong>08</strong></td>
+<td align="left"><em>&quot;Um índio velho desceu a serra dizendo que os bichos estão fugindo para o sul em massa.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> Um incêndio criminoso ou um bando de Mapinguaris se aproxima da fronteira!</td>
+</tr>
+<tr>
+<td align="center"><strong>09</strong></td>
+<td align="left"><em>&quot;A cachaça do rancho da ponte tem gosto de folha de coca e faz o homem não sentir dor.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> O alambique usa ervas anestésicas que funcionam como poção de vigor temporária.</td>
+</tr>
+<tr>
+<td align="center"><strong>10</strong></td>
+<td align="left"><em>&quot;Dizem que há um traidor recebendo cartas seladas com cera vermelha dentro da nossa vila...&quot;</em></td>
+<td align="left"><strong>Gancho de Investigação:</strong> Um colono está sendo chantageado por sua família presa na cidade.</td>
+</tr>
+<tr>
+<td align="center"><strong>11</strong></td>
+<td align="left"><em>&quot;O padre da vila colonial vizinha fugiu com o ostensório de ouro maciço do altar.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> Ele está escondido na mata pedindo socorro contra os soldados do bispo.</td>
+</tr>
+<tr>
+<td align="center"><strong>12</strong></td>
+<td align="left"><em>&quot;As raízes do jatobá-trovão curam até ferida de bala envenenada em três dias de cataplasma.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> O curandeiro pode sintetizar um elixir milagroso com essa raiz rara.</td>
+</tr>
+<tr>
+<td align="center"><strong>13</strong></td>
+<td align="left"><em>&quot;Um bando de queixadas com presas do tamanho de facões de mato devastou o milharal da fazenda leste.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> A horda está marchando rumo às roças do assentamento dos jogadores!</td>
+</tr>
+<tr>
+<td align="center"><strong>14</strong></td>
+<td align="left"><em>&quot;Dizem que quem pisar no rastro da onça preta fica com as vistas turvas por sete dias.&quot;</em></td>
+<td align="left"><strong>Superstição:</strong> Mas a fera é real, silenciosa e já devorou dois sentinelas desprevenidos.</td>
+</tr>
+<tr>
+<td align="center"><strong>15</strong></td>
+<td align="left"><em>&quot;O governador colonial prometeu 100 moedas de ouro pela cabeça do líder do nosso quilombo.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> Caçadores de recompensa armados até os dentes estão se reunindo na taberna do porto.</td>
+</tr>
+<tr>
+<td align="center"><strong>16</strong></td>
+<td align="left"><em>&quot;Há um barco de contrabandistas encalhado no banco de areia com caixotes de machados e ferro.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> Quem chegar primeiro leva os caixotes (+3 Metal para a forja da vila)!</td>
+</tr>
+<tr>
+<td align="center"><strong>17</strong></td>
+<td align="left"><em>&quot;Dizem que a mina dos anões da serra não secou: os mineiros apenas fugiram de algo que acordou lá embaixo.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> As galerias estão intactas, mas habitadas por trogloditas carniceiros!</td>
+</tr>
+<tr>
+<td align="center"><strong>18</strong></td>
+<td align="left"><em>&quot;Se você plantar mandioca na lua minguante, a raiz nasce amarga como fel e dá cólica de morte.&quot;</em></td>
+<td align="left"><strong>Verdade Agrícola:</strong> Seguir o calendário lunar da sabedoria tradicional evita perda de víveres.</td>
+</tr>
+<tr>
+<td align="center"><strong>19</strong></td>
+<td align="left"><em>&quot;Uma caravana de ciganos trouxe uma garrucha de dois canos entalhada com runas de proteção.&quot;</em></td>
+<td align="left"><strong>Verdadeiro:</strong> Um item raro à venda por 40 pratas que nunca emperra com pólvora molhada.</td>
+</tr>
+<tr>
+<td align="center"><strong>20</strong></td>
+<td align="left"><em>&quot;Os grandes chefes de todas as aldeias da serra vão se reunir no solstício para declarar guerra à Coroa.&quot;</em></td>
+<td align="left"><strong>O Grande Chamado:</strong> O grupo é convidado para liderar a aliança e fundar uma Confederação Soberana!</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">🗺️ CAPÍTULO 12: ROTAS DE COMÉRCIO, TROPEIROS &amp; ENTREPOSTOS</h1></header>
+<p>Nenhuma aldeia ou quilombo prospera isolado. Estabelecer rotas comerciais com vilarejos vizinhos, feiras coloniais ou aldeias ribeirinhas transforma sua comunidade em um pólo de poder regional.</p>
+<h3>1. Estabelecendo uma Rota Comercial</h3>
+<p>Para criar uma rota comercial, o assentamento precisa:</p>
+<ol>
+<li>Ter uma via desobstruída (trilha terrestre ou rio navegável);</li>
+<li>Investir <strong>2 Unidades de Ouro</strong> e <strong>2 Mulas ou Canoas de Carga</strong>;</li>
+<li>Declarar uma ação de <em>Downtime</em> de Diplomacia (Teste de Carisma do Domínio CD 12).</li>
+</ol>
+<h3>2. Tipos de Rota &amp; Rendimentos por Estação</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="left">Tipo de Rota</th>
+<th align="center">Meio Principal</th>
+<th align="center">Renda por Estação</th>
+<th align="left">Benefício Estratégico</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Trilha de Tropeiros (Sertão / Picadas)</strong></td>
+<td align="center">Tropa de Mulas</td>
+<td align="center"><strong>+2 Ouro &amp; +1 Sal</strong></td>
+<td align="left">Traz ferramentas de ferro forjado e fumo de corda.</td>
+</tr>
+<tr>
+<td align="left"><strong>Caminho das Águas (Fluvial / Igarapés)</strong></td>
+<td align="center">Canoas &amp; Balsas</td>
+<td align="center"><strong>+2 Víveres &amp; +1 Ouro</strong></td>
+<td align="left">Transporta peixe seco, farinha e toras de madeira em grande escala.</td>
+</tr>
+<tr>
+<td align="left"><strong>Rota Secreta dos Quilombos (Brenhas)</strong></td>
+<td align="center">Batedores a Pé</td>
+<td align="center"><strong>+2 Moral &amp; +1 Pólvora</strong></td>
+<td align="left">Impossível de ser interceptada por tropas regulares coloniais.</td>
+</tr>
+<tr>
+<td align="left"><strong>Estrada Real da Feitoria (Oficial)</strong></td>
+<td align="center">Carretas de Boi</td>
+<td align="center"><strong>+4 Ouro Líquido</strong></td>
+<td align="left">Alto lucro; atrai a atenção de cobradores de impostos da Coroa.</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h3>3. Tabela de Riscos da Rota (1d10 por Estação)</h3>
+<p>No início do Turno de Domínio, role 1d10 para cada rota ativa:</p>
+<ul>
+<li><strong>01:</strong> <strong>Emboscada de Salteadores:</strong> A tropa foi atacada por jagunços. Perde a renda da estação a menos que os heróis enviem uma escolta armada para vingar o comboio.</li>
+<li><strong>02:</strong> <strong>Enchente de Rio / Queda de Ponte:</strong> As chuvas destruíram a travessia. Exige gasto de 1 Madeira para reparos imediatos.</li>
+<li><strong>03:</strong> <strong>Febre dos Tropeiros:</strong> Os tropeiros adoeceram; a rota fica suspensa por 1 mês (cura exige intervenção do boticário da vila).</li>
+<li><strong>04–08:</strong> <strong>Marcha Firme &amp; Lucro Pleno:</strong> Os comboios chegaram no prazo com carretas cheias (+Renda garantida!).</li>
+<li><strong>09:</strong> <strong>Oportunidade de Ouro:</strong> O preço da farinha subiu na cidade vizinha; o assentamento lucra o <strong>DOBRO de Ouro</strong> nesta estação!</li>
+<li><strong>10:</strong> <strong>Caravana Aliada:</strong> Mercadores de terras distantes decidem fixar residência na sua vila, trazendo <strong>+30 habitantes especializados</strong>!</li>
+</ul>
+<hr>
+<h3>4. Entrepostos &amp; Ranchos de Pouso</h3>
+<p>O grupo pode erguer um <strong>Rancho de Pouso</strong> a meio caminho de uma rota comercial:</p>
+<ul>
+<li><strong>Custo:</strong> 3 Madeira, 1 Pedra, 2 Ouro.</li>
+<li><strong>Benefício:</strong> Reduz a chance de emboscadas na rota pela metade e serve como refúgio avançado com estoque de mantimentos e cavalos de reserva para os heróis em missões longas.</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">💰 CAPÍTULO 13: O SISTEMA DE INVESTIMENTOS PÚBLICOS</h1></header>
+<p>Os heróis acumulam riquezas nas masmorras e covis de monstros. Em <strong>Os TerraTenentes</strong>, esse tesouro serve para alavancar o bem comum e a força da comunidade:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                   TRÊS PILARES DE INVESTIMENTO                         │
+├───────────────────┬────────────────────────────┬───────────────────────┤
+│ INFRAESTRUTURA    │ MERCANTIL &amp; OFÍCIOS        │ BÉLICO &amp; MURALHAS     │
+│ • Açudes e poços  │ • Feiras e alambiques      │ • Fundição de canhões │
+│ • Silos de grãos  │ • Olaria e teares          │ • Valas de estrepes   │
+│ • Resistência     │ • Renda e comércio         │ • Defesa de cerco     │
+└───────────────────┴────────────────────────────┴───────────────────────┘
+</code></pre>
+<h3>1. Investimento em Infraestrutura</h3>
+<ul>
+<li><strong>Açude / Poço Profundo (Custo: 3 Pedra, 2 Ouro):</strong> Garante água pura permanente. O domínio fica imune à seca severa e colhe $+2$ Víveres extras no verão.</li>
+<li><strong>Silo Elevado de Alvenaria (Custo: 4 Pedra, 2 Madeira, 2 Ouro):</strong> Armazena grãos por até 2 anos. Evita qualquer perda de comida por praga ou chuva torrencial.</li>
+<li><strong>Moinho de Roda d’Água (Custo: 4 Madeira, 2 Metal, 3 Ouro):</strong> Dobra a velocidade de produção de farinha da vila.</li>
+</ul>
+<h3>2. Investimento Mercantil</h3>
+<ul>
+<li><strong>Praça da Feira de Domingo (Custo: 3 Madeira, 2 Ouro):</strong> Atrai mascates e agricultores vizinhos. Aumenta a Moral em $+5$ e arrecada $+1$ Ouro por estação.</li>
+<li><strong>Olaria de Telhas &amp; Tijolos de Barro (Custo: 2 Madeira, 2 Pedra, 1 Ouro):</strong> Substitui tetos de palha por telhas cerâmicas. O assentamento ganha <strong>+1 Ponto de Reserva</strong> contra incêndios.</li>
+<li><strong>Alambique Comunitário de Aguardente (Custo: 2 Metal, 2 Madeira, 3 Ouro):</strong> Produz cachaça fina para comércio (+2 Ouro) e desinfecção de feridas cirúrgicas.</li>
+</ul>
+<h3>3. Investimento Bélico</h3>
+<ul>
+<li><strong>Bastiões Angulares de Madeira Maciça (Custo: 6 Madeira, 3 Ouro):</strong> Plataformas salientes que eliminam pontos cegos nas muralhas. Concede $+2$ na Defesa de cerco.</li>
+<li><strong>Vala Profunda de Estrepes Envenenados (Custo: 3 Madeira, 1 Ouro):</strong> Invasores que tentarem assaltar as paliçadas sofrem $3d6$ de dano e perdem o bônus de investida.</li>
+<li><strong>Fundição de Peças de Artilharia (Custo: 6 Metal, 6 Ouro):</strong> Permite fundir canhões e morteiros de bronze para as muralhas da fortaleza.</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">📊 CAPÍTULO 14: PROGRESSÃO NÍVEL A NÍVEL DO DOMÍNIO (1 AO 20)</h1></header>
+<p>Assim como um herói evolui de soldado novato a lenda viva, o <strong>Assentamento tem 20 Níveis de Poder</strong>. Cada nível traz novas defesas, capacidade de obras e características comunitárias:</p>
+<div class="table-wide-wrapper"><table class="table-wide" data-cols="5">
+<thead>
+<tr>
+<th align="center">Nível</th>
+<th align="center">Bônus Cívico</th>
+<th align="center">Reserva Emerg.</th>
+<th align="center">Instalações</th>
+<th align="left">Característica Desbloqueada</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>1º</strong></td>
+<td align="center"><strong>+2</strong></td>
+<td align="center">1º Círculo</td>
+<td align="center">Até 3 obras</td>
+<td align="left"><strong>Fincar Raiz:</strong> O povo une-se em torno do grupo fundador; Moral inicial 50.</td>
+</tr>
+<tr>
+<td align="center"><strong>2º</strong></td>
+<td align="center"><strong>+2</strong></td>
+<td align="center">1º Círculo</td>
+<td align="center">Até 3 obras</td>
+<td align="left"><strong>Estoque de Emergência:</strong> A vila ganha seu primeiro Ponto de Reserva.</td>
+</tr>
+<tr>
+<td align="center"><strong>3º</strong></td>
+<td align="center"><strong>+2</strong></td>
+<td align="center">1º Círculo</td>
+<td align="center">Até 4 obras</td>
+<td align="left"><strong>Mão de Obra Disciplinada:</strong> Reduz o tempo de qualquer obra em 10%.</td>
+</tr>
+<tr>
+<td align="center"><strong>4º</strong></td>
+<td align="center"><strong>+2</strong></td>
+<td align="center">2º Círculo</td>
+<td align="center">Até 5 obras</td>
+<td align="left"><strong>Incremento de Atributo Cívico:</strong> Some $+1$ a um Atributo do Domínio (máx 20).</td>
+</tr>
+<tr>
+<td align="center"><strong>5º</strong></td>
+<td align="center"><strong>+3</strong></td>
+<td align="center">2º Círculo</td>
+<td align="center">Até 6 obras</td>
+<td align="left"><strong>Escala II (Aldeia/Forte):</strong> Acesso a muralhas de pedra e forjas de ferro.</td>
+</tr>
+<tr>
+<td align="center"><strong>6º</strong></td>
+<td align="center"><strong>+3</strong></td>
+<td align="center">2º Círculo</td>
+<td align="center">Até 7 obras</td>
+<td align="left"><strong>Batedores Veteranos:</strong> Impossível o domínio sofrer ataques surpresa.</td>
+</tr>
+<tr>
+<td align="center"><strong>7º</strong></td>
+<td align="center"><strong>+3</strong></td>
+<td align="center">2º Círculo</td>
+<td align="center">Até 8 obras</td>
+<td align="left"><strong>Celeiro Seguro:</strong> O domínio suporta 1 mês inteiro sem comida sem perder Moral.</td>
+</tr>
+<tr>
+<td align="center"><strong>8º</strong></td>
+<td align="center"><strong>+3</strong></td>
+<td align="center">3º Círculo</td>
+<td align="center">Até 9 obras</td>
+<td align="left"><strong>Incremento de Atributo Cívico:</strong> Some $+1$ a um Atributo do Domínio.</td>
+</tr>
+<tr>
+<td align="center"><strong>9º</strong></td>
+<td align="center"><strong>+4</strong></td>
+<td align="center">3º Círculo</td>
+<td align="center">Até 10 obras</td>
+<td align="left"><strong>Escala III (Cidadela Livre):</strong> O domínio passa a emitir suas próprias moedas.</td>
+</tr>
+<tr>
+<td align="center"><strong>10º</strong></td>
+<td align="center"><strong>+4</strong></td>
+<td align="center">3º Círculo</td>
+<td align="center">Até 11 obras</td>
+<td align="left"><strong>Fundição de Artilharia:</strong> Permite instalar canhões de cerco nas defesas.</td>
+</tr>
+<tr>
+<td align="center"><strong>11º</strong></td>
+<td align="center"><strong>+4</strong></td>
+<td align="center">3º Círculo</td>
+<td align="center">Até 12 obras</td>
+<td align="left"><strong>Voz da Terra:</strong> Heróis descansando na base ganham <strong>+2 em testes de iniciativa</strong>.</td>
+</tr>
+<tr>
+<td align="center"><strong>12º</strong></td>
+<td align="center"><strong>+4</strong></td>
+<td align="center">4º Círculo</td>
+<td align="center">Até 13 obras</td>
+<td align="left"><strong>Incremento de Atributo Cívico:</strong> Some $+1$ a um Atributo do Domínio.</td>
+</tr>
+<tr>
+<td align="center"><strong>13º</strong></td>
+<td align="center"><strong>+5</strong></td>
+<td align="center">4º Círculo</td>
+<td align="center">Até 14 obras</td>
+<td align="left"><strong>Tradição Inabalável:</strong> Vantagem permanente em testes contra pragas e febres.</td>
+</tr>
+<tr>
+<td align="center"><strong>14º</strong></td>
+<td align="center"><strong>+5</strong></td>
+<td align="center">4º Círculo</td>
+<td align="center">Até 15 obras</td>
+<td align="left"><strong>Milícia Inquebrantável:</strong> As tropas do feudo lutam até o fim sem teste de pânico.</td>
+</tr>
+<tr>
+<td align="center"><strong>15º</strong></td>
+<td align="center"><strong>+5</strong></td>
+<td align="center">4º Círculo</td>
+<td align="center">Até 16 obras</td>
+<td align="left"><strong>Escala IV (Território Soberano):</strong> Confederação regional de vilas aliadas.</td>
+</tr>
+<tr>
+<td align="center"><strong>16º</strong></td>
+<td align="center"><strong>+5</strong></td>
+<td align="center">5º Círculo</td>
+<td align="center">Até 17 obras</td>
+<td align="left"><strong>Incremento de Atributo Cívico:</strong> Some $+1$ a um Atributo do Domínio.</td>
+</tr>
+<tr>
+<td align="center"><strong>17º</strong></td>
+<td align="center"><strong>+6</strong></td>
+<td align="center">5º Círculo</td>
+<td align="center">Até 18 obras</td>
+<td align="left"><strong>Pacto dos Ancestrais:</strong> Espíritos da mata alertam sobre invasões com 1 semana de antecedência.</td>
+</tr>
+<tr>
+<td align="center"><strong>18º</strong></td>
+<td align="center"><strong>+6</strong></td>
+<td align="center">5º Círculo</td>
+<td align="center">Até 19 obras</td>
+<td align="left"><strong>Abundância da Terra:</strong> Produção de todas as fazendas e minas é aumentada em 50%.</td>
+</tr>
+<tr>
+<td align="center"><strong>19º</strong></td>
+<td align="center"><strong>+6</strong></td>
+<td align="center">5º Círculo</td>
+<td align="center">Até 20 obras</td>
+<td align="left"><strong>Fortaleza Inexpugnável:</strong> A fortificação ganha 100 PV extras de estrutura de cerco.</td>
+</tr>
+<tr>
+<td align="center"><strong>20º</strong></td>
+<td align="center"><strong>+6</strong></td>
+<td align="center">5º Círculo</td>
+<td align="center">20+ obras</td>
+<td align="left"><strong>Soberania Eterna:</strong> O feudo é uma nação livre indestrutível; decretos coloniais perdem todo efeito sobre a terra e seu povo!</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">🌪️ CAPÍTULO 15: PERIGOS DE TERRENO, CLIMA &amp; COMPLICAÇÕES DA MATA</h1></header>
+<p>A natureza da fronteira não é um cenário de fundo estático: é um adversário implacável. Role <strong>1d10</strong> durante viagens ou para complicar cercos e combates nos ermos:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d10</th>
+<th align="left">Perigo / Complicação da Terra</th>
+<th align="left">Efeito Mecânico na Mesa</th>
+<th align="left">Como Superar</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01</strong></td>
+<td align="left"><strong>Cabeça d’Água / Enxurrada Repentina</strong></td>
+<td align="left">O rio sobe 3 metros em minutos! Canoas e carroças correm risco de naufrágio.</td>
+<td align="left">Teste de Agilidade (CD 13) para amarrar embarcações em árvores altas.</td>
+</tr>
+<tr>
+<td align="center"><strong>02</strong></td>
+<td align="left"><strong>Atoleiro de Várzea &amp; Lama Movediça</strong></td>
+<td align="left">Marcha reduzida a um quarto do normal. Cavalos e mulas afundam até o peito.</td>
+<td align="left">Desatolar carretas exige teste coletivo de Vigor (CD 13) ou perda de 1 dia.</td>
+</tr>
+<tr>
+<td align="center"><strong>03</strong></td>
+<td align="left"><strong>Fumaça de Queimada / Ar Sufocante</strong></td>
+<td align="left">Visibilidade cai para 3 metros; teste de Vigor (CD 12) ou sofre tosse paralisante.</td>
+<td align="left">Molhar panos com água ou urina para cobrir o nariz e a boca.</td>
+</tr>
+<tr>
+<td align="center"><strong>04</strong></td>
+<td align="left"><strong>Névoa Fechada de Igarapé</strong></td>
+<td align="left">Neblina leitosa nas águas. Disparos à distância têm Desvantagem total.</td>
+<td align="left">Seguir o murmúrio da correnteza com batedor nativo na proa.</td>
+</tr>
+<tr>
+<td align="center"><strong>05</strong></td>
+<td align="left"><strong>Sol de Fogo no Sertão (Insolação)</strong></td>
+<td align="left">Calor escaldante. Marchar sem chapéu de palha ou água fresca causa 1 Exaustão.</td>
+<td align="left">Descansar nas horas de meio-dia sob copa de umbuzeiro e marchar à noite.</td>
+</tr>
+<tr>
+<td align="center"><strong>06</strong></td>
+<td align="left"><strong>Enxame de Marimbondos / Vespas-Caboclas</strong></td>
+<td align="left">Enxame ataca em área de 6m. Causa <strong>2d4 de ferroadas</strong> e põe cavalos em pânico.</td>
+<td align="left">Mergulhar na água de rio ou acender tochas de fumo em folha de bananeira.</td>
+</tr>
+<tr>
+<td align="center"><strong>07</strong></td>
+<td align="left"><strong>Arenito Escorregadio de Serra</strong></td>
+<td align="left">Lajes de pedra soltam-se sob os passos dos heróis na subida da ravina.</td>
+<td align="left">Teste de Agilidade (CD 13) ou queda de 6 metros (<strong>2d6 de dano de impacto</strong>).</td>
+</tr>
+<tr>
+<td align="center"><strong>08</strong></td>
+<td align="left"><strong>Chuva de Granizo / Temporal de Vento</strong></td>
+<td align="left">Galhos grossos despencam das árvores; tendas de acampamento são rasgadas.</td>
+<td align="left">Buscar abrigo em fendas de pedra ou ocos de árvores milenares.</td>
+</tr>
+<tr>
+<td align="center"><strong>09</strong></td>
+<td align="left"><strong>Areia Movediça de Foz de Rio</strong></td>
+<td align="left">O chão cede sob os pés. O herói afunda até a cintura e não consegue mover-se.</td>
+<td align="left">Não se debater; aliados usam galho ou laço de couro com teste de Força CD 12.</td>
+</tr>
+<tr>
+<td align="center"><strong>10</strong></td>
+<td align="left"><strong>Terraço de Bromélias &amp; Espinhos de Jupatí</strong></td>
+<td align="left">Espinhos afiados como agulhas furam botas e rasgam calças (1d4 dano a cada 10m).</td>
+<td align="left">Abrir picada paciente com facão de mato pesado (reduz velocidade da marcha).</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">🛡️ CAPÍTULO 16: COMPANHIAS DE BATEDORES &amp; ESQUADRÕES DE PATRULHA</h1></header>
+<p>À medida que o assentamento cresce para a Escala II e além, os heróis não conseguem estar em todos os lugares ao mesmo tempo. É hora de <strong>formar esquadrões de defesa comunitária</strong>:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                   ESTRUTURA DE UM ESQUADRÃO                           │
+│ • Tamanho: 5 a 10 combatentes locais treinados por um dos heróis.      │
+│ • Custo de Manutenção: 1 Unidade de Víveres por mês de serviço.        │
+│ • Armamento: Lanças de peroba, facões de arrasto e arcos ou bacamartes.│
+└────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>1. As Quatro Missões de Patrulha</h3>
+<p>Durante o Passo 3 do Turno de Downtime, o grupo pode destacar um esquadrão para:</p>
+<ol>
+<li><strong>Patrulhar Trilha Comercial:</strong> Elimina qualquer rolagem de emboscada na rota comercial protegida.</li>
+<li><strong>Vigilância de Fronteira:</strong> Alerta o assentamento sobre aproximação de invasores com 3 dias de antecedência.</li>
+<li><strong>Escolta de Recursos:</strong> Garante que carretas de madeira ou ferro das minas cheguem aos portões sem extravio.</li>
+<li><strong>Incursão Noturna nas Brenhas:</strong> Ataca batedores rivais ou espalha estrepes nas trilhas de acesso ao feudo.</li>
+</ol>
+<h3>2. Níveis de Experiência da Guarnição</h3>
+<ul>
+<li><strong>Recrutas Locais (Nível 1):</strong> Aldeões com lanças e foices. Defesa 11, Ataque +3, Moral Estável.</li>
+<li><strong>Calejados da Mata (Nível 2):</strong> Sobreviventes de escaramuças. Defesa 12, Ataque +4, ignoram terreno difícil.</li>
+<li><strong>Veteranos das Brenhas (Nível 3):</strong> Combatentes com armas de tiro e camuflagem. Defesa 14, Ataque +5, realizam emboscadas silenciosas.</li>
+<li><strong>Guardiões Lendários da Terra (Nível 4):</strong> A tropa de elite da Confederação. Defesa 16, Ataque +7, imunes a medo e pânico marcial!</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">💰 CAPÍTULO 17: EMPREENDIMENTOS &amp; RENDA PASSIVA PERIÓDICA</h1></header>
+<p>Além da produção básica de subsistência, os líderes do assentamento podem investir ouro e materiais para fundar <strong>Empreendimentos Comerciais Autônomos</strong>. Esses negócios operam sob a gestão de artesãos e geram <strong>dividendos líquidos automáticos</strong> no Passo 1 (Produção) de cada estação:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="left">Empreendimento</th>
+<th align="left">Custo de Fundação</th>
+<th align="center">Renda Líquida por Estação</th>
+<th align="left">Benefício Estratégico Adicional</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>🌾 Engenho de Cana &amp; Trapiche</strong></td>
+<td align="left">6 Madeira, 4 Pedra, 5 Ouro</td>
+<td align="center"><strong>+3 Ouro Líquido</strong></td>
+<td align="left">O melaço atrai mascates e reduz o custo de rações de viagem em 20%.</td>
+</tr>
+<tr>
+<td align="left"><strong>🥃 Alambique de Cachaça Envelhecida</strong></td>
+<td align="left">2 Madeira, 2 Metal, 3 Ouro</td>
+<td align="center"><strong>+2 Ouro Líquido</strong></td>
+<td align="left">A aguardente é moeda de troca universal na fronteira; +5 Moral na vila.</td>
+</tr>
+<tr>
+<td align="left"><strong>🧱 Olaria de Telhas &amp; Tijolos</strong></td>
+<td align="left">3 Madeira, 2 Pedra, 2 Ouro</td>
+<td align="center"><strong>+1 Ouro &amp; +1 Reserva</strong></td>
+<td align="left">Substitui palha por telhas de barro nas casas, prevenindo incêndios.</td>
+</tr>
+<tr>
+<td align="left"><strong>⛏️ Lavra de Ferro &amp; Mineração</strong></td>
+<td align="left">4 Madeira, 4 Metal, 4 Ouro</td>
+<td align="center"><strong>+3 Metal &amp; +1 Ouro</strong></td>
+<td align="left">Fornece matéria-prima pura contínua para a forja e armas da milícia.</td>
+</tr>
+<tr>
+<td align="left"><strong>🐟 Curral de Peixes &amp; Salina</strong></td>
+<td align="left">3 Madeira, 2 Pedra, 2 Ouro</td>
+<td align="center"><strong>+3 Víveres &amp; +1 Ouro</strong></td>
+<td align="left">Garante peixe seco e sal marinho perpétuo para conservar alimentos no inverno.</td>
+</tr>
+<tr>
+<td align="left"><strong>🪵 Serraria &amp; Lavra de Madeira de Lei</strong></td>
+<td align="left">4 Madeira, 2 Metal, 3 Ouro</td>
+<td align="center"><strong>+2 Madeira de Lei</strong></td>
+<td align="left">Toras maciças de peroba e ipê para obras de fortificação contínuas.</td>
+</tr>
+<tr>
+<td align="left"><strong>⚖️ Alfândega &amp; Pedágio Fluvial</strong></td>
+<td align="left">3 Madeira, 2 Pedra, 2 Ouro</td>
+<td align="center"><strong>+2 Ouro Líquido</strong></td>
+<td align="left">Taxa cobrada de barcos e balsas forasteiras que cruzam o trecho do rio.</td>
+</tr>
+</tbody></table></div>
+<h3>Flutuação do Mercado (1d6 na Virada do Ano):</h3>
+<ul>
+<li><strong>1:</strong> <strong>Ano de Crise:</strong> Renda reduzida em 50% por chuvas ou pragas de lavoura.</li>
+<li><strong>2–4:</strong> <strong>Mercado Estável:</strong> Rendimentos normais e regulares.</li>
+<li><strong>5–6:</strong> <strong>Época de Ouro:</strong> Demanda explosiva na capital! Todos os empreendimentos pagam o <strong>DOBRO de Ouro</strong> durante o ano!</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">⏱️ CAPÍTULO 18: INCURSÕES DE FACÇÃO &amp; OS RELÓGIOS DE PRESSÃO</h1></header>
+<p>As ameaças contra o seu assentamento não surgem do nada: elas se acumulam conforme a comunidade cresce e desafia os poderes coloniais. O Mestre acompanha essa tensão usando <strong>Relógios de Pressão</strong> (círculos divididos em 4, 6 ou 8 fatias):</p>
+<pre><code>     [ RELÓGIO DE INCURSÃO DO CAPITÃO-DO-MATO ]      (4 Fatias)
+     [ RELÓGIO DA COLUNA ARMADA DO BARÃO ]           (6 Fatias)
+     [ RELÓGIO DA EXPEDIÇÃO IMPERIAL DA COROA ]      (8 Fatias)
+</code></pre>
+<h3>1. Como os Relógios Avançam (+1 Fatia):</h3>
+<ul>
+<li>O grupo acolhe escravizados ou desertores procurados (+1 fatia);</li>
+<li>O assentamento recusa pagar o dízimo da Coroa ou do Barão (+1 fatia);</li>
+<li>Os heróis derrotam uma patrulha ou batedor inimigo nos limites (+1 fatia);</li>
+<li>Passa-se uma Estação inteira sem nenhuma missão diplomática de trégua (+1 fatia).</li>
+</ul>
+<h3>2. Como os Heróis Podem Atrasar os Relógios (-Fatias):</h3>
+<ul>
+<li><strong>Missão Clandestina:</strong> Queimar o paiol de pólvora ou dispersar as mulas do inimigo (-2 a -3 fatias).</li>
+<li><strong>Suborno &amp; Diplomacia:</strong> Pagar propina a meirinhos ou juízes coloniais com ouro líquido (-2 fatias).</li>
+<li><strong>Trégua Estratégica:</strong> Forjar um acordo de comércio ou ceder prisioneiros de guerra (-3 fatias).</li>
+</ul>
+<h3>3. O Desfecho: A Incursão Acontece!</h3>
+<p>Quando a <strong>última fatia do relógio for preenchida</strong>, o inimigo marcha com força total!</p>
+<ul>
+<li><strong>Se for o Capitão-do-Mato (4 Fatias):</strong> Um ataque noturno relâmpago de 15 jagunços com cães buscando raptar aldeões e incendiar celeiros.</li>
+<li><strong>Se for a Coluna do Barão (6 Fatias):</strong> Uma expedição militar de 40 jagunços armados com bacamartes cercando as trincheiras da vila.</li>
+<li><strong>Se for o Regimento da Coroa (8 Fatias):</strong> Um exército colonial completo com 100 soldados regulares, cavalaria e canhões de cerco! A batalha é resolvida no <strong>Sistema de Cerco em 3 Fases</strong> do Capítulo 5!</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">🏯 CAPÍTULO 19: CIDADELAS, FORTALEZAS IMPERIAIS &amp; METRÓPOLES (ESCALA IV+)</h1></header>
+<p>Quando um assentamento ultrapassa 2.000 habitantes e atinge a <strong>Escala IV (Metrópole / Cidadela)</strong>, a gestão passa a operar em nível de <strong>Distritos Urbanos Especializados</strong>. Cada distrito possui seu próprio líder setorial, sua moral individual e seus problemas cívicos:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                   A ANATOMIA DE UMA GRANDE CIDADELA                    │
+├───────────────────────┬───────────────────────┬────────────────────────┤
+│ 1. DISTRITO DO PORTO  │ 2. BAIRRO DAS FORJAS  │ 3. PRAÇA CENTRAL       │
+│ • Trapiches, tavernas │ • Armarias, fundição  │ • Mercado, câmara      │
+├───────────────────────┼───────────────────────┼────────────────────────┤
+│ 4. MURALHA MILITAR    │ 5. ALDEIA PERIFÉRICA  │ 6. SANTUÁRIO / TERREIRO│
+│ • Paiol, quartéis     │ • Roças, choupanas    │ • Rezas, curandeiros   │
+└───────────────────────┴───────────────────────┴────────────────────────┘
+</code></pre>
+<h3>1. Regras de Distritos Urbanos:</h3>
+<ul>
+<li><strong>Capacidade de Instalações:</strong> Cada distrito pode abrigar até 4 Instalações Especiais simultâneas sem sobrecarregar o espaço urbano.</li>
+<li><strong>Distúrbios &amp; Greves:</strong> Se a Moral geral cair abaixo de 40, um distrito sorteado entra em greve ou revolta popular, paralisando sua produção até que os líderes atendam às suas reivindicações.</li>
+<li><strong>Decretos Soberanos de Metrópole:</strong> Os heróis podem promulgar leis como <em>Toque de Recolher</em> (+2 Defesa contra espiões, -5 Moral), <em>Anistia a Foragidos</em> (+50 População imediata, +1 risco de traição) ou <em>Livre Comércio</em> (+3 Ouro por estação).</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">👑 CAPÍTULO 20: COFRES DE DOMÍNIO, TRIBUTOS &amp; RELÍQUIAS TERRITORIAIS</h1></header>
+<p>Um feudo consolidado não acumula apenas moedas de cobre, mas <strong>Reserva de Poder Geopolítico</strong>:</p>
+<h3>1. Tributos de Vassalagem &amp; Pactos Regionais:</h3>
+<ul>
+<li><strong>Exigir Vassalagem:</strong> Assentamentos menores ou aldeias vizinhas sob a proteção dos heróis pagam <strong>Tributo Sazonal</strong> (1 a 3 Unidades de Recursos ou Ouro por estação).</li>
+<li><strong>Pagar Dízimo Colonial:</strong> Se os heróis optarem por manter a paz com o Governo Geral ou um Barão poderoso, devem enviar <strong>3 Ouro ou 4 Víveres</strong> na colheita anual para evitar a marcha dos regimentos imperiais.</li>
+</ul>
+<h3>2. O Grande Cofre Forte:</h3>
+<p>Uma instalação especial de segurança máxima construída em rocha viva com fechaduras anãs ou travas místicas. Protege até 50 Unidades de Ouro contra roubos, incêndios e devastações de cerco. Se a cidade cair, o cofre permanece selado até que os heróis retornem para resgatá-lo.</p>
+<h3>3. Relíquias Territoriais de Poder (Exemplos de Artefatos de Domínio):</h3>
+<ul>
+<li><strong>O Estandarte da Terra Livre:</strong> Uma bandeira bordada com fios de ouro e cinzas de mártires. Enquanto hasteada na muralha, nenhum defensor cede ao medo ou pânico em combate.</li>
+<li><strong>O Sino do Alvorecer:</strong> Fundido em bronze com fragmentos de meteorito. Quando tocado durante a noite, dispersa qualquer névoa necrótica ou aparição fantasmagórica em 1 légua ao redor.</li>
+<li><strong>A Coroa de Raízes Imortais:</strong> Um diadema de cipó que nunca murcha. O governante que o usa ganha comunhão direta com o espírito da terra, sendo avisado em sonhos 3 dias antes de qualquer invasão.</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">⚔️ CAPÍTULO 21: SISTEMA AVANÇADO DE BATALHA CAMPAL (COMBATE EM MASSA)</h1></header>
+<p>Quando duas forças armadas se enfrentam em campo aberto — sem muralhas de proteção —, o combate é resolvido em <strong>Turnos de Manobra Militar</strong>:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                   RODADA DE BATALHA CAMPAL (3 FASES)                   │
+│ 1. DUELO DE TIRO &amp; ARTILHARIA ➔ 2. CHOQUE DE LINHAS ➔ 3. TESTE DE MORAL│
+└────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>1. Unidades Militares Básicas:</h3>
+<ul>
+<li><strong>Companhia de Linha (50 Lanceiros/Espingardeiros):</strong> Ataque +4, Dano 2d8 de Baixas, Moral 14.</li>
+<li><strong>Esquadrão de Cavalaria Sertaneja (30 Vaqueiros/Ginetes):</strong> Ataque +6, Dano 2d10 no Impacto de Carga, Flanco Rápido.</li>
+<li><strong>Bateria de Artilharia (2 Canhões de Bronze):</strong> Ataque +3, Dano 3d10 de Baixas a Longa Distância, causa teste imediato de Pânico.</li>
+</ul>
+<h3>2. O Papel dos Heróis na Batalha Campal:</h3>
+<p>Em cada rodada de batalha, cada herói escolhe uma <strong>Ação Heroica de Liderança</strong>:</p>
+<ol>
+<li><strong>Duelo de Campeões:</strong> Desafie o general inimigo para combate singular! Vencê-lo impõe Desvantagem em todos os testes de Moral do exército inimigo.</li>
+<li><strong>Carga Fulminante:</strong> Lidere a tropa na vanguarda causando +1d10 de Baixas extras nas linhas inimigas.</li>
+<li><strong>Discurso Inflamado:</strong> Faça um teste de Presença CD 14 para recuperar a Moral de uma companhia abalada, evitando que ela debande.</li>
+<li><strong>Emboscar a Reserva Inimiga:</strong> Use furtividade para atear fogo nos paióis de pólvora ou na bagagem do inimigo.</li>
+</ol>
+<h3>3. Debandada &amp; Vitória:</h3>
+<p>Quando um exército perde 50% de seus combatentes ou falha em dois testes seguidos de Moral, suas linhas quebram em debandada caótica! O lado vitorioso captura prisioneiros, canhões e toda a bagagem de campanha!</p>
+<hr>
+<header class="part-header"><h1 class="part-title">⚖️ CAPÍTULO 22: INTRIGAS, RIXAS DE FAMÍLIA &amp; DILEMAS INTERNOS (1d20)</h1></header>
+<p>Quando o assentamento atinge a paz contra monstros exteriores, as tensões humanas vêm à tona. No início de cada estação (ou após festas populares), o Mestre pode rolar <strong>1d20</strong> para introduzir um dilema social que exige a intervenção moral dos TerraTenentes:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d20</th>
+<th align="left">Conflito Comunitário / Dilema Cívico</th>
+<th align="left">Desafio para os Líderes &amp; Consequência</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>1</strong></td>
+<td align="left"><strong>Disputa de Cerca &amp; Água de Rega</strong></td>
+<td align="left">Duas famílias de lavradores ameaçam duelo de foice por desvio de córrego. Exige mediação ou obras de canalização.</td>
+</tr>
+<tr>
+<td align="center"><strong>2</strong></td>
+<td align="left"><strong>Acusação de Mau-Olhado &amp; Bruxeira</strong></td>
+<td align="left">Um bezerro nasce deformado e a vila acusa uma velha parteira de pacto com o Boitatá. Proteger a inocente custa -5 Moral temporária.</td>
+</tr>
+<tr>
+<td align="center"><strong>3</strong></td>
+<td align="left"><strong>Valentão Armado no Baile do Povoado</strong></td>
+<td align="left">Jagunço forasteiro bêbado saca garrucha na festa da colheita. Os heróis devem desarmá-lo sem causar banho de sangue público.</td>
+</tr>
+<tr>
+<td align="center"><strong>4</strong></td>
+<td align="left"><strong>Herança Sem Testamento</strong></td>
+<td align="left">Patriarca respeitado morre sem deixar documento; três irmãos armados disputam o engenho da família a facão.</td>
+</tr>
+<tr>
+<td align="center"><strong>5</strong></td>
+<td align="left"><strong>Falso Profeta da Mata</strong></td>
+<td align="left">Eremita fanático surge pregando que o fim dos tempos chegou e convence 30 aldeões a abandonarem o trabalho da roça.</td>
+</tr>
+<tr>
+<td align="center"><strong>6</strong></td>
+<td align="left"><strong>Fuga Romântica Proibida</strong></td>
+<td align="left">Filha do tropeiro mais rico foge com um batedor nativo procurado. O pai exige expedição de resgate ou cancela o comércio.</td>
+</tr>
+<tr>
+<td align="center"><strong>7</strong></td>
+<td align="left"><strong>Furto no Celeiro de Reserva</strong></td>
+<td align="left">Sacas de feijão e charque somem durante a noite. O ladrão é uma mãe viúva desesperada com quatro crianças famintas.</td>
+</tr>
+<tr>
+<td align="center"><strong>8</strong></td>
+<td align="left"><strong>Cachaça Adulterada com Fumo-Bravo</strong></td>
+<td align="left">Lote de aguardente envenena dez trabalhadores no rancho. O grupo precisa achar o antídoto e desmascarar o sabotador.</td>
+</tr>
+<tr>
+<td align="center"><strong>9</strong></td>
+<td align="left"><strong>Cobrador de Dívidas Forasteiro</strong></td>
+<td align="left">Oficial de justiça com mandado legal chega exigindo confiscar ferramentas de um carpinteiro que fugiu de dívida da capital.</td>
+</tr>
+<tr>
+<td align="center"><strong>10</strong></td>
+<td align="left"><strong>Namoro de Risco na Fronteira</strong></td>
+<td align="left">Sentinela do forte é apanhado aos beijos com uma espiã de capitães-do-mato perto das paliçadas. Amor ou traição?</td>
+</tr>
+<tr>
+<td align="center"><strong>11</strong></td>
+<td align="left"><strong>Rixa de Galo &amp; Jogo Clandestino</strong></td>
+<td align="left">Uma roda de apostas ilegais atrai forasteiros mal-encarados, gerando brigas diárias nos becos da vila.</td>
+</tr>
+<tr>
+<td align="center"><strong>12</strong></td>
+<td align="left"><strong>Doença Misteriosa nas Crianças</strong></td>
+<td align="left">Febre repentina assola a creche comunitária. O médico colonial receita sangrias, mas a rezadeira pede ervas raras da serra.</td>
+</tr>
+<tr>
+<td align="center"><strong>13</strong></td>
+<td align="left"><strong>Desertor Militar Suplicando Abrigo</strong></td>
+<td align="left">Soldado colonial ferido implora asilo; um batalhão imperial virá caçá-lo em 48 horas se os heróis o aceitarem.</td>
+</tr>
+<tr>
+<td align="center"><strong>14</strong></td>
+<td align="left"><strong>Disputa de Primazia Religiosa</strong></td>
+<td align="left">Um frade jesuíta e um líder de terreiro exigem o mesmo terreno central para erguer sua capela ou casa sagrada.</td>
+</tr>
+<tr>
+<td align="center"><strong>15</strong></td>
+<td align="left"><strong>Gado Invasor Destrói Roça de Subsistência</strong></td>
+<td align="left">Bois de pasto quebram a cerca de bambu e pisoteiam a horta comunitária de mandioca. Quem paga o prejuízo?</td>
+</tr>
+<tr>
+<td align="center"><strong>16</strong></td>
+<td align="left"><strong>Bebê Encontrado na Canoa do Rio</strong></td>
+<td align="left">Criança saudável é achada à deriva envolta em mantas indígenas com marcas de sangue. De quem é o filho?</td>
+</tr>
+<tr>
+<td align="center"><strong>17</strong></td>
+<td align="left"><strong>Boato de Traição entre os Batedores</strong></td>
+<td align="left">Alguém está enviando cartas secretas aos fazendeiros vizinhos revelando as defesas do quilombo ou aldeia.</td>
+</tr>
+<tr>
+<td align="center"><strong>18</strong></td>
+<td align="left"><strong>Greve dos Oleiros &amp; Carvoeiros</strong></td>
+<td align="left">Trabalhadores exigem melhores rações e descanso na quaresma; o fogo das forjas para até que o acordo seja selado.</td>
+</tr>
+<tr>
+<td align="center"><strong>19</strong></td>
+<td align="left"><strong>Ouro Falso na Feira Livre</strong></td>
+<td align="left">Moedas de chumbo dourado circulam no mercado, causando desconfiança geral e quebra de crédito comercial.</td>
+</tr>
+<tr>
+<td align="center"><strong>20</strong></td>
+<td align="left"><strong>Retorno do Antigo Proprietário</strong></td>
+<td align="left">Um herdeiro colonial com carta régia de sesmaria antiga reaparece reivindicando a posse de todas as terras do feudo!</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">🌦️ CAPÍTULO 23: O CICLO DAS ESTAÇÕES TROPICAIS — SECA BRUTA VS. ÁGUAS</h1></header>
+<p>Na fronteira tropical, o clima não segue as quatro estações amenas europeias. O destino do domínio é regido por dois gigantes: <strong>A Estação das Águas (Invernaço)</strong> e <strong>A Estação da Seca (Estiagem Vermelha)</strong>:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                   O CALENDÁRIO DA TERRA NA FRONTEIRA                   │
+├───────────────────────────────────┬────────────────────────────────────┤
+│ 🌊 ESTAÇÃO DAS ÁGUAS (6 MESES)    │ ☀️ ESTAÇÃO DA SECA (6 MESES)      │
+│ • Enchentes, atoleiros fluviais   │ • Queimadas, poeira sufocante      │
+│ • Malária e febres de charco      │ • Nascentes secas e sede ardente   │
+│ • Fartura de peixes e caça d&#39;água │ • Lavouras dependentes de rega     │
+└───────────────────────────────────┴────────────────────────────────────┘
+</code></pre>
+<h3>1. A Estação das Águas (Invernada):</h3>
+<ul>
+<li><strong>Atoleiros Incessantes:</strong> Trilhas terrestres viram lamaçal espesso. Viagens com carro de boi ou mulas levam o <strong>dobro do tempo</strong>. O transporte de carga é transferido obrigatoriamente para canoas e balsas fluviais.</li>
+<li><strong>Malária &amp; Maleita:</strong> Se o assentamento não tiver <em>Ervanário</em> ou <em>Curandeira</em>, a vila sofre <strong>-1d10 População ativa</strong> por febre intermitente.</li>
+<li><strong>Risco de Mofo nos Celeiros:</strong> Faça um teste de Constituição do Assentamento (CD 12). Em caso de falha, perde-se <strong>2 Unidades de Víveres</strong> em farinha fermentada pela umidade.</li>
+</ul>
+<h3>2. A Estação da Seca (Canícula Sertaneja):</h3>
+<ul>
+<li><strong>Perigo das Queimadas:</strong> No início de cada mês de seca, role <strong>1d6</strong>. Em um resultado <strong>1</strong>, uma queimada espontânea de pasto avança contra as paliçadas! Exige teste coletivo de Vigor para apagar os focos com terra e abafadores antes que atinja as moradias.</li>
+<li><strong>Racionamento de Água:</strong> Se a vila não construiu <em>Poços Profundos de Cantaria</em> ou <em>Cisternas</em>, a produção de alimentos cai em 50% e a moral sofre <strong>-10 pontos</strong>.</li>
+<li><strong>Trilhas Abertas para Invasões:</strong> A terra seca facilita a marcha rápida de cavalaria e jagunços inimigos, acelerando qualquer Relógio de Incursão em <strong>+1 fatia adicional</strong>!</li>
+</ul>
+<hr>
+<p><em>Manual do Mestre — O destino de uma terra e de seu povo está nas suas mãos.</em></p>
+
+    </div>
+  </div>
+  <script>
+    function toggleColumns() {
+      const container = document.getElementById('bookContainer');
+      const btn = document.getElementById('colBtn');
+      container.classList.toggle('one-column-mode');
+      btn.textContent = container.classList.contains('one-column-mode') ? 'Modo: 1 Coluna (Clique p/ 2)' : 'Modo: 2 Colunas (Clique p/ 1)';
+    }
+    function setFontSize(val) {
+      document.documentElement.style.setProperty('--font-base', val);
+    }
+  </script>
+</body>
+</html>

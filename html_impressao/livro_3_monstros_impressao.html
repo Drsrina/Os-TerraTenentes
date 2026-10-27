@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Os TerraTenentes: Livro 3 de Monstros & Encontros — Bestiário Folclórico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 8mm 8mm 9mm 8mm;
+      @bottom-center {
+        content: counter(page);
+        font-family: 'Cinzel', 'Georgia', serif;
+        font-size: 7.5pt;
+        color: #666;
+      }
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    :root {
+      --primary-color: #2b4728;
+      --secondary-color: #8c6d3b;
+      --accent-color: #a73228;
+      --dark-bg: #1c261b;
+      --light-bg: #f9f8f5;
+      --border-color: #d1c7b7;
+      --text-color: #222220;
+      --font-base: 8.5pt;
+      --line-height-base: 1.28;
+    }
+
+    body {
+      font-family: 'Crimson Pro', 'Georgia', serif;
+      font-size: var(--font-base);
+      line-height: var(--line-height-base);
+      color: var(--text-color);
+      background-color: #d5d1c8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #1e1e1e;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+    }
+    .toolbar button, .toolbar select {
+      background: #2b4728;
+      color: #fff;
+      border: 1px solid #4a7545;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 11px;
+    }
+    .toolbar button:hover { background: #3a5f36; }
+    .toolbar .btn-print { background: #a73228; border-color: #c94035; }
+    .toolbar .btn-print:hover { background: #bd3a2f; }
+
+    @media print {
+      .toolbar { display: none !important; }
+      body { background-color: #fff; }
+      .sheet {
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        width: 100% !important;
+      }
+    }
+
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 15mm auto;
+      background: var(--light-bg);
+      padding: 10mm 12mm;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+
+    .content-columns {
+      column-count: 2;
+      column-gap: 6mm;
+      column-fill: auto;
+      text-align: justify;
+    }
+
+    .one-column-mode .content-columns {
+      column-count: 1 !important;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cinzel', 'Georgia', serif;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-top: 1.2em;
+      margin-bottom: 0.4em;
+      break-after: avoid;
+    }
+
+    .main-doc-header {
+      column-span: all;
+      text-align: center;
+      padding: 12mm 0 8mm 0;
+      margin-bottom: 6mm;
+      border-bottom: 2px solid var(--secondary-color);
+    }
+    .main-title {
+      font-size: 20pt;
+      color: var(--primary-color);
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .part-header {
+      column-span: all;
+      background: var(--dark-bg);
+      color: #f4eee1;
+      padding: 5mm 8mm;
+      margin: 8mm 0 4mm 0;
+      border-left: 5px solid var(--accent-color);
+      border-radius: 2px;
+      page-break-before: auto;
+    }
+    .part-title {
+      margin: 0;
+      font-size: 13pt;
+      color: #f4eee1;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title {
+      font-size: 11pt;
+      color: var(--primary-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.5px;
+      margin-top: 1.1em;
+      break-after: avoid;
+    }
+
+    h2 { font-size: 10pt; color: var(--primary-color); }
+    h3 { font-size: 9pt; color: #443e33; }
+    h4 { font-size: 8.5pt; color: #555; }
+
+    p { margin-top: 0; margin-bottom: 0.6em; text-indent: 1.2em; }
+    p:first-of-type, .part-header + p, h1 + p, h2 + p, h3 + p { text-indent: 0; }
+
+    blockquote {
+      margin: 0.6em 0;
+      padding: 4px 8px;
+      background: #f0ebe1;
+      border-left: 3px solid var(--secondary-color);
+      font-style: italic;
+      font-size: 0.95em;
+    }
+    blockquote p { text-indent: 0; margin-bottom: 0; }
+
+    ul, ol {
+      margin: 0.3em 0 0.6em 0;
+      padding-left: 14px;
+    }
+    li { margin-bottom: 0.2em; }
+
+    .table-wrapper, .table-wide-wrapper {
+      margin: 0.6em 0;
+      break-inside: avoid;
+    }
+    .table-wide-wrapper {
+      column-span: all;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.8pt;
+      line-height: 1.18;
+      background: #fff;
+      border: 1px solid var(--border-color);
+    }
+    th, td {
+      padding: 3.5px 5px;
+      border: 1px solid #ddd6c9;
+      text-align: left;
+    }
+    th {
+      background: #2b4728;
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 7.8pt;
+    }
+    tr:nth-child(even) td { background: #f7f5f0; }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: var(--border-color);
+      margin: 1em 0;
+    }
+
+    .page-break-before {
+      break-before: page;
+      page-break-before: always;
+    }
+
+    code {
+      font-family: 'Consolas', monospace;
+      font-size: 0.9em;
+      background: #eee9df;
+      padding: 1px 3px;
+      border-radius: 2px;
+    }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <span><strong>Os TerraTenentes: Livro 3 de Monstros & Encontros — Bestiário Folclórico</strong></span>
+    <button onclick="toggleColumns()" id="colBtn">Modo: 2 Colunas (Clique p/ 1)</button>
+    <select onchange="setFontSize(this.value)">
+      <option value="8pt">Densidade: Compacta (8pt)</option>
+      <option value="8.5pt" selected>Densidade: Normal (8.5pt)</option>
+      <option value="9pt">Densidade: Confortável (9pt)</option>
+    </select>
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
+  </div>
+  <div class="sheet" id="bookContainer">
+    <div class="content-columns">
+      <header class="main-doc-header"><h1 class="main-title">🐾 OS TERRATENENTES — LIVRO III: BESTAS, MONSTROS &amp; ENCONTROS</h1></header>
+<h2>Bestiário de Fronteira, Ameaças Territoriais &amp; Tabelas de Campo</h2>
+<h3>Aldeias, Quilombos e Fortes</h3>
+<hr>
+<header class="part-header"><h1 class="part-title">📖 CAPÍTULO 1: A NATUREZA DAS AMEAÇAS TERRITORIAIS</h1></header>
+<p>Em jogos de masmorra tradicionais, um monstro existe apenas para ficar parado em uma sala de dez metros quadrados esperando aventureiros abrirem a porta.<br>Em <strong>Os TerraTenentes</strong>, o mundo é vivo, selvagem e faminto. As feras e inimigos possuem <strong>motivações territoriais claras</strong>:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                   TIPOS DE AMEAÇAS TERRITORIAIS                        │
+├───────────────────┬────────────────────────────┬───────────────────────┤
+│ PREDADORES DE ROÇA│ DEMOLIDORES DE CERCO       │ INVASORES HUMANOS     │
+│ • Atacam o gado   │ • Investem contra portões  │ • Buscam escravizar,  │
+│ • Devoram os grãos│ • Derrubam paliçadas       │   queimar a vila e    │
+│ • Geram FOME!     │ • Causam Dano de Cerco     │   cobrar tributos     │
+└───────────────────┴────────────────────────────┴───────────────────────┘
+</code></pre>
+<h3>Regra Especial: Dano de Cerco</h3>
+<p>Criaturas massivas (como o <em>Mapinguari</em>, <em>Jacarés Titânicos</em> e golpes de aríete) possuem o traço <strong>Dano de Cerco</strong>. Seus ataques causam <strong>dano duplo</strong> contra paliçadas de madeira, portões, celeiros e fortificações de pedra.</p>
+<h3>Espólio &amp; Colheita de Recursos</h3>
+<p>Derrotar uma criatura na fronteira não rende apenas moedas. Cada carcaça fornece matérias-primas essenciais para o crescimento da sua vila: couros resistentes para armaduras, ossos densos para ferramentas, venenos para flechas e carne para encher os celeiros!</p>
+<hr>
+<header class="part-header"><h1 class="part-title">📜 CAPÍTULO 2: COMO LER AS FICHAS DO BESTIÁRIO</h1></header>
+<p>Cada ficha é apresentada de forma limpa e direta:</p>
+<ul>
+<li><strong>Nível de Ameaça (NA 1 a 8):</strong> Dá a escala de perigo (NA 1 desafia colonos armados; NA 5 desafia grupos veteranos; NA 8+ é uma calamidade regional).</li>
+<li><strong>Defesa (DEF) &amp; Pontos de Vida (PV):</strong> A dificuldade para acertar e o dano que a besta suporta.</li>
+<li><strong>Deslocamento:</strong> Quantos metros se move por rodada.</li>
+<li><strong>Atributos:</strong> Vigor, Agilidade, Astúcia e Presença.</li>
+<li><strong>Ataques &amp; Ações:</strong> A rolagem de ataque e o dano provocado.</li>
+<li><strong>Traço Territorial:</strong> O que a fera faz se alcançar a sua vila ou lavouras.</li>
+<li><strong>Colheita de Espólios:</strong> Os recursos de domínio obtidos ao carnear a criatura.</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">🐆 CAPÍTULO 3: FERAS DA MATA &amp; LENDAS DA FRONTEIRA</h1></header>
+<hr>
+<h3>1. ONÇA-PINTADA TITÂNICA (Maracajá-Açu)</h3>
+<p><em>A soberana das copas e brenhas. Do tamanho de um touro reprodutor, sua pelagem camufla-se perfeitamente entre os raios de sol e a folhagem úmida. Ataca em silêncio mortal.</em></p>
+<ul>
+<li><strong>Nível de Ameaça:</strong> 3 | <strong>DEF:</strong> 14 | <strong>PV:</strong> 38 | <strong>Deslocamento:</strong> 12 metros (escala árvores).</li>
+<li><strong>Atributos:</strong> Vigor +3, Agilidade +4, Astúcia +2, Presença +2.</li>
+<li><strong>Ataques:</strong><ul>
+<li><strong>Mordida de Mandíbula de Ferro:</strong> $+5$ para acertar, dano <strong>1d10 + 3 Perfurante</strong>. Se acertar, o alvo é agarrado e puxado para o chão.</li>
+<li><strong>Bote das Sombras:</strong> Se atacar com Vantagem estando escondida, causa $+2d6$ de dano extra.</li>
+</ul>
+</li>
+<li><strong>Traço Territorial:</strong> Arrasa o curral de cabras da vila (reduz 1 Víveres se não for caçada em 2 dias).</li>
+<li><strong>Colheita de Espólios:</strong><ul>
+<li><em>Couro Macio Manchado:</em> Permite confeccionar 1 <em>Gibão de Couro de Onça</em> (+2 Defesa).</li>
+<li><em>Presas e Garras de Marfim:</em> Rendem 1 Unidade de Material Bruto ou adorno para o líder (+5 Moral).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>2. SUCURI DAS ÁGUAS PROFUNDAS (Mboi-Açu)</h3>
+<p><em>Uma serpente monstruosa com mais de quinze metros de comprimento, que repousa nas lagoas escuras e remansos de rios. Capaz de engolir bezerros e virar canoas de pesca.</em></p>
+<ul>
+<li><strong>Nível de Ameaça:</strong> 4 | <strong>DEF:</strong> 13 | <strong>PV:</strong> 52 | <strong>Deslocamento:</strong> 6 metros em terra, 15 metros na água.</li>
+<li><strong>Atributos:</strong> Vigor +4, Agilidade +2, Astúcia +1, Presença +1.</li>
+<li><strong>Ataques:</strong><ul>
+<li><strong>Bote Aquático:</strong> $+6$ para acertar, alcance 3 metros, dano <strong>1d8 + 4 Perfurante</strong>.</li>
+<li><strong>Constrição Asfixiante:</strong> Alvo atingido fica preso (escapar exige teste de Vigor CD 14). No início de cada turno preso, sofre <strong>2d6 + 4 de Concussão</strong> automática e não consegue respirar.</li>
+</ul>
+</li>
+<li><strong>Traço Territorial:</strong> Bloqueia o transporte fluvial de toras e canoas de pesca da vila.</li>
+<li><strong>Colheita de Espólios:</strong><ul>
+<li><em>Banha de Sucuri:</em> O curandeiro extrai óleo medicinal que rende <strong>2 Poções de Cura</strong>.</li>
+<li><em>Couro Impermeável:</em> Usado para calafetar barcos e telhados (+1 Madeira economizada em obras).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>3. BANDO DE QUEIXADAS RAIVOSOS (Horda Faminta)</h3>
+<p><em>Dezenas de porcos selvagens com presas afiadas como lâminas, que se movem em massa rangendo os dentes. Quando invadem uma roça de milho ou mandioca, deixam apenas terra batida para trás.</em></p>
+<ul>
+<li><strong>Nível de Ameaça:</strong> 2 (Enxame de Feras) | <strong>DEF:</strong> 11 | <strong>PV:</strong> 30 | <strong>Deslocamento:</strong> 9 metros.</li>
+<li><strong>Atributos:</strong> Vigor +2, Agilidade +2, Astúcia -1, Presença +0.</li>
+<li><strong>Ataques:</strong><ul>
+<li><strong>Estouro da Manada:</strong> $+4$ para acertar, dano <strong>2d6 + 2 Cortante</strong>. Se o alvo for de tamanho médio ou menor, deve passar em teste de Vigor CD 12 ou será pisoteado e derrubado.</li>
+</ul>
+</li>
+<li><strong>Traço Territorial (Praga de Roça):</strong> Se entrar nas plantações, consome <strong>2 Unidades de Víveres</strong> por noite de ataque!</li>
+<li><strong>Colheita de Espólios:</strong><ul>
+<li><em>Carne Salgada &amp; Toucinho:</em> Rende <strong>+3 Unidades de Víveres</strong> para o celeiro do assentamento!</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>4. O MAPINGUARI DOS MORROS (O Titã Peludo)</h3>
+<p><em>Uma abominação ancestral de quase quatro metros de altura, coberta por pelos espessos e avermelhados impenetráveis a flechas comuns. Possui uma bocarra canibal no ventre e um cheiro pútrido que atordoa homens e cavalos.</em></p>
+<ul>
+<li><strong>Nível de Ameaça:</strong> 6 | <strong>DEF:</strong> 15 | <strong>PV:</strong> 95 | <strong>Deslocamento:</strong> 9 metros.</li>
+<li><strong>Atributos:</strong> Vigor +5, Agilidade +0, Astúcia +1, Presença +3.</li>
+<li><strong>Habilidades Especiais:</strong><ul>
+<li><strong>Pele de Couro Blindado:</strong> Resistência a dano cortante e perfurante de armas normais.</li>
+<li><strong>Catinga Nauseante:</strong> Criaturas a até 3 metros devem passar em teste de Vigor CD 13 ou ficam envenenadas (desvantagem em ataques) enquanto estiverem perto dele.</li>
+<li><strong>Dano de Cerco:</strong> Seus golpes causam dano duplo contra portões e paliçadas.</li>
+</ul>
+</li>
+<li><strong>Ataques:</strong><ul>
+<li><strong>Patada Esmagadora:</strong> $+7$ para acertar, dano <strong>2d10 + 5 Concussão</strong>.</li>
+<li><strong>Bocarra do Ventre:</strong> Gaste 1 ação bônus contra alvo agarrado: causa <strong>3d6 de dilaceração</strong>.</li>
+</ul>
+</li>
+<li><strong>Traço Territorial:</strong> Ataca a vila à noite buscando carne fresca, investindo de cabeça contra os portões de madeira!</li>
+<li><strong>Colheita de Espólios:</strong><ul>
+<li><em>Couro Impenetrável:</em> Permite forjar 2 <em>Couraças de Guerra Blindadas</em> (+4 Defesa).</li>
+<li><em>Ossos Titânicos:</em> Rendem vigas de reforço para muralhas (+1 Ponto de Reserva para o Domínio).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>5. O BOITATÁ DA MATA ESCURA (A Serpente de Chamas)</h3>
+<p><em>Um espírito primordial da floresta em forma de serpente gigante coberta por dezenas de olhos incandescentes. Não caça por fome: pune com labaredas quem invade matas sagradas ou incendeia as árvores.</em></p>
+<ul>
+<li><strong>Nível de Ameaça:</strong> 7 | <strong>DEF:</strong> 16 | <strong>PV:</strong> 110 | <strong>Deslocamento:</strong> 15 metros.</li>
+<li><strong>Atributos:</strong> Vigor +4, Agilidade +5, Astúcia +3, Presença +4.</li>
+<li><strong>Habilidades Especiais:</strong><ul>
+<li><strong>Corpo Incandescente:</strong> Quem atingir o Boitatá em combate corpo a corpo sofre <strong>1d6 de Fogo</strong>.</li>
+<li><strong>Olhar dos Cem Olhos:</strong> Aqueles que olharem nos olhos da fera devem fazer teste de Presença CD 15 ou ficam cegos e paralisados de terror por 1 rodada.</li>
+</ul>
+</li>
+<li><strong>Ataques:</strong><ul>
+<li><strong>Sopro de Fogo Fátuo (Recarrega 5–6 no d6):</strong> Expele labaredas azuis em cone de 9 metros. Todas as criaturas na área fazem teste de Agilidade CD 15 ou sofrem <strong>4d8 de dano de Fogo</strong> (metade no sucesso).</li>
+</ul>
+</li>
+<li><strong>Colheita de Espólios:</strong><ul>
+<li><em>Chamas Eternas Engarrafadas:</em> Rende <strong>2 Unidades de Materiais Místicos</strong> para o Templo ou Torre Arcana.</li>
+<li><em>Olhos de Brasa:</em> Permitem criar um amuleto que concede visão no escuro perfeita.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">⚔️ CAPÍTULO 4: INVASORES, JAGUNÇOS &amp; TROPAS COLONIAIS</h1></header>
+<p>Nem todo monstro tem presas e garras. Os inimigos mais cruéis andam em duas pernas e carregam mosquetes, algemas e decretos reais de expropriação.</p>
+<hr>
+<h3>1. CAPITÃO-DO-MATO VETERANO</h3>
+<p><em>Caçador implacável a soldo da Coroa ou de barões de engenho. Conhece as brenhas, anda com cães de ataque e usa correntes e redes para capturar combatentes vivos.</em></p>
+<ul>
+<li><strong>Nível de Ameaça:</strong> 3 | <strong>DEF:</strong> 14 (Colete de couro e chapéu de vaqueiro) | <strong>PV:</strong> 42 | <strong>Deslocamento:</strong> 9 metros.</li>
+<li><strong>Atributos:</strong> Vigor +3, Agilidade +3, Astúcia +2, Presença +2.</li>
+<li><strong>Ataques:</strong><ul>
+<li><strong>Tiro de Bacamarte:</strong> $+5$ para acertar, cone de 6 metros, dano <strong>2d8 Concussão</strong>.</li>
+<li><strong>Facão de Arrastão:</strong> $+5$ para acertar, dano <strong>1d8 + 3 Cortante</strong>.</li>
+<li><strong>Lançamento de Laço de Couro:</strong> $+4$ para acertar, alcance 6 metros. O alvo fica imobilizado no chão até se soltar (teste de Vigor ou Agil CD 13).</li>
+</ul>
+</li>
+<li><strong>Companheiros:</strong> Geralmente lidera uma matilha de <strong>3 Cães de Fila</strong> farejadores.</li>
+<li><strong>Espólios:</strong> Bacamarte de pederneira, saco de pólvora e chumbo, e mapa das fazendas vizinhas.</li>
+</ul>
+<hr>
+<h3>2. JAGUNÇO DE EMBOSCADA (Infantaria Mercenária)</h3>
+<p><em>Homens rudes recrutados em tabernas portuárias, pagos com aguardente e moedas de prata para incendiar plantações e matar sentinelas nas paliçadas.</em></p>
+<ul>
+<li><strong>Nível de Ameaça:</strong> 1 | <strong>DEF:</strong> 12 | <strong>PV:</strong> 18 | <strong>Deslocamento:</strong> 9 metros.</li>
+<li><strong>Atributos:</strong> Vigor +2, Agilidade +1, Astúcia +0, Presença +0.</li>
+<li><strong>Ataques:</strong><ul>
+<li><strong>Espingarda de Pederneira:</strong> $+3$ para acertar, alcance 30 metros, dano <strong>1d10 Perfurante</strong>.</li>
+<li><strong>Foice de Roça ou Peixeira:</strong> $+4$ para acertar, dano <strong>1d6 + 2 Cortante</strong>.</li>
+</ul>
+</li>
+<li><strong>Tática de Grupo:</strong> Se estiverem em número superior aos heróis, ganham $+1$ nos ataques por aliada adjacente.</li>
+</ul>
+<hr>
+<h3>3. O CORONEL DA COROA (Comandante da Expedição)</h3>
+<p><em>Nobre oficial que lidera expedições de repressão. Frio, arrogante e protegido por guarda-costas de elite. Cavalga um alazão de guerra e dá ordens de cerco com tambores e cornetas.</em></p>
+<ul>
+<li><strong>Nível de Ameaça:</strong> 5 | <strong>DEF:</strong> 16 (Armadura de placas peitorais e espada de duelo) | <strong>PV:</strong> 65 | <strong>Deslocamento:</strong> 9 metros (18 metros a cavalo).</li>
+<li><strong>Atributos:</strong> Vigor +2, Agilidade +3, Astúcia +3, Presença +4.</li>
+<li><strong>Ações:</strong><ul>
+<li><strong>Sabre de Oficial de Aço Nobre:</strong> $+6$ para acertar, dano <strong>1d8 + 3 Cortante</strong>. Se errar, pode realizar um segundo ataque imediato.</li>
+<li><strong>Pistola Dupla de Prata:</strong> $+5$ para acertar, alcance 15 metros, dano <strong>1d10 + 2 Perfurante</strong>.</li>
+<li><strong>Ordem de Fogo! (Recarrega 4–6):</strong> Grita para seus mosqueteiros. Até 3 soldados aliados realizam um ataque de tiro imediato fora de seus turnos!</li>
+</ul>
+</li>
+<li><strong>Espólios:</strong> Carta de Patente Real assinada pelo Governador, 80 Moedas de Ouro puras e uma espada obra-prima (+1 no ataque).</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">👻 CAPÍTULO 5: TERRORES ANCESTRAIS &amp; ESPECTROS DA TERRA</h1></header>
+<hr>
+<h3>1. CORPO-SECO (O Amaldiçoado da Cripta)</h3>
+<p><em>O cadáver mumificado de um homem tão cruel e perverso que nem a terra aceitou abrigá-lo. Levanta-se de túmulos rasos na caatinga com garras secas como galhos ressequidos, sugando a vida de quem passar pela estrada.</em></p>
+<ul>
+<li><strong>Nível de Ameaça:</strong> 3 | <strong>DEF:</strong> 12 | <strong>PV:</strong> 32 | <strong>Deslocamento:</strong> 9 metros.</li>
+<li><strong>Atributos:</strong> Vigor +3, Agilidade +1, Astúcia -1, Presença +2.</li>
+<li><strong>Habilidades Especiais:</strong><ul>
+<li><strong>Toque Parasita:</strong> O dano que ele causa em combate cura os seus próprios Pontos de Vida na mesma quantidade!</li>
+<li><strong>Terror dos Ossos:</strong> Quem for atingido pelo Corpo-Seco deve passar em teste de Presença CD 12 ou sofrerá 1 nível de exaustão temporária por fadiga espiritual.</li>
+</ul>
+</li>
+<li><strong>Ataques:</strong><ul>
+<li><strong>Garras Secas:</strong> $+4$ para acertar, dano <strong>1d6 + 3 Cortante</strong> mais <strong>1d6 de Dreno Necrótico</strong>.</li>
+</ul>
+</li>
+<li><strong>Fraqueza:</strong> Vulnerável a dano de Fogo e água benta consagrada por curandeiros.</li>
+</ul>
+<hr>
+<h3>2. APARIÇÃO DAS CORRENTES (Espírito Vingador)</h3>
+<p><em>A alma atormentada de um guerreiro que morreu em ferros nos porões coloniais. Flutua no ar como névoa escura agitando grilhões pesados que ecoam pelo vale.</em></p>
+<ul>
+<li><strong>Nível de Ameaça:</strong> 4 | <strong>DEF:</strong> 13 | <strong>PV:</strong> 45 | <strong>Deslocamento:</strong> Voo 12 metros (atravessa paredes e paliçadas).</li>
+<li><strong>Habilidades:</strong><ul>
+<li><strong>Imaterial:</strong> Resistência a armas normais que não sejam de prata, madeira consagrada ou fogo sagrado.</li>
+<li><strong>Uivo de Agonia:</strong> Uma vez por combate, emite um grito estarrecedor. Todos a até 9 metros fazem teste de Presença CD 13 ou largam suas armas e caem de joelhos chorando de terror por 1 rodada.</li>
+</ul>
+</li>
+<li><strong>Ataques:</strong><ul>
+<li><strong>Correntes Espectrais:</strong> $+5$ para acertar, alcance 4,5 metros, dano <strong>2d6 de Frio Espiritual</strong>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">💀 CAPÍTULO 6: CHEFES EM 3 FASES (MECÂNICA ÉPICA)</h1></header>
+<p>Em confrontos decisivos (como no clímax do Ato I ou Ato II da campanha), use um <strong>Chefe em Três Fases</strong>. Cada fase muda o terreno e o comportamento do monstro!</p>
+<h3>Exemplo Épico: O GRANDE MAPINGUARI DE FOGO (Besta Titânica)</h3>
+<pre><code>[FASE 1: INVESTIDA BRUTAL]  ──&gt; Quebra de Paliçadas e Arremesso de Troncos
+               │ (Ao cair a 66% dos PV)
+[FASE 2: CATINGA EM CHAMAS] ──&gt; O monstro incendeia o próprio pelo; fumaça tóxica
+               │ (Ao cair a 33% dos PV)
+[FASE 3: AGONIA COLOSSAL]   ──&gt; Ataques frenéticos em cone duplo; colapso do covil!
+</code></pre>
+<ol>
+<li><strong>FASE 1 (100% a 66% de PV):</strong> O monstro arremessa toras de madeira contra as muralhas da vila e tenta pisotear os defensores com patadas pesadas.</li>
+<li><strong>FASE 2 (65% a 33% de PV):</strong> Flechas de fogo ou chamas o enfurecem. O Mapinguari incendeia o próprio matagal ao redor! O campo de batalha vira um inferno de fumaça: todos fazem testes para não asfixiar e os heróis precisam coordenar baldes de água com os aldeões.</li>
+<li><strong>FASE 3 (32% a 0 PV):</strong> A bocarra do seu ventre se abre escancarada. Ele morde tudo ao redor com ataques desesperados duplos. Quando cai derrotado, a terra treme e a vitória consagra os heróis como lendas vivas de toda a região!</li>
+</ol>
+<hr>
+<header class="part-header"><h1 class="part-title">🎲 CAPÍTULO 7: TABELAS DE ENCONTROS POR BIOMA (D12)</h1></header>
+<p>Role <strong>1d12</strong> sempre que os TerraTenentes realizarem a ação de <em>Explorar os Limites</em> ou viajem em missão:</p>
+<h3>1. Mata Fechada &amp; Florestas dos Rios</h3>
+<ul>
+<li><strong>1–2:</strong> Bando de queixadas raivosos invadindo lavouras.</li>
+<li><strong>3–4:</strong> Rastros frescos de onça-pintada marcando árvores.</li>
+<li><strong>5–6:</strong> Caçadores nativos perdidos dispostos a negociar ervas e peixe seco.</li>
+<li><strong>7–8:</strong> Sucuri das águas profundas emboscando a margem de um rio.</li>
+<li><strong>9–10:</strong> Patrulha de capitães-do-mato com cães farejando pegadas do quilombo.</li>
+<li><strong>11:</strong> O Curupira observa os heróis do alto de um jequitibá, testando suas intenções.</li>
+<li><strong>12:</strong> Boitatá rastejando silencioso pelas copas; as folhas fumegam com brasa azul!</li>
+</ul>
+<h3>2. Sertão, Caatinga &amp; Morros Pedregosos</h3>
+<ul>
+<li><strong>1–2:</strong> Cascavel gigante enrolada sob lajes de pedra aquecidas pelo sol.</li>
+<li><strong>3–4:</strong> Caravana de retirantes famintos buscando abrigo e água de poço.</li>
+<li><strong>5–6:</strong> Ruínas de um engenho queimado com carretas de ferro abandonadas (+2 Metal).</li>
+<li><strong>7–8:</strong> Bando de jagunços armados cobrando pedágio na garganta do morro.</li>
+<li><strong>9–10:</strong> O Corpo-Seco rastejando de um cemitério de beira de estrada.</li>
+<li><strong>11:</strong> O Grande Mapinguari descendo as ravinas em busca de sal e caça!</li>
+<li><strong>12:</strong> Uma mina antiga de prata revelada por desmoronamento recente (+4 Minério)!</li>
+</ul>
+<hr>
+<header class="part-header"><h1 class="part-title">📦 CAPÍTULO 8: TABELAS DE SAQUE SELVAGEM &amp; FORRAGEIO (D100)</h1></header>
+<p>Sempre que os heróis realizarem a ação de <em>Forrageio</em>, <em>Caçada</em> ou vasculharem uma área selvagem após vencerem feras, role <strong>1d100</strong> no bioma correspondente.</p>
+<h3>8.1 Mata Fechada &amp; Florestas dos Rios (1d100)</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d100</th>
+<th align="left">Descoberta Selvagem</th>
+<th align="left">Benefício para o Herói &amp; Assentamento</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01–05</strong></td>
+<td align="left"><strong>Abelhas Arapuá &amp; Favos de Mel Negro</strong></td>
+<td align="left">+1 Víveres e mel balsâmico que cura tosse e ferimentos (+1d6 PV).</td>
+</tr>
+<tr>
+<td align="center"><strong>06–10</strong></td>
+<td align="left"><strong>Touceira de Mandioca-Brava Silvestre</strong></td>
+<td align="left">Raízes grossas. Com preparo correto, rende <strong>+2 Unidades de Víveres</strong> para o celeiro.</td>
+</tr>
+<tr>
+<td align="center"><strong>11–15</strong></td>
+<td align="left"><strong>Tronco Caído de Jatobá / Peroba-Rosa</strong></td>
+<td align="left">Madeira nobre de lei densíssima. Rende <strong>+2 Unidades de Madeira</strong> para muralhas.</td>
+</tr>
+<tr>
+<td align="center"><strong>16–20</strong></td>
+<td align="left"><strong>Cipó-Titica &amp; Fibras de Tucum</strong></td>
+<td align="left">Fibras impermeáveis perfeitas para cordas de arco, laços e amarras (+1 Ferramenta).</td>
+</tr>
+<tr>
+<td align="center"><strong>21–25</strong></td>
+<td align="left"><strong>Raiz de Ipecacuanha &amp; Carqueja Amarga</strong></td>
+<td align="left">Ervas purgativas e digestivas. O curandeiro prepara <strong>1 Antídoto</strong> contra venenos.</td>
+</tr>
+<tr>
+<td align="center"><strong>26–30</strong></td>
+<td align="left"><strong>Palmito Juçara Doce &amp; Frutos de Açaí</strong></td>
+<td align="left">Alimento farto e energético para a marcha do grupo (+1 Víveres imediatos).</td>
+</tr>
+<tr>
+<td align="center"><strong>31–35</strong></td>
+<td align="left"><strong>Resina de Almécega / Breu Branco</strong></td>
+<td align="left">Seiva aromática inflamável. Permite confeccionar 5 tochas impermeáveis ou calafetar canoas.</td>
+</tr>
+<tr>
+<td align="center"><strong>36–40</strong></td>
+<td align="left"><strong>Toca de Tatu-Canastra / Paca Gorda</strong></td>
+<td align="left">Caça bem-sucedida (+1 Víveres) e carapaça dura usada como prato ou escudo leve.</td>
+</tr>
+<tr>
+<td align="center"><strong>41–45</strong></td>
+<td align="left"><strong>Fonte de Água Mineral da Pedra</strong></td>
+<td align="left">Água límpida e pura. O grupo mata a sede e remove 1 nível de exaustão da viagem.</td>
+</tr>
+<tr>
+<td align="center"><strong>46–50</strong></td>
+<td align="left"><strong>Sementes de Urucum &amp; Jenipapo Maduro</strong></td>
+<td align="left">Tinturas rituais vermelha e preta. Rituais na oca concedem $+2$ de vida temporária a 5 guerreiros.</td>
+</tr>
+<tr>
+<td align="center"><strong>51–55</strong></td>
+<td align="left"><strong>Carcaça de Anta com Presas de Marfim</strong></td>
+<td align="left">Carne fresca para a vila (+2 Víveres) e couro resistente para confecção de gibão.</td>
+</tr>
+<tr>
+<td align="center"><strong>56–60</strong></td>
+<td align="left"><strong>Bosque de Taquaras &amp; Bambus Gigantes</strong></td>
+<td align="left">Varas ocas e leves. Perfeitas para cercas rápidas, zarabatanas e condutores de água (+1 Madeira).</td>
+</tr>
+<tr>
+<td align="center"><strong>61–65</strong></td>
+<td align="left"><strong>Erva de Passarinho &amp; Cipó-Chumbo</strong></td>
+<td align="left">Plantas parasitas com propriedades hemostáticas que estancam sangramentos graves.</td>
+</tr>
+<tr>
+<td align="center"><strong>66–70</strong></td>
+<td align="left"><strong>Ninho de Araras Canindé (Penas Raras)</strong></td>
+<td align="left">Penas longas azuis e douradas. Ideais para estabilizar flechas (+1 no ataque à distância) ou cocares.</td>
+</tr>
+<tr>
+<td align="center"><strong>71–75</strong></td>
+<td align="left"><strong>Veio de Argila Branca de Tabatinga</strong></td>
+<td align="left">Barro fino e maleável. Rende <strong>+1 Ponto de Reserva</strong> ao revestir choupanas contra chamas.</td>
+</tr>
+<tr>
+<td align="center"><strong>76–80</strong></td>
+<td align="left"><strong>Poço de Breu Mineral / Piche Natural</strong></td>
+<td align="left">Asfalto rústico que queima sem apagar. Causa dano de fogo persistente contra aríetes inimigos.</td>
+</tr>
+<tr>
+<td align="center"><strong>81–85</strong></td>
+<td align="left"><strong>Flor da Lua (Desabrocha à Meia-Noite)</strong></td>
+<td align="left">Flor mística raríssima. Rende <strong>1 Unidade de Material Místico</strong> para poções lendárias.</td>
+</tr>
+<tr>
+<td align="center"><strong>86–90</strong></td>
+<td align="left"><strong>Madeira de Pau-Ferro / Braúna</strong></td>
+<td align="left">Tronco tão duro que cega machados comuns. Excelente para aríetes ou reforço de portões de fortaleza.</td>
+</tr>
+<tr>
+<td align="center"><strong>91–95</strong></td>
+<td align="left"><strong>Muda de Cacau Silvestre &amp; Baunilha</strong></td>
+<td align="left">Especiarias preciosas. Troca-se por 30 moedas de prata com mascates na feira.</td>
+</tr>
+<tr>
+<td align="center"><strong>96–00</strong></td>
+<td align="left"><strong>Árvore Sagrada Ancestral dos Povos Antigos</strong></td>
+<td align="left">Resina que brilha no escuro. Descansar sob sua copa restaura todo o Fôlego e cura todas as doenças!</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h3>8.2 Sertão, Caatinga &amp; Morros Pedregosos (1d100)</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d100</th>
+<th align="left">Descoberta Selvagem</th>
+<th align="left">Benefício para o Herói &amp; Assentamento</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01–10</strong></td>
+<td align="left"><strong>Moita de Mandacaru / Cacto de Água Doce</strong></td>
+<td align="left">Água fresca retida nas hastes. Sacie a sede de até 6 viajantes sem gastar cantis.</td>
+</tr>
+<tr>
+<td align="center"><strong>11–20</strong></td>
+<td align="left"><strong>Raízes de Umbuzeiro (Batata d&#39;Água)</strong></td>
+<td align="left">Tubérculos suculentos que salvam expedições da desidratação (+1 Víveres).</td>
+</tr>
+<tr>
+<td align="center"><strong>21–30</strong></td>
+<td align="left"><strong>Pedra-Sabão de Encosta (Esteatita)</strong></td>
+<td align="left">Rocha macia fácil de esculpir panelas, fornos e cadinhos de fundição (+1 Pedra).</td>
+</tr>
+<tr>
+<td align="center"><strong>31–40</strong></td>
+<td align="left"><strong>Fenda com Salitre Cristalizado</strong></td>
+<td align="left">Mineral branco puro. Essencial para moer pólvora caseira com carvão (+1 Munição de Bacamarte).</td>
+</tr>
+<tr>
+<td align="center"><strong>41–50</strong></td>
+<td align="left"><strong>Couro Seco de Cascavel-Gigante</strong></td>
+<td align="left">Pele escamosa grossa. Pode ser usada para empunhaduras de facão ou bainhas impermeáveis.</td>
+</tr>
+<tr>
+<td align="center"><strong>51–60</strong></td>
+<td align="left"><strong>Colônia de Abelhas Jataí em Fenda de Rocha</strong></td>
+<td align="left">Mel claríssimo medicinal que alivia dores e queimaduras graves (+1 Cura Rápida).</td>
+</tr>
+<tr>
+<td align="center"><strong>61–70</strong></td>
+<td align="left"><strong>Restos de Boiadeiro com Moedas Antigas</strong></td>
+<td align="left">Esqueleto ressecado pelo sol com 18 moedas de prata e uma faca de ponta enferrujada.</td>
+</tr>
+<tr>
+<td align="center"><strong>71–80</strong></td>
+<td align="left"><strong>Veio Superficial de Ferro Gusa</strong></td>
+<td align="left">Nódulos de ferro de flor da terra que podem ser recolhidos à mão (<strong>+2 Minério</strong> para a forja).</td>
+</tr>
+<tr>
+<td align="center"><strong>81–90</strong></td>
+<td align="left"><strong>Quartzo Hialino / Cristal de Rocha Límpido</strong></td>
+<td align="left">Cristais brilhantes procurados por ourives e místicos. Vale 20 moedas de prata na feira.</td>
+</tr>
+<tr>
+<td align="center"><strong>91–00</strong></td>
+<td align="left"><strong>Olho d&#39;Água Fervente / Nascente Termal</strong></td>
+<td align="left">Lagoa de águas termais sulfurosas. Banhar-se aqui remove todo cansaço físico e cura reumatismo!</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h3>8.3 Pântano, Varjão &amp; Remansos de Rio (1d100)</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d100</th>
+<th align="left">Descoberta Selvagem</th>
+<th align="left">Benefício para o Herói &amp; Assentamento</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01–15</strong></td>
+<td align="left"><strong>Cardume de Traíras &amp; Caranguejadas</strong></td>
+<td align="left">Pescado abundante. Garante <strong>+2 Unidades de Víveres</strong> em peixe salgado para a vila.</td>
+</tr>
+<tr>
+<td align="center"><strong>16–30</strong></td>
+<td align="left"><strong>Lama Negra Sulfurosa</strong></td>
+<td align="left">Argila curativa com propriedades cicatrizantes que aceleram a cura de feridas infectadas.</td>
+</tr>
+<tr>
+<td align="center"><strong>31–45</strong></td>
+<td align="left"><strong>Sapo-Pimenta de Seiva Tóxica</strong></td>
+<td align="left">O caçador extrai peçonha suficiente para embeber 10 flechas com veneno paralisante.</td>
+</tr>
+<tr>
+<td align="center"><strong>46–60</strong></td>
+<td align="left"><strong>Esteiral de Juncos &amp; Taboas Gigantes</strong></td>
+<td align="left">Varas flexíveis para tecer esteiras de dormir, cestos de carga e coberturas de oca.</td>
+</tr>
+<tr>
+<td align="center"><strong>61–75</strong></td>
+<td align="left"><strong>Depósito de Turfa Fóssil Seca</strong></td>
+<td align="left">Combustível denso que queima por horas nas lareiras e forjas sem fazer fumaça alta.</td>
+</tr>
+<tr>
+<td align="center"><strong>76–90</strong></td>
+<td align="left"><strong>Canoa de Pescador Abandonada no Aguapé</strong></td>
+<td align="left">Embarcação recuperável com 1 hora de trabalho. Dá ao grupo 1 <em>Canoa de Peroba</em> funcional!</td>
+</tr>
+<tr>
+<td align="center"><strong>91–00</strong></td>
+<td align="left"><strong>Lótus Negra das Águas Mortas</strong></td>
+<td align="left">Flor que absorve energia necrótica. Rende <strong>2 Unidades de Materiais Místicos</strong> para o Pajé.</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h3>8.4 Minas Abandonadas, Cavernas &amp; Galerias Subterrâneas (1d100)</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d100</th>
+<th align="left">Descoberta Subterrânea</th>
+<th align="left">Benefício para o Herói &amp; Assentamento</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01–10</strong></td>
+<td align="left"><strong>Bolsão de Gás Inflamável &amp; Morcegos</strong></td>
+<td align="left">Perigo que exige teste de Astúcia CD 12 para não explodir com tochas; afasta predadores.</td>
+</tr>
+<tr>
+<td align="center"><strong>11–20</strong></td>
+<td align="left"><strong>Ferramentas de Mineração Esquecidas</strong></td>
+<td align="left">Pás de ferro forjado, picaretas cegas e alavancas de aço (<strong>+2 Metal</strong> para a forja).</td>
+</tr>
+<tr>
+<td align="center"><strong>21–30</strong></td>
+<td align="left"><strong>Veio de Carvão Mineral Fóssil (Antracito)</strong></td>
+<td align="left">Combustível denso de alta temperatura que dobra o rendimento de forjas de ferro (+1 Reserva).</td>
+</tr>
+<tr>
+<td align="center"><strong>31–40</strong></td>
+<td align="left"><strong>Lago Subterrâneo de Água Cristalina</strong></td>
+<td align="left">Água mineral puríssima filtrada por quartzo; sacia a sede de até 100 homens em cerco.</td>
+</tr>
+<tr>
+<td align="center"><strong>41–50</strong></td>
+<td align="left"><strong>Fenda com Cristais de Salitre Puro</strong></td>
+<td align="left">Salitre branco para socar pólvora caseira (<strong>+3 Cargas de Bacamarte</strong> gratuitas).</td>
+</tr>
+<tr>
+<td align="center"><strong>51–60</strong></td>
+<td align="left"><strong>Esqueleto de Garimpeiro com Bornal de Couro</strong></td>
+<td align="left">Restos mortais com 22 moedas de prata, uma garrucha enferrujada e 1 lanterna de latão.</td>
+</tr>
+<tr>
+<td align="center"><strong>61–70</strong></td>
+<td align="left"><strong>Fagulhas de Ouro de Aluvião em Cascalho</strong></td>
+<td align="left">Bateando a areia do córrego subterrâneo, o grupo extrai <strong>+2 Unidades de Ouro puro</strong>!</td>
+</tr>
+<tr>
+<td align="center"><strong>71–80</strong></td>
+<td align="left"><strong>Cogumelos Fosforescentes Gigantes</strong></td>
+<td align="left">Fungos luminescentes que iluminam a caverna sem fumaça e servem de alimento de emergência (+1 Víveres).</td>
+</tr>
+<tr>
+<td align="center"><strong>81–90</strong></td>
+<td align="left"><strong>Ninho de Morcegos-Vampiros de Asas Negras</strong></td>
+<td align="left">Guano de morcego riquíssimo em nitrato para fertilizar hortas de mandioca (dobra a colheita).</td>
+</tr>
+<tr>
+<td align="center"><strong>91–00</strong></td>
+<td align="left"><strong>Salão dos Antigos com Inscrições Rupestres</strong></td>
+<td align="left">Pinturas a sangue de animais que revelam a localização de uma veia colossal de ferro ou prata!</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">⚔️ CAPÍTULO 9: SAQUE PÓS-COMBATE POR TIPO DE INIMIGO</h1></header>
+<p>Após vencer uma batalha contra invasores ou monstros, role nesta tabela para abastecer imediatamente os estoques da sua comunidade:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="left">Tipo de Inimigo Derrotado</th>
+<th align="left">O que os Heróis Encontram nos Espólios</th>
+<th align="left">Conversão para o Assentamento</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Bando de Jagunços / Mercenários</strong></td>
+<td align="left">Espingardas velhas, facões de cabo chifre, pólvora, fumo e cartuchos.</td>
+<td align="left"><strong>+2 Unidades de Metal</strong> e 15 a 30 moedas de prata.</td>
+</tr>
+<tr>
+<td align="left"><strong>Patrulha Militar da Coroa</strong></td>
+<td align="left">Mosquetes regulares, corpetes de ferro, sapatos de couro, cartas de soldo.</td>
+<td align="left"><strong>+3 Metal</strong>, <strong>+1 Ouro</strong> e 1 mapa militar de rotas imperiais.</td>
+</tr>
+<tr>
+<td align="left"><strong>Caravana de Mascates Saqueada</strong></td>
+<td align="left">Fardos de sal, tecidos de algodão, enxadas, pederneiras e garrafas de vinho.</td>
+<td align="left"><strong>+2 Víveres</strong>, <strong>+1 Ferramenta</strong> e mercadorias para troca.</td>
+</tr>
+<tr>
+<td align="left"><strong>Capitão-do-Mato &amp; Matilha</strong></td>
+<td align="left">Laços de couro cru, cães de presa que podem ser adestrados, armas de tiro.</td>
+<td align="left"><strong>+1 Cão de Guarda</strong> para as muralhas e 20 moedas de prata.</td>
+</tr>
+<tr>
+<td align="left"><strong>Acampamento de Garimpo Ilegal</strong></td>
+<td align="left">Bateias, picaretas, pás de ferro, sacas de feijão e fagulhas de ouro.</td>
+<td align="left"><strong>+2 Metal</strong>, <strong>+2 Víveres</strong> e <strong>+2 Ouro líquido</strong>.</td>
+</tr>
+<tr>
+<td align="left"><strong>Quartel ou Forte Inimigo Conquistado</strong></td>
+<td align="left">Canhões de bronze, paióis de pólvora, celeiros cheios e prisioneiros soltos.</td>
+<td align="left"><strong>+5 Metal</strong>, <strong>+4 Víveres</strong>, <strong>+3 Ouro</strong> e <strong>+40 População grata</strong>!</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">🏺 CAPÍTULO 10: TABELA d100 DE RELÍQUIAS PERDIDAS &amp; CURIOSIDADES DA FRONTEIRA</h1></header>
+<p>Ao explorar sepulturas esquecidas, velhas missões jesuíticas soterradas, carcaças de navios encalhados nos rios ou cavernas com inscrições rupestres, role <strong>1d100</strong> para descobrir que objeto misterioso os heróis desenterraram:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="center">1d100</th>
+<th align="left">Relíquia ou Curiosidade Encontrada</th>
+<th align="left">Propriedade Misteriosa / Valor Prático</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>01–05</strong></td>
+<td align="left"><strong>Bússola de Bronze que Aponta para Água Potável</strong></td>
+<td align="left">Agulha de meteorito que gira indicando a nascente pura mais próxima. Nunca se perde na sede do sertão.</td>
+</tr>
+<tr>
+<td align="center"><strong>06–10</strong></td>
+<td align="left"><strong>Moeda de Ouro Holandesa Cunhada com Rostos Duplos</strong></td>
+<td align="left">Não pode ser gasta; se jogada para o ar antes de uma decisão arriscada, concede +1d4 de sorte no teste.</td>
+</tr>
+<tr>
+<td align="center"><strong>11–15</strong></td>
+<td align="left"><strong>Cachimbo de Barro dos Antigos Pajés</strong></td>
+<td align="left">Queimar folhas de fumo silvestre aqui revela o rastro luminoso de espíritos e mortos-vivos no escuro.</td>
+</tr>
+<tr>
+<td align="center"><strong>16–20</strong></td>
+<td align="left"><strong>Ampulheta com Areia Negra de Fundo de Vulcão</strong></td>
+<td align="left">Corre ao contrário quando uma criatura mágica ou demônio está a menos de 30 metros de distância.</td>
+</tr>
+<tr>
+<td align="center"><strong>21–25</strong></td>
+<td align="left"><strong>Garrafa de Vidro Verde Contendo um Sussurro Preso</strong></td>
+<td align="left">Se aberta, libera o grito ecoante de um soldado que morreu há 100 anos, assustando animais e sentinelas.</td>
+</tr>
+<tr>
+<td align="center"><strong>26–30</strong></td>
+<td align="left"><strong>Fragmento de Dente Fossilizado de Besta Antediluviana</strong></td>
+<td align="left">Pesado como chumbo. Usado como amuleto, garante +1 na Defesa contra mordidas de feras selvagens.</td>
+</tr>
+<tr>
+<td align="center"><strong>31–35</strong></td>
+<td align="left"><strong>Diário de Couro de um Padre Cartógrafo Louco</strong></td>
+<td align="left">Contém anotações precisas sobre a localização de uma cachoeira onde o ouro brota na areia.</td>
+</tr>
+<tr>
+<td align="center"><strong>36–40</strong></td>
+<td align="left"><strong>Bacamarte de Cano Curto Entalhado com Runas Nativas</strong></td>
+<td align="left">Não queima pólvora comum: dispara faíscas azuis que causam dano elétrico em alvos molhados.</td>
+</tr>
+<tr>
+<td align="center"><strong>41–45</strong></td>
+<td align="left"><strong>Espelho de Prata que Não Reflete Feições Cansadas</strong></td>
+<td align="left">Olhar nele remove a ilusão de disfarces sobrenaturais (revela lobisomens e bruxas em forma humana).</td>
+</tr>
+<tr>
+<td align="center"><strong>46–50</strong></td>
+<td align="left"><strong>Saco de Couro com 30 Feijões Pretos que Nunca Apodrecem</strong></td>
+<td align="left">Se plantados em terra abençoada, brotam em 1 única noite, fornecendo alimento para 10 pessoas por uma semana.</td>
+</tr>
+<tr>
+<td align="center"><strong>51–55</strong></td>
+<td align="left"><strong>Chave de Ferro Pesada com Cabeça de Serpente</strong></td>
+<td align="left">Abre qualquer tranca manual comum se banhada em gotas de cachaça antes de virar o tambor.</td>
+</tr>
+<tr>
+<td align="center"><strong>56–60</strong></td>
+<td align="left"><strong>Manta de Lã Tingida com Sangue de Boitatá</strong></td>
+<td align="left">Não queima com fogo mundano. Usá-la protege completamente contra queimaduras de fagulhas e fogueiras.</td>
+</tr>
+<tr>
+<td align="center"><strong>61–65</strong></td>
+<td align="left"><strong>Caixa de Música Alemã que Toca Marcha Fúnebre</strong></td>
+<td align="left">O som faz cães de guarda e lobos pararem de latir e uivarem pacificamente por 2 minutos.</td>
+</tr>
+<tr>
+<td align="center"><strong>66–70</strong></td>
+<td align="left"><strong>Bainha de Couro de Sucuri que Encolhe e Estica</strong></td>
+<td align="left">Consegue abrigar qualquer lâmina — de um punhal a uma espada montante — tornando-a leve como pena.</td>
+</tr>
+<tr>
+<td align="center"><strong>71–75</strong></td>
+<td align="left"><strong>Anel de Cobre Verde com Selo de Barão Assassinado</strong></td>
+<td align="left">Reconhecido por cortesãos e meirinhos; permite forjar salvo-condutos com vantagem na fronteira.</td>
+</tr>
+<tr>
+<td align="center"><strong>76–80</strong></td>
+<td align="left"><strong>Semente Gigante de Pau-Brasil Sagrado</strong></td>
+<td align="left">Se enterrada no centro da aldeia, faz com que todas as colheitas ao redor dobrem de rendimento naquele ano!</td>
+</tr>
+<tr>
+<td align="center"><strong>81–85</strong></td>
+<td align="left"><strong>Ferradura de Cavalo de Fogo (Queimada em Brasa Viva)</strong></td>
+<td align="left">Pregada no portão do assentamento, impede que almas penadas e mulas-sem-cabeça cruzem a soleira.</td>
+</tr>
+<tr>
+<td align="center"><strong>86–90</strong></td>
+<td align="left"><strong>Astrolábio de Navegador Pirata Marcado com Ilhas Inexistentes</strong></td>
+<td align="left">Aponta caminhos secretos através de tempestades e nevoeiros nos grandes deltas fluviais.</td>
+</tr>
+<tr>
+<td align="center"><strong>91–95</strong></td>
+<td align="left"><strong>Pérola Negra Gigante Retirada de Concha Fluvial Mítica</strong></td>
+<td align="left">Irradia frescor gélido. Mergulhada num poço envenenado, purifica toda a água em menos de 10 minutos.</td>
+</tr>
+<tr>
+<td align="center"><strong>96–00</strong></td>
+<td align="left"><strong>O Sagrado Manto dos Inconfidentes da Fronteira</strong></td>
+<td align="left">Um casaco de feltro gasto bordado com o lema <em>Libertas Quae Sera Tamen</em>. Usado em combate por um líder de vila, dobra a Moral de todos os defensores e impede debandada enquanto o herói estiver de pé!</td>
+</tr>
+</tbody></table></div>
+<hr>
+<header class="part-header"><h1 class="part-title">🔪 CAPÍTULO 11: ANATOMIA DE BESTAS &amp; EXTRAÇÃO DE INGREDIENTES MÍTICOS</h1></header>
+<p>Matar uma criatura mítica na fronteira é apenas metade do trabalho: um bom mateiro sabe que as entranhas, o couro e os ossos de uma fera guardam o verdadeiro poder para o arsenal do assentamento.</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                   O PROCESSO DE EXTRAÇÃO &amp; DESOSSA                     │
+│ 1. ABATE DA FERA ➔ 2. TESTE DE SOBREVIVÊNCIA ➔ 3. ARMAZENAMENTO SECO   │
+└────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>1. Regra de Campo (Teste de Astúcia ou Sobrevivência):</h3>
+<ul>
+<li>O caçador deve gastar <strong>1 hora de trabalho</strong> sobre a carcaça fresca com facas de desossa afiadas.</li>
+<li>Faça um teste de <strong>Astúcia (Sobrevivência) CD 13</strong> (ou CD 15 para Chefes em 3 Fases).</li>
+<li><strong>Sucesso:</strong> Extrai o componente intacto listado na tabela.</li>
+<li><strong>Falha:</strong> O material é rasgado ou perfurado, rendendo apenas metade do rendimento em seiva/couro.</li>
+<li><strong>Falha Crítica (1 natural):</strong> Bolsa de veneno ou glândula fétida rompe, envenenando o caçador!</li>
+</ul>
+<hr>
+<h3>2. Catálogo de Ingredientes Monstruosos &amp; Aplicações na Forja:</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th align="left">Monstro Abatido</th>
+<th align="left">Ingrediente Raro Extraído</th>
+<th align="left">Aplicação Prática no Arsenal &amp; Assentamento</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Sucuri-Gigante dos Remansos</strong></td>
+<td align="left"><strong>Couro Escamoso Impermeável</strong></td>
+<td align="left">Confecciona o <em>Gibão de Sucuri</em> (Defesa 14; quem o veste nada o dobro da velocidade e não se afoga).</td>
+</tr>
+<tr>
+<td align="left"><strong>Boitatá da Mata Escura</strong></td>
+<td align="left"><strong>Glândulas de Fogo Fátuo &amp; Gordura</strong></td>
+<td align="left">Rende <strong>3 Frascos de Óleo Incandescente</strong> (queima até sob tempestades torrenciais, causando 2d8 de fogo).</td>
+</tr>
+<tr>
+<td align="left"><strong>Onça-Titânica / Jaguaretê</strong></td>
+<td align="left"><strong>Presas de Marfim Maciço &amp; Garras</strong></td>
+<td align="left">Forja <strong>2 Facões de Ponta de Mestre</strong> (+1d6 dano cortante) ou 10 Pontas de Flecha de perfuração de armadura.</td>
+</tr>
+<tr>
+<td align="left"><strong>Mapinguari da Selva Alta</strong></td>
+<td align="left"><strong>Fígado Fétido &amp; Pelagem Grossa</strong></td>
+<td align="left">Produz <strong>Pomada Repelente de Feras</strong> (nenhuma fera ataca o acampamento) e capote imune a garras de urso.</td>
+</tr>
+<tr>
+<td align="left"><strong>Corpo-Seco / Múmia da Caatinga</strong></td>
+<td align="left"><strong>Casca de Pele Ressecada &amp; Pó Fúnebre</strong></td>
+<td align="left">Moído em pó, unge lâminas: ferimentos causados por essa arma <strong>não podem ser regenerados ou curados magicamente</strong> por 24 horas.</td>
+</tr>
+<tr>
+<td align="left"><strong>Aparição &amp; Assombração dos Pântanos</strong></td>
+<td align="left"><strong>Ectoplasma Fluido &amp; Pranto Preso</strong></td>
+<td align="left">Destilado no laboratório alquímico, rende a <em>Garrafada da Visão do Além</em> (permite enxergar no escuro espiritual e ver o invisível).</td>
+</tr>
+<tr>
+<td align="left"><strong>Queixada-Alfa do Bando da Morte</strong></td>
+<td align="left"><strong>Navalhas de Marfim Inferior</strong></td>
+<td align="left">Fixadas na ponta de um aríete ou marreta de guerra, causam <strong>dano duplo contra portas de madeira e paliçadas</strong>!</td>
+</tr>
+<tr>
+<td align="left"><strong>Jararaca-Real / Cobra-Coral Mítica</strong></td>
+<td align="left"><strong>Bolsa de Peçonha Pura (4 Doses)</strong></td>
+<td align="left">Cada dose embebe uma lâmina com veneno paralisante (teste de Vigor CD 14 ou paralisia muscular por 3 rodadas).</td>
+</tr>
+</tbody></table></div>
+<hr>
+<p><em>Livro de Monstros dos TerraTenentes — A terra tem dentes, garras e memória. Domine-a ou seja devorado.</em></p>
+
+    </div>
+  </div>
+  <script>
+    function toggleColumns() {
+      const container = document.getElementById('bookContainer');
+      const btn = document.getElementById('colBtn');
+      container.classList.toggle('one-column-mode');
+      btn.textContent = container.classList.contains('one-column-mode') ? 'Modo: 1 Coluna (Clique p/ 2)' : 'Modo: 2 Colunas (Clique p/ 1)';
+    }
+    function setFontSize(val) {
+      document.documentElement.style.setProperty('--font-base', val);
+    }
+  </script>
+</body>
+</html>
